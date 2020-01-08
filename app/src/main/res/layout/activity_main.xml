@@ -1,6 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" />
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/nomApp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineSpacingExtra="10sp"
+        android:text="@string/nameApp"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        app:fontFamily="serif"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/right_guideline"
+        app:layout_constraintTop_toTopOf="@id/top_guideline"
+        tools:layout_constraintRight_toRightOf="@id/right_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/login"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/right_guideline"
+        app:layout_constraintTop_toTopOf="@id/top_guideline2" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/connect"
+        android:layout_width="103dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="20dp"
+        android:background="#3F51B5"
+        android:lineSpacingExtra="20sp"
+        android:text="@string/connect"
+        android:textColor="#F8F7F7"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <TextView
+        android:id="@+id/passwordOublie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/passwordForgive"
+        android:textColor="#2167F3"
+        android:textIsSelectable="true"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/connect" />
+
+    <TextView
+        android:id="@+id/infoCompte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/infoAccount"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/passwordOublie" />
+
+    <TextView
+        android:id="@+id/inscription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/subscribe"
+        android:textColor="#2167F3"
+        app:layout_constraintRight_toLeftOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/passwordOublie" />
+
+    <TextView
+        android:id="@+id/reseaux"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/networks"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/right_guideline"
+        app:layout_constraintTop_toTopOf="@id/top_guideline3" />
+
+    <LinearLayout
+        android:layout_width="289dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/reseaux">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></Space>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            app:srcCompat="@drawable/twitter" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_weight="0.5"></Space>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            app:srcCompat="@drawable/facebook" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_weight="0.5"></Space>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            app:srcCompat="@drawable/snapchat" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_weight="0.5"></Space>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            app:srcCompat="@drawable/instagram" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></Space>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
