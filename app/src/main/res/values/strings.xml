@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SportSharing</string>
+    <string name="login">Identifiant</string>
+    <string name="password">Mot de passe</string>
+    <string name="connect">Connexion</string>
+    <string name="passwordForgive">Mot de passe oublié ?</string>
+    <string name="infoAccount">Vous n\'avez pas de compte ?</string>
+    <string name="subscribe">Inscrivez-vous</string>
+    <string name="networks">Nos réseaux</string>
+    <string name="todo">TODO</string>
 </resources>

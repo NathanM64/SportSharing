@@ -10,13 +10,13 @@ import android.view.WindowManager;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class ConnexionActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.connexion_application);
 
         //Mise en plein écran de l'application
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
