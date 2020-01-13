@@ -5,5 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="btnPressed">#091366</color>
     <color name="btn">#3F51B5</color>
+    <color name="backgroundTabTitleSports">#51090808</color>
+    <color name="backgroundTabSports">#D2090808</color>
 
 </resources>
