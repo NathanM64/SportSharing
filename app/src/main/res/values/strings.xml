@@ -8,4 +8,47 @@
     <string name="subscribe">Inscrivez-vous</string>
     <string name="networks">Nos réseaux</string>
     <string name="todo">TODO</string>
+    <string name="activity_subscribe_1">Inscription (1/3)</string>
+    <string name="required">*</string>
+    <string name="name">Nom</string>
+    <string name="confirmPassword">Confirmer</string>
+    <string name="firstName">Prénom</string>
+    <string name="mail">Adresse Mail</string>
+    <string name="birthday">Date de naissance</string>
+    <string name="city">Ville</string>
+    <string name="postalCode">Code Postal</string>
+    <string name="phoneNumber">Téléphone</string>
+    <string name="requiredTexte">Champs Obligatoires</string>
+    <string name="conditionUseAppli">J\'accepte les Condtions d\'utilisation générales de l\'application</string>
+    <string name="notificationTexte">Je souhaite recevoir des notifications de la part de l\'application (ce paramètre n\'est pas définitif et pourra être modifié par la suite)</string>
+    <string name="cancel">Annuler</string>
+    <string name="next">Suivant</string>
+    <string name="activity_subscribe_2">Inscription (2/3)</string>
+    <string name="selectSports">Choisissez vos sports :</string>
+    <string name="sport">Sport</string>
+    <string name="level">Niveau</string>
+
+    <!-- Liste pour Sport et Niveau -->
+    <string-array name="sport_array">
+        <item>Tennis</item>
+        <item>HandBall</item>
+        <item>Rugby</item>
+        <item>Pelotte</item>
+        <item>Surf</item>
+        <item>Vélo</item>
+        <item>Course</item>
+        <item>Gymnastique</item>
+        <item>Musculation</item>
+        <item>Danse</item>
+        <item>Musique</item>
+    </string-array>
+
+    <string-array name="level_array">
+        <item>Non Renseigné</item>
+        <item>Occasionnel</item>
+        <item>Débutant</item>
+        <item>Intermédiaire</item>
+        <item>Professionnel</item>
+    </string-array>
+
 </resources>

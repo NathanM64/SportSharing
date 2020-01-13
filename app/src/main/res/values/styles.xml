@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Enlève la barre du titre de l'application -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
 </resources>

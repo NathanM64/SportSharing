@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ConnexionActivity">
 
     <TextView
         android:id="@+id/nomApp"
@@ -57,30 +57,42 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.85" />
 
-    <EditText
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/login"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toLeftOf="@id/right_guideline"
-        app:layout_constraintTop_toTopOf="@id/top_guideline2" />
+        app:layout_constraintTop_toTopOf="@id/top_guideline2">
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login"
+            android:inputType="text"
+            app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+            app:layout_constraintRight_toLeftOf="@id/right_guideline"
+            app:layout_constraintTop_toTopOf="@id/top_guideline2" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toLeftOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintTop_toBottomOf="@id/loginLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+            app:layout_constraintRight_toLeftOf="@id/right_guideline" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/connect"
@@ -93,7 +105,7 @@
         android:textColor="#F8F7F7"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toLeftOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
     <TextView
         android:id="@+id/passwordOublie"
@@ -108,7 +120,7 @@
         app:layout_constraintTop_toBottomOf="@+id/connect" />
 
     <TextView
-        android:id="@+id/infoCompte"
+        android:id="@+id/identifiant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -148,7 +160,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_weight="1"></Space>
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -160,7 +172,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="0.5dp"
-            android:layout_weight="0.5"></Space>
+            android:layout_weight="0.5" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -172,7 +184,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="0.5dp"
-            android:layout_weight="0.5"></Space>
+            android:layout_weight="0.5" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -184,7 +196,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="0.5dp"
-            android:layout_weight="0.5"></Space>
+            android:layout_weight="0.5" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -196,7 +208,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_weight="1"></Space>
+            android:layout_weight="1" />
 
     </LinearLayout>
 

@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ConnexionActivity extends AppCompatActivity {
+public class Inscription1Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.connexion_application);
+        setContentView(R.layout.inscription_1);
     }
 }
