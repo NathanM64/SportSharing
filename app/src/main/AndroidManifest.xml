@@ -5,20 +5,30 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icone_sportsharing"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icone_sportsharing_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ConnexionActivity" />
-        <activity android:name=".Inscription1Activity">
+        <activity android:name=".ConnexionActivity">
+
+        </activity>
+        <activity android:name=".Inscription1Activity" />
+        <activity android:name=".Inscription2Activity" />
+        <activity android:name=".Inscription3Activity" />
+        <activity android:name=".AccueilCarteClassiqueActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCnvSkwZjLdamVmcMcyEeqFBWt_XVCIoS0" />
+
     </application>
 
 </manifest>

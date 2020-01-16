@@ -42,12 +42,19 @@
     <string name="nbrCaractereTextSePresenter">0/400</string>
     <string name="confirm">Valider</string>
 
+    <!-- Maquette Accueil (Carte - Classique) -->
+    <string name="map">Carte</string>
+    <string name="activity">Activité</string>
+    <string name="createActivityUppercase">CREER UNE ACTIVITE</string>
+    <string name="searchUppercase">RECHERCHER</string>
+    <string name="home">Accueil</string>
+
     <!-- Liste pour Sport et Niveau -->
     <string-array name="sport_array">
         <item>Tennis</item>
         <item>HandBall</item>
         <item>Rugby</item>
-        <item>Pelotte</item>
+        <item>Pelote</item>
         <item>Surf</item>
         <item>Vélo</item>
         <item>Course</item>
