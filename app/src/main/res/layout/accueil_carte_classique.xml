@@ -67,13 +67,14 @@
         tools:layout_constraintRight_toRightOf="@id/right_guideline" />
 
     <View
+        android:id="@+id/LigneTop"
+        android:layout_width="wrap_content"
         android:layout_height="2dip"
         android:layout_marginTop="15dp"
         android:background="@color/backgroundTabSports"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomApp"
-        android:layout_width="wrap_content" />
+        app:layout_constraintTop_toBottomOf="@+id/nomApp" />
 
     <Button
         android:id="@+id/buttonMap"
@@ -85,7 +86,6 @@
         android:textAllCaps="false"
         android:textColor="#1559D1"
         android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/middle_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomApp" />
@@ -97,13 +97,15 @@
         android:layout_marginTop="30dp"
         android:background="@null"
         android:text="@string/activity"
+        android:textAllCaps="false"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/middle_guideline"
         app:layout_constraintTop_toBottomOf="@+id/nomApp" />
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/LigneSousCarte"
         android:layout_width="0dp"
         android:layout_height="2dip"
         android:layout_marginTop="5dp"
@@ -113,7 +115,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonMap" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/LigneBottom"
         android:layout_width="wrap_content"
         android:layout_height="2dip"
         android:layout_marginTop="15dp"
@@ -130,7 +132,7 @@
         app:layout_constraintBottom_toTopOf="@+id/top_guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/LigneBottom" />
 
     <Button
         android:id="@+id/buttonCreateActivity"
@@ -155,6 +157,15 @@
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@id/buttonCreateActivity" />
+
+    <View
+        android:id="@+id/LigneNavBarTop"
+        android:layout_width="wrap_content"
+        android:layout_height="2dip"
+        android:background="@color/backgroundTabSports"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline3" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

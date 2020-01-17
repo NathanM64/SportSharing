@@ -17,7 +17,8 @@
         <activity android:name=".Inscription1Activity" />
         <activity android:name=".Inscription2Activity" />
         <activity android:name=".Inscription3Activity" />
-        <activity android:name=".AccueilCarteClassiqueActivity">
+        <activity android:name=".AccueilCarteClassiqueActivity" />
+        <activity android:name=".AccueilActivite">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

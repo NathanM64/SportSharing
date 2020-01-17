@@ -48,6 +48,9 @@
     <string name="createActivityUppercase">CREER UNE ACTIVITE</string>
     <string name="searchUppercase">RECHERCHER</string>
     <string name="home">Accueil</string>
+    <string name="activityRegistered"><u>Activités inscrites</u></string>
+    <string name="completedActivity"><u>Activités terminés</u></string>
+    <string name="myActivities"><u>Mes activités</u></string>
 
     <!-- Liste pour Sport et Niveau -->
     <string-array name="sport_array">
