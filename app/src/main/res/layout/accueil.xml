@@ -113,6 +113,7 @@
         android:id="@+id/ConstraintLayoutAccueilCarte"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/top_guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +189,7 @@
         android:id="@+id/ConstraintLayoutAccueilActivite"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/top_guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -217,7 +218,8 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp" />
 
                 <TableLayout
                     android:id="@+id/TableLayoutRegisteredActivity"
@@ -238,7 +240,8 @@
                             android:background="@null"
                             android:contentDescription="@string/todo"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user" />
+                            app:srcCompat="@drawable/user"
+                            android:layout_marginEnd="20dp" />
 
                         <LinearLayout
                             android:layout_width="275dp"
@@ -252,7 +255,6 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginRight="15dp"
-                                android:text="TextView"
                                 android:textColor="#000000"
                                 android:textSize="18sp" />
 
@@ -262,51 +264,6 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="TextView"
-                                android:textColor="#000000" />
-                        </LinearLayout>
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@null"
-                            android:contentDescription="@string/todo"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user" />
-
-                        <LinearLayout
-                            android:layout_width="275dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/list_border"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="15dp"
-                                android:text="TextView"
-                                android:textColor="#000000"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginRight="15dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="TextView"
                                 android:textColor="#000000" />
                         </LinearLayout>
 
@@ -323,7 +280,8 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp" />
 
                 <TableLayout
                     android:id="@+id/TableLayoutCompletedActivity"
@@ -344,7 +302,8 @@
                             android:background="@null"
                             android:contentDescription="@string/todo"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user" />
+                            app:srcCompat="@drawable/user"
+                            android:layout_marginEnd="20dp" />
 
                         <LinearLayout
                             android:layout_width="275dp"
@@ -358,7 +317,6 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginRight="15dp"
-                                android:text="TextView"
                                 android:textColor="#000000"
                                 android:textSize="18sp" />
 
@@ -368,7 +326,6 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="TextView"
                                 android:textColor="#000000" />
                         </LinearLayout>
 
@@ -384,7 +341,8 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp" />
 
                 <TableLayout
                     android:id="@+id/TableLayoutMyActivites"
@@ -405,7 +363,8 @@
                             android:background="@null"
                             android:contentDescription="@string/todo"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user" />
+                            app:srcCompat="@drawable/user"
+                            android:layout_marginEnd="20dp" />
 
                         <LinearLayout
                             android:layout_width="275dp"
@@ -419,7 +378,6 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginRight="15dp"
-                                android:text="TextView"
                                 android:textColor="#000000"
                                 android:textSize="18sp" />
 
@@ -429,7 +387,6 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="TextView"
                                 android:textColor="#000000" />
                         </LinearLayout>
 

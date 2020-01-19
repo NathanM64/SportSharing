@@ -17,18 +17,21 @@
         <activity android:name=".Inscription1Activity" />
         <activity android:name=".Inscription2Activity" />
         <activity android:name=".Inscription3Activity" />
-        <activity android:name=".AccueilActivity">
+        <activity android:name=".AccueilActivity" />
+        <activity android:name=".RechercheActiviteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RechercheActiviteActivity">
-
-        </activity>
         <activity android:name=".TimeSelectorActivity" />
         <activity android:name=".DateSelectorActivity" />
+        <activity android:name=".RechercheResultatActivity" />
+
+
+
+        <!-- Déclaration de la clef d'accés à l'API de GoogleMap -->
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

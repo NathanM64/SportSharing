@@ -52,6 +52,13 @@
     <string name="completedActivity"><u>Activités terminés</u></string>
     <string name="myActivities"><u>Mes activités</u></string>
     <string name="search">Rechercher</string>
+    <string name="location">Lieu</string>
+    <string name="exampleCity">Paris</string>
+    <string name="day">Jour</string>
+    <string name="time">Heure</string>
+    <string name="searchTab">Recherche</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="result">Résultats</string>
 
     <!-- Liste pour Sport et Niveau -->
     <string-array name="sport_array">
