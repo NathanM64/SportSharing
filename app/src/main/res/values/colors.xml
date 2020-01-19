@@ -3,9 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorTitre">#000000</color>
     <color name="btnPressed">#091366</color>
     <color name="btn">#3F51B5</color>
     <color name="backgroundTabTitleSports">#51090808</color>
     <color name="backgroundTabSports">#D2090808</color>
+    <color name="tabAccueil">#1559D1</color>
 
 </resources>

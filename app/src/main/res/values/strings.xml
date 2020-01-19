@@ -51,6 +51,7 @@
     <string name="activityRegistered"><u>Activités inscrites</u></string>
     <string name="completedActivity"><u>Activités terminés</u></string>
     <string name="myActivities"><u>Mes activités</u></string>
+    <string name="search">Rechercher</string>
 
     <!-- Liste pour Sport et Niveau -->
     <string-array name="sport_array">

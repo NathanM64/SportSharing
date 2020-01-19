@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class AccueilActivite extends AppCompatActivity {
+public class TimeSelectorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.accueil_activite);
+        setContentView(R.layout.time_selector);
     }
 }
+
+
