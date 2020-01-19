@@ -5,6 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Barre de placement -->
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline"
         android:layout_width="wrap_content"
@@ -76,6 +78,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomApp" />
 
+    <!-- Barre de navigation entre maquette accueil carte et activité -->
+
     <Button
         android:id="@+id/buttonMap"
         android:layout_width="0dp"
@@ -124,6 +128,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonActivity" />
 
+    <!-- Carte Google avec activité proche selon géolocalisation -->
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="0dp"
@@ -133,6 +139,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LigneBottom" />
+
+    <!-- Bouton raccourci pour créer et recherche une activité -->
 
     <Button
         android:id="@+id/buttonCreateActivity"
@@ -166,6 +174,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/top_guideline3" />
+
+    <!-- Barre de navigation générale de l'application -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

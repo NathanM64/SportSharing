@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ConnexionActivity">
 
+    <!-- Titre de l'application -->
+
     <TextView
         android:id="@+id/nomApp"
         android:layout_width="0dp"
@@ -21,6 +23,8 @@
         app:layout_constraintRight_toLeftOf="@id/right_guideline"
         app:layout_constraintTop_toTopOf="@id/top_guideline"
         tools:layout_constraintRight_toRightOf="@id/right_guideline" />
+
+    <!-- Barre de placement -->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline"
@@ -56,6 +60,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.85" />
+
+    <!-- TextInputLayout de Identifiant et Mot de passe -->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginLayout"
@@ -94,6 +100,8 @@
             app:layout_constraintRight_toLeftOf="@id/right_guideline" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Bouton connexion -->
+
     <Button
         android:id="@+id/connect"
         android:layout_width="103dp"
@@ -107,6 +115,8 @@
         app:layout_constraintRight_toLeftOf="@id/right_guideline"
         app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
+    <!-- Mot de passe oublié -->
+
     <TextView
         android:id="@+id/passwordOublie"
         android:layout_width="wrap_content"
@@ -118,6 +128,8 @@
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toLeftOf="@id/right_guideline"
         app:layout_constraintTop_toBottomOf="@+id/connect" />
+
+    <!-- Inscription -->
 
     <TextView
         android:id="@+id/identifiant"
@@ -137,6 +149,8 @@
         android:textColor="#2167F3"
         app:layout_constraintRight_toLeftOf="@id/right_guideline"
         app:layout_constraintTop_toBottomOf="@+id/passwordOublie" />
+
+    <!-- Réseaux sociaux de l'application -->
 
     <TextView
         android:id="@+id/reseaux"

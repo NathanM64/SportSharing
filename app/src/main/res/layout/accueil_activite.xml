@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+   <!-- Barre de placement -->
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline"
         android:layout_width="wrap_content"
@@ -66,6 +68,8 @@
         app:layout_constraintTop_toTopOf="@id/top_guideline"
         tools:layout_constraintRight_toRightOf="@id/right_guideline" />
 
+    <!-- Ligne noire sous le titre -->
+
     <View
         android:id="@+id/LigneTop"
         android:layout_width="wrap_content"
@@ -75,6 +79,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomApp" />
+
+    <!-- Barre de navigation entre maquette accueil carte et activité -->
 
     <Button
         android:id="@+id/buttonMap"
@@ -113,6 +119,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/middle_guideline"
         app:layout_constraintTop_toBottomOf="@+id/buttonActivity" />
+
+    <!-- Contenu avec défilement sous le format suivant :
+            ScroolView -> pour faire défiller les 3 groupes d'informations
+
+            Pour chaque information :
+                TextView -> Pour le titre du premier contenu
+                TableLayout -> Contient pour chaque ligne:
+                    1 ImageView -> pour l'image du sport
+                    1 LinearLayout Vertical -> avec 2 textView pour les détails des informations
+     -->
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -369,6 +385,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/top_guideline3" />
+
+    <!-- Barre de navigation générale de l'application -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

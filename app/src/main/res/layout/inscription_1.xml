@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Barre de placement -->
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline"
         android:layout_width="wrap_content"
@@ -89,6 +91,17 @@
 
     <!-- Mot de passe -->
 
+    <TextView
+        android:id="@+id/textRequired2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="#EB0909"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/loginLayout"
+        app:layout_constraintTop_toBottomOf="@+id/nomActivity"
+        tools:ignore="MissingConstraints" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
         android:layout_width="0dp"
@@ -107,6 +120,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Confirmer le mot de passe -->
+
+    <TextView
+        android:id="@+id/textRequired3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="#EB0909"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/passwordLayout"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirmPasswordLayout"
@@ -128,6 +152,17 @@
 
     <!-- Nom -->
 
+    <TextView
+        android:id="@+id/textRequired4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="#EB0909"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/center_guideline"
+        app:layout_constraintTop_toTopOf="@+id/confirmPasswordLayout"
+        tools:ignore="MissingConstraints" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameLayout"
         android:layout_width="0dp"
@@ -147,6 +182,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Prenom -->
+
+    <TextView
+        android:id="@+id/textRequired5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="#EB0909"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/nameLayout"
+        app:layout_constraintTop_toTopOf="@+id/nameLayout"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/firstNameLayout"
@@ -168,6 +214,17 @@
 
     <!-- Adresse mail -->
 
+    <TextView
+        android:id="@+id/textRequired6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="#EB0909"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/center_guideline"
+        app:layout_constraintTop_toTopOf="@+id/firstNameLayout"
+        tools:ignore="MissingConstraints" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/mailLayout"
         android:layout_width="0dp"
@@ -187,6 +244,17 @@
 
     <!-- Date de naissance -->
 
+    <TextView
+        android:id="@+id/textRequired7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="#EB0909"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/mailLayout"
+        app:layout_constraintTop_toBottomOf="@+id/nameLayout"
+        tools:ignore="MissingConstraints" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/birthdayLayout"
         android:layout_width="0dp"
@@ -205,6 +273,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Ville -->
+
+    <TextView
+        android:id="@+id/textRequired8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="#EB0909"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/center_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameLayout"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cityLayout"
@@ -262,6 +341,8 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Texte conditions générales -->
+
     <TextView
         android:layout_width="244dp"
         android:layout_height="31dp"
@@ -272,6 +353,8 @@
         android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@+id/switchCondition"
         app:layout_constraintTop_toTopOf="@+id/switchCondition" />
+
+    <!-- Texte pour les notifications -->
 
     <TextView
         android:layout_width="336dp"
@@ -296,6 +379,8 @@
         app:layout_constraintTop_toBottomOf="@+id/switchNotification"
         tools:ignore="MissingConstraints" />
 
+    <!-- Informations champs obligatoires -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -306,6 +391,8 @@
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/textRequired"
         app:layout_constraintStart_toEndOf="@+id/textRequired" />
+
+    <!-- Switch sur off pour les deux textes précédents -->
 
     <Switch
         android:id="@+id/switchCondition"
@@ -322,6 +409,8 @@
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/switchCondition" />
 
+    <!-- Bouton annulation de l'inscription -->
+
     <Button
         android:id="@+id/buttonPrevious"
         android:layout_width="wrap_content"
@@ -330,6 +419,8 @@
         app:layout_constraintEnd_toStartOf="@+id/center_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toTopOf="@+id/bottom_application_guideline" />
+
+    <!-- Bouton étape suivante -->
 
     <Button
         android:id="@+id/button"

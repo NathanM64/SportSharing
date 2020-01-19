@@ -14,16 +14,18 @@
         <activity android:name=".ConnexionActivity">
 
         </activity>
-        <activity android:name=".Inscription1Activity" />
-        <activity android:name=".Inscription2Activity" />
-        <activity android:name=".Inscription3Activity" />
-        <activity android:name=".AccueilCarteClassiqueActivity" />
-        <activity android:name=".AccueilActivite">
+        <activity android:name=".Inscription1Activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Inscription2Activity" />
+        <activity android:name=".Inscription3Activity" />
+        <activity android:name=".AccueilCarteClassiqueActivity" />
+        <activity android:name=".AccueilActivite">
+
         </activity>
 
         <meta-data
