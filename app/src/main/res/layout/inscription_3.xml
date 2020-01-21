@@ -84,7 +84,7 @@
     <!-- Champs de saisie pour la présentation -->
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextPresentation"
         android:layout_width="365dp"
         android:layout_height="280dp"
         android:layout_marginTop="20dp"
@@ -101,12 +101,12 @@
     <!-- Nombre de caractéres max du champs de saisie -->
 
     <TextView
-        android:id="@+id/textnbrCaractereTextSePresenter"
+        android:id="@+id/textNbrCaractereTextSePresenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nbrCaractereTextSePresenter"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextPresentation"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPresentation" />
 
     <!-- Bouton étape précédente -->
 

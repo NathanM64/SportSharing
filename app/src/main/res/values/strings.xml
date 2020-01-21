@@ -45,8 +45,7 @@
     <!-- Maquette Accueil (Carte - Classique) -->
     <string name="map">Carte</string>
     <string name="activity">Activité</string>
-    <string name="createActivityUppercase">CREER UNE ACTIVITE</string>
-    <string name="searchUppercase">RECHERCHER</string>
+    <string name="createActivity">Créer une activité</string>
     <string name="home">Accueil</string>
     <string name="activityRegistered"><u>Activités inscrites</u></string>
     <string name="completedActivity"><u>Activités terminés</u></string>
@@ -59,6 +58,10 @@
     <string name="searchTab">Recherche</string>
     <string name="suggestion">Suggestion</string>
     <string name="result">Résultats</string>
+    <string name="timeBegin">Heure Début</string>
+    <string name="timeEnd">Heure Fin</string>
+    <string name="numberPlayerDisplay">Nombre de participants maximum</string>
+    <string name="description">Description :</string>
 
     <!-- Liste pour Sport et Niveau -->
     <string-array name="sport_array">

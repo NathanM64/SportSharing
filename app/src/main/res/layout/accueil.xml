@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.90" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -113,7 +113,7 @@
         android:id="@+id/ConstraintLayoutAccueilCarte"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/top_guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +162,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_button"
-            android:text="@string/createActivityUppercase"
+            android:text="@string/createActivity"
+            android:textAllCaps="true"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline2"
             app:layout_constraintHorizontal_bias="0.0"
@@ -175,7 +176,7 @@
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_button"
-            android:text="@string/searchUppercase"
+            android:text="@string/search"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline2"
             app:layout_constraintStart_toStartOf="@+id/left_guideline2"
@@ -189,7 +190,7 @@
         android:id="@+id/ConstraintLayoutAccueilActivite"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/top_guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -197,8 +198,8 @@
 
         <ScrollView
             android:id="@+id/scrollView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="413dp"
+            android:layout_height="414dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -212,14 +213,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/activityRegistered"
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="30dp" />
+                    android:textStyle="bold" />
 
                 <TableLayout
                     android:id="@+id/TableLayoutRegisteredActivity"
@@ -236,12 +237,12 @@
                         <ImageButton
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_marginRight="20dp"
                             android:background="@null"
                             android:contentDescription="@string/todo"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user"
-                            android:layout_marginEnd="20dp" />
+                            app:srcCompat="@drawable/user" />
 
                         <LinearLayout
                             android:layout_width="275dp"
@@ -274,14 +275,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/completedActivity"
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="30dp" />
+                    android:textStyle="bold" />
 
                 <TableLayout
                     android:id="@+id/TableLayoutCompletedActivity"
@@ -298,12 +299,12 @@
                         <ImageButton
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_marginRight="20dp"
                             android:background="@null"
                             android:contentDescription="@string/todo"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user"
-                            android:layout_marginEnd="20dp" />
+                            app:srcCompat="@drawable/user" />
 
                         <LinearLayout
                             android:layout_width="275dp"
@@ -335,14 +336,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/myActivities"
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="30dp" />
+                    android:textStyle="bold" />
 
                 <TableLayout
                     android:id="@+id/TableLayoutMyActivites"
@@ -359,12 +360,12 @@
                         <ImageButton
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_marginRight="20dp"
                             android:background="@null"
                             android:contentDescription="@string/todo"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user"
-                            android:layout_marginEnd="20dp" />
+                            app:srcCompat="@drawable/user" />
 
                         <LinearLayout
                             android:layout_width="275dp"
@@ -431,8 +432,8 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@null"
                     android:contentDescription="@string/todo"
                     android:scaleType="fitCenter"

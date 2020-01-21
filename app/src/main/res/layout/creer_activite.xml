@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!-- Barre de placement -->
 
@@ -19,14 +20,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.12" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.50" />
+        app:layout_constraintGuide_percent="0.51" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline4"
@@ -59,19 +60,17 @@
     <!-- Titre page -->
 
     <TextView
-        android:id="@+id/titlePage"
+        android:id="@+id/titrePage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:lineSpacingExtra="10sp"
-        android:text="@string/search"
+        android:text="@string/createActivity"
         android:textColor="@color/colorTitre"
-        android:textSize="36sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="sans"
         app:fontFamily="serif"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
-        app:layout_constraintRight_toLeftOf="@id/right_guideline"
         app:layout_constraintTop_toTopOf="@id/top_guideline"
         tools:layout_constraintRight_toRightOf="@id/right_guideline" />
 
@@ -82,8 +81,9 @@
         android:layout_marginTop="15dp"
         android:background="@color/backgroundTabSports"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titlePage" />
+        app:layout_constraintTop_toBottomOf="@+id/titrePage" />
 
     <!-- Liste des sports -->
 
@@ -161,7 +161,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/exampleCity"
-        android:inputType="textAutoCorrect|text|textAutoComplete"
+        android:inputType="textAutoCorrect|textFilter|text|textAutoComplete"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
@@ -200,14 +200,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/time"
+        android:text="@string/timeBegin"
         android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
-        android:id="@+id/displayTime"
+        android:id="@+id/displayTimeBegin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="17sp"
@@ -215,7 +215,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
     <ImageView
-        android:id="@+id/imageTime"
+        android:id="@+id/imageTimeBegin"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:contentDescription="@string/todo"
@@ -223,138 +223,162 @@
         app:layout_constraintTop_toTopOf="@+id/textView7"
         app:srcCompat="@drawable/clock" />
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/timeEnd"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/displayTimeEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="@+id/displayDay"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+    <ImageView
+        android:id="@+id/imageTimeEnd"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:srcCompat="@drawable/clock" />
+
     <Button
         android:id="@+id/buttonCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/cancel"
+        app:layout_constraintBottom_toTopOf="@+id/top_guideline4"
         app:layout_constraintEnd_toStartOf="@+id/middle_guideline"
-        app:layout_constraintStart_toStartOf="@+id/left_guideline"
-        app:layout_constraintTop_toTopOf="@+id/top_guideline3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="@string/confirm"
-        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-        app:layout_constraintStart_toStartOf="@+id/middle_guideline"
-        app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
-
-    <TableLayout
-        android:id="@+id/tableLayout2"
-        android:layout_width="409dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/list_border"
         app:layout_constraintBottom_toTopOf="@+id/top_guideline4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCancel">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center">
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@null"
-                android:contentDescription="@string/todo"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/user" />
-
-            <LinearLayout
-                android:layout_width="275dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_border"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="15dp"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:textColor="#000000" />
-            </LinearLayout>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:gravity="center">
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@null"
-                android:contentDescription="@string/todo"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/user" />
-
-            <LinearLayout
-                android:layout_width="275dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_border"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="15dp"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:textColor="#000000" />
-            </LinearLayout>
-
-        </TableRow>
-
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="88dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:text="@string/suggestion"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
-        app:layout_constraintStart_toStartOf="@+id/tableLayout2"
-        app:layout_constraintTop_toTopOf="@+id/tableLayout2" />
+        app:layout_constraintStart_toStartOf="@+id/middle_guideline" />
 
     <!-- Barre de navigation générale de l'application -->
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/numberPlayerDisplay"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline3" />
+
+    <TextView
+        android:id="@+id/nbrPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <!-- bouton -1 nombre player -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/supPlayer"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/round_remove_circle_black_48dp"
+        app:backgroundTint="#FFFFFF"
+        app:fabCustomSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nbrPlayer"
+        app:layout_constraintEnd_toStartOf="@+id/middle_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/nbrPlayer"
+        app:maxImageSize="35dp" />
+
+    <!-- bouton +1 nombre player -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addPlayer"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/round_add_circle_black_48dp"
+        app:backgroundTint="#FFFFFF"
+        app:fabCustomSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nbrPlayer"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/middle_guideline"
+        app:layout_constraintTop_toTopOf="@+id/nbrPlayer"
+        app:maxImageSize="35dp" />
+
+    <!-- Texte Description -->
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="@string/description"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/editTextDescription"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline3" />
+
+    <!-- Champs de saisie pour la description -->
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="365dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/textSePresenter"
+        android:importantForAutofill="no"
+        android:inputType="textCapCharacters"
+        android:maxLength="400"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textDescription" />
+
+    <!-- Nombre de caractéres max du champs de saisie -->
+
+    <TextView
+        android:id="@+id/textNbrCaractereTextSePresenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nbrCaractereTextSePresenter"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDescription"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
+    <!-- Barre de navigation -->
+
+    <View
+        android:id="@+id/LigneNavBarTop"
+        android:layout_width="wrap_content"
+        android:layout_height="2dip"
+        android:background="@color/backgroundTabSports"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline4" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -401,12 +425,6 @@
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/sharp_search_black_18dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/searchTab" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -422,6 +440,12 @@
                     android:contentDescription="@string/todo"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/round_add_circle_black_48dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/activity" />
 
             </LinearLayout>
 
@@ -459,6 +483,5 @@
         </LinearLayout>
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

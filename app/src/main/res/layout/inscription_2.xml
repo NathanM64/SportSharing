@@ -148,7 +148,7 @@
     <!-- bouton suppression sports -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/supSport"
         android:layout_width="62dp"
         android:layout_height="56dp"
         android:clickable="true"
@@ -164,7 +164,7 @@
     <!-- bouton ajout sports -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/addSport"
         android:layout_width="57dp"
         android:layout_height="56dp"
         android:clickable="true"
