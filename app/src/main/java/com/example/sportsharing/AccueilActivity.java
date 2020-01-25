@@ -13,11 +13,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Date;
+
 public class AccueilActivity extends AppCompatActivity implements OnMapReadyCallback {
     private MapView mapView;
     private ConstraintLayout carte, activite;
     private TabLayout tab;
-
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
 
     @Override

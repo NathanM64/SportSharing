@@ -332,7 +332,7 @@
     <!-- Texte Description -->
 
     <TextView
-        android:id="@+id/textDescription"
+        android:id="@+id/textDescProfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -357,7 +357,7 @@
         android:maxLength="400"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/textDescProfil" />
 
     <!-- Nombre de caractéres max du champs de saisie -->
 

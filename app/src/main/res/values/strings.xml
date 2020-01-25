@@ -61,7 +61,9 @@
     <string name="timeBegin">Heure Début</string>
     <string name="timeEnd">Heure Fin</string>
     <string name="numberPlayerDisplay">Nombre de participants maximum</string>
-    <string name="description">Description :</string>
+    <string name="description">Description</string>
+    <string name="profil">Profil</string>
+    <string name="sportPracticed">Sports pratiqués</string>
 
     <!-- Liste pour Sport et Niveau -->
     <string-array name="sport_array">
