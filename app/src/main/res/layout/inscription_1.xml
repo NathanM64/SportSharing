@@ -413,7 +413,7 @@
     <!-- Bouton annulation de l'inscription -->
 
     <Button
-        android:id="@+id/buttonPrevious"
+        android:id="@+id/buttonCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel"
@@ -424,7 +424,7 @@
     <!-- Bouton étape suivante -->
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next"

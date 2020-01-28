@@ -32,7 +32,7 @@
     <string name="selectSports">Choisissez vos sports :</string>
     <string name="sport">Sport</string>
     <string name="level">Niveau</string>
-    <string name="sportsList">Liste de vos sports :</string>
+    <string name="sportsList">Liste de vos sports : (10 max)</string>
     <string name="precedent">Précédent</string>
 
     <!-- Maquette Inscription 3 -->
