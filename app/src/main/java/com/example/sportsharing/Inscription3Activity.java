@@ -61,7 +61,7 @@ public class Inscription3Activity extends AppCompatActivity {
 
 
             //Chargement maquette Connection
-            demarre = new Intent(getApplicationContext(), ConnexionActivity.class);
+            demarre = new Intent(getApplicationContext(), AccueilActivity.class);
             startActivity(demarre);
         }
     };

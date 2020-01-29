@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navBarHome"
+        android:enabled="true"
+        android:icon="@drawable/baseline_home_black_18dp"
+        android:title="@string/home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navBarSearch"
+        android:enabled="true"
+        android:icon="@drawable/sharp_search_black_18dp"
+        android:title="@string/searchTab"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/navBarActivity"
+        android:enabled="true"
+        android:icon="@drawable/round_add_circle_black_48dp"
+        android:title="@string/activity"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/navBarMessage"
+        android:enabled="true"
+        android:icon="@drawable/message"
+        android:title="@string/message"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/navBarUser"
+        android:enabled="true"
+        android:icon="@drawable/user"
+        android:title="@string/profil"
+        app:showAsAction="ifRoom" />
+</menu>

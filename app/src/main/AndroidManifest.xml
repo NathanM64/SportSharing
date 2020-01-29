@@ -27,6 +27,7 @@
         <activity android:name=".DateSelectorActivity" />
         <activity android:name=".RechercheResultatActivity" />
         <activity android:name=".CreerActiviteActivity" />
+        <activity android:name=".ProfilActivity" />
 
 
         <!-- Déclaration de la clef d'accés à l'API de GoogleMap -->

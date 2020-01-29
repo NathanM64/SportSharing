@@ -181,7 +181,7 @@
 
     <TableLayout
         android:id="@+id/TableLayoutSport"
-        android:layout_width="404dp"
+        android:layout_width="0dp"
         android:layout_height="204dp"
         android:background="@drawable/list_border"
         app:layout_constraintBottom_toTopOf="@+id/bottom_application_guideline"

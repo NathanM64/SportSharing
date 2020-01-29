@@ -64,6 +64,7 @@
     <string name="description">Description</string>
     <string name="profil">Profil</string>
     <string name="sportPracticed">Sports pratiqués</string>
+    <string name="message">Message</string>
 
     <!-- Liste pour Sport et Niveau -->
     <string-array name="sport_array">

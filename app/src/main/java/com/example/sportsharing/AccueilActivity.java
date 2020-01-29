@@ -1,25 +1,50 @@
 package com.example.sportsharing;
 
+import com.example.sportsharing.Utils.BottomNavigationViewListener;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.Date;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccueilActivity extends AppCompatActivity implements OnMapReadyCallback {
-    private MapView mapView;
+
+    //VARIABLES Maquette générale
     private ConstraintLayout carte, activite;
+    private BottomNavigationView navBar;
     private TabLayout tab;
+
+    //VARIABLES Maquette (Carte - classique)
+    private Button recherche, creation;
+
+    //VARIABLES GoogleMap
+    private MapView mapView;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
+
+    //VARIABLES autres
+    Intent demarre;
+    private static final int ITEM_NAV_BAR_SELECTED = R.id.navBarHome;
+    private Context contextActivity = AccueilActivity.this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +55,28 @@ public class AccueilActivity extends AppCompatActivity implements OnMapReadyCall
         initGoogleMap(savedInstanceState);
 
         //Définition des items
-        carte = (ConstraintLayout) findViewById(R.id.ConstraintLayoutAccueilCarte);
-        activite = (ConstraintLayout) findViewById(R.id.ConstraintLayoutAccueilActivite);
+            //Général
+        carte = findViewById(R.id.ConstraintLayoutAccueilCarte);
+        activite = findViewById(R.id.ConstraintLayoutAccueilActivite);
+        navBar = findViewById(R.id.bottomNavigationView);
+        tab = findViewById(R.id.tab);
 
-        tab = (TabLayout) findViewById(R.id.tab);
+            //Carte - classique
+        recherche = findViewById(R.id.buttonSearch);
+        creation = findViewById(R.id.buttonCreateActivity);
+
+            //Mes Activités
+
+
+        //Changer icone navBar selectionnee
+        navBar.getMenu().findItem(ITEM_NAV_BAR_SELECTED).setChecked(true);
 
         //OnClick
         tab.addOnTabSelectedListener(tabOnSelected);
+        BottomNavigationViewListener.typeNavigation(contextActivity, navBar);
     }
 
-    //Méthodes OnClick
+    //Fonction OnClick
     TabLayout.OnTabSelectedListener tabOnSelected = new TabLayout.OnTabSelectedListener() {
 
         @Override
@@ -57,19 +94,34 @@ public class AccueilActivity extends AppCompatActivity implements OnMapReadyCall
                     break;
             }
         }
-
         @Override
-        public void onTabUnselected(TabLayout.Tab tab) {
-
-        }
-
+        public void onTabUnselected(TabLayout.Tab tab) {}
         @Override
-        public void onTabReselected(TabLayout.Tab tab) {
-
-        }
+        public void onTabReselected(TabLayout.Tab tab) {}
     };
 
-        //Définition méthode pour la map Google
+
+    /*
+                    CREER Fonction onClickListener pour le bouton recherche et creation
+                    ASSOCIER Fonction aux boutons
+
+                    RAPPEL :
+                        recherche ouvre la page RechercheActiviteActivity
+                        creation ouvre la page CreerActiviteActivity
+    */
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    //  Définition des méthodes pour initialiser la map Google                  //
+    //////////////////////////////////////////////////////////////////////////////
+
+
     void initGoogleMap(Bundle savedInstanceState)
     {
         // *** IMPORTANT ***
@@ -79,7 +131,7 @@ public class AccueilActivity extends AppCompatActivity implements OnMapReadyCall
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
-        mapView = (MapView) findViewById(R.id.mapView);
+        mapView = findViewById(R.id.mapView);
         mapView.onCreate(mapViewBundle);
 
         mapView.getMapAsync(this);
@@ -131,6 +183,23 @@ public class AccueilActivity extends AppCompatActivity implements OnMapReadyCall
     }
     @Override
     public void onMapReady(GoogleMap map) {
-        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("TestMarker"));
+        //map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("TestMarker"));
+        Geocoder geo = new Geocoder(AccueilActivity.this);
+        List<Address> list = new ArrayList<>();
+
+        try {
+            list = geo.getFromLocationName("Paris", 1);
+        } catch (IOException e) {
+            System.out.println("Pas de ville trouvé");
+        }
+
+        if(list.size() > 0)
+        {
+            LatLng position = new LatLng(list.get(0).getLatitude(), list.get(0).getLongitude());
+
+            map.addMarker(new MarkerOptions().position(position));
+            map.moveCamera(CameraUpdateFactory.newLatLng(position));
+            map.animateCamera(CameraUpdateFactory.zoomTo(11), 400, null);
+        }
     }
 }

@@ -225,52 +225,7 @@
                 <TableLayout
                     android:id="@+id/TableLayoutRegisteredActivity"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@null"
-                            android:contentDescription="@string/todo"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user" />
-
-                        <LinearLayout
-                            android:layout_width="275dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/list_border"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="15dp"
-                                android:textColor="#000000"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginRight="15dp"
-                                android:layout_marginBottom="10dp"
-                                android:textColor="#000000" />
-                        </LinearLayout>
-
-                    </TableRow>
-
-                </TableLayout>
+                    android:layout_height="match_parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -287,51 +242,7 @@
                 <TableLayout
                     android:id="@+id/TableLayoutCompletedActivity"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@null"
-                            android:contentDescription="@string/todo"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user" />
-
-                        <LinearLayout
-                            android:layout_width="275dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/list_border"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="15dp"
-                                android:textColor="#000000"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginRight="15dp"
-                                android:layout_marginBottom="10dp"
-                                android:textColor="#000000" />
-                        </LinearLayout>
-
-                    </TableRow>
-                </TableLayout>
+                    android:layout_height="match_parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -348,51 +259,7 @@
                 <TableLayout
                     android:id="@+id/TableLayoutMyActivites"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@null"
-                            android:contentDescription="@string/todo"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/user" />
-
-                        <LinearLayout
-                            android:layout_width="275dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/list_border"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="15dp"
-                                android:textColor="#000000"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginRight="15dp"
-                                android:layout_marginBottom="10dp"
-                                android:textColor="#000000" />
-                        </LinearLayout>
-
-                    </TableRow>
-                </TableLayout>
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -412,105 +279,17 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="#00FFFFFF"
+        app:itemIconTint="@drawable/bottom_navigation_color"
+        app:itemTextColor="@drawable/bottom_navigation_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/top_guideline3">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/logo_sportsharing" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/home"
-                    android:textColor="#000000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@null"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/sharp_search_black_18dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@null"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/round_add_circle_black_48dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@null"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/message" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@null"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/user" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:layout_constraintTop_toBottomOf="@+id/LigneNavBarTop"
+        app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
