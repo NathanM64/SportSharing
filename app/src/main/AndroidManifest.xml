@@ -7,7 +7,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/icone_sportsharing"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/icone_sportsharing_round"
+        android:roundIcon="@mipmap/icone_sportsharing"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
