@@ -345,26 +345,28 @@
     <!-- Texte conditions générales -->
 
     <TextView
-        android:layout_width="244dp"
+        android:layout_width="0dp"
         android:layout_height="31dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:text="@string/conditionUseAppli"
         android:textColor="#000000"
         android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toEndOf="@+id/switchCondition"
         app:layout_constraintTop_toTopOf="@+id/switchCondition" />
 
     <!-- Texte pour les notifications -->
 
     <TextView
-        android:layout_width="336dp"
-        android:layout_height="55dp"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:text="@string/notificationTexte"
         android:textColor="#000000"
         android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toEndOf="@+id/switchNotification"
         app:layout_constraintTop_toTopOf="@+id/switchNotification" />
 

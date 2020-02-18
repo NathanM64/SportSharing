@@ -109,97 +109,10 @@
         app:layout_constraintTop_toBottomOf="@+id/LigneTop">
 
         <TableLayout
-            android:id="@+id/tableLayout2"
+            android:id="@+id/tableResultat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center">
-
-                <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@null"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/user" />
-
-                <LinearLayout
-                    android:layout_width="275dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/list_border"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="#000000" />
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center">
-
-                <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@null"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/user" />
-
-                <LinearLayout
-                    android:layout_width="275dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/list_border"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="#000000" />
-                </LinearLayout>
-
-            </TableRow>
-
-        </TableLayout>
+            android:layout_marginTop="20dp"/>
     </ScrollView>
 
     <!-- Barre de navigation générale de l'application -->

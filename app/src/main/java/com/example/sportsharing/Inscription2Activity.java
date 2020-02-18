@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -87,18 +86,16 @@ public class Inscription2Activity extends AppCompatActivity {
             @SuppressLint("InflateParams") TableRow row = (TableRow) inflater.inflate(R.layout.model_tablerow_inscription_2, null);
 
             //Ecriture des éléments dans la nouvelle ligne
-            ScrollView sv = (ScrollView) row.getChildAt(0);
-            LinearLayout ll = (LinearLayout) sv.getChildAt(0);
-            LinearLayout l2 = (LinearLayout) ll.getChildAt(0);
-            TextView tvNameSport = (TextView) l2.getChildAt(0);
-            TextView tvNameLevel = (TextView) l2.getChildAt(1);
+            LinearLayout l = (LinearLayout) row.getChildAt(0);
+            TextView tvNameSport = (TextView) l.getChildAt(0);
+            TextView tvNameLevel = (TextView) l.getChildAt(1);
 
             //Changement du texte
             tvNameSport.setText(nameSport);
             tvNameLevel.setText(nameLevel);
 
             //Ajout de la méthode focus
-            l2.setOnClickListener(clickText);
+            l.setOnClickListener(clickText);
             //tvNameSport.setOnClickListener(clickText);
             //tvNameLevel.setOnClickListener(clickText);
 
@@ -117,7 +114,7 @@ public class Inscription2Activity extends AppCompatActivity {
             {
                 //récupération du textView à l'index i en passant par son aborescence
                     //Récupération de l'aborescence
-                LinearLayout arborescence = (LinearLayout) ((LinearLayout) ((ScrollView) ((TableRow) listeSport.getChildAt(i)).getChildAt(0)).getChildAt(0)).getChildAt(0);
+                LinearLayout arborescence = (LinearLayout) ((TableRow) listeSport.getChildAt(i)).getChildAt(0);
                     //Récupération des textView selon l'arborescence
                 TextView textNameSport = (TextView) arborescence.getChildAt(0);
 
@@ -171,7 +168,8 @@ public class Inscription2Activity extends AppCompatActivity {
             {
                 //récupération du textView à l'index i en passant par son aborescence
                     //Récupération de l'aborescence
-                LinearLayout arborescence = (LinearLayout) ((LinearLayout) ((ScrollView) ((TableRow) listeSport.getChildAt(i)).getChildAt(0)).getChildAt(0)).getChildAt(0);
+                TableRow ligne = (TableRow) listeSport.getChildAt(i);
+                LinearLayout arborescence = (LinearLayout) ligne.getChildAt(0);
                     //Récupération des textView selon l'arborescence
                 TextView textNameSport = (TextView) arborescence.getChildAt(0);
                 TextView textNameLevel = (TextView) arborescence.getChildAt(1);
@@ -188,14 +186,12 @@ public class Inscription2Activity extends AppCompatActivity {
                     sportASupprimer = textNameSport.getText().toString();
 
                     //Met le background à rouge transparent
-                    textNameSport.setBackgroundColor(Color.parseColor("#68FF0000"));
-                    textNameLevel.setBackgroundColor(Color.parseColor("#68FF0000"));
+                    ligne.setBackgroundColor(Color.parseColor("#68FF0000")); //Rouge clair
                 }
                 else
                 {
                     //Met le background à blanc
-                    textNameSport.setBackgroundColor(Color.WHITE);
-                    textNameLevel.setBackgroundColor(Color.WHITE);
+                    ligne.setBackgroundColor(Color.parseColor("#00FFFFFF")); //Texture blanche transparente
                 }
             }
         }

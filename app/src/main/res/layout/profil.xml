@@ -69,20 +69,6 @@
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonSettings"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/parametre"
-        app:backgroundTint="#FFFFFF"
-        app:fabCustomSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/right_guideline"
-        app:layout_constraintTop_toTopOf="@+id/top_guideline"
-        app:maxImageSize="35dp" />
-
     <ImageView
         android:id="@+id/imageUser"
         android:layout_width="wrap_content"
@@ -302,6 +288,17 @@
         app:layout_constraintEnd_toStartOf="@+id/left_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/star_big_off" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:clickable="true"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/right_guideline"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline"
+        app:srcCompat="@drawable/parametre" />
 
     <TextView
         android:id="@+id/textNote"

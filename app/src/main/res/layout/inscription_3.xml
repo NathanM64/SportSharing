@@ -85,14 +85,14 @@
 
     <EditText
         android:id="@+id/editTextPresentation"
-        android:layout_width="365dp"
+        android:layout_width="0dp"
         android:layout_height="280dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/textSePresenter"
         android:importantForAutofill="no"
-        android:inputType="textMultiLine|textCapCharacters"
+        android:inputType="textMultiLine|textCapSentences"
         android:maxLength="400"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
