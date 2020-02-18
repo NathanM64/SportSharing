@@ -89,14 +89,18 @@ public class Inscription2Activity extends AppCompatActivity {
             //Ecriture des éléments dans la nouvelle ligne
             ScrollView sv = (ScrollView) row.getChildAt(0);
             LinearLayout ll = (LinearLayout) sv.getChildAt(0);
-            TextView text = (TextView) ll.getChildAt(0);
+            LinearLayout l2 = (LinearLayout) ll.getChildAt(0);
+            TextView tvNameSport = (TextView) l2.getChildAt(0);
+            TextView tvNameLevel = (TextView) l2.getChildAt(1);
 
             //Changement du texte
-            String message = nameSport + " - " + nameLevel;
-            text.setText(message);
+            tvNameSport.setText(nameSport);
+            tvNameLevel.setText(nameLevel);
 
             //Ajout de la méthode focus
-            text.setOnClickListener(clickText);
+            l2.setOnClickListener(clickText);
+            //tvNameSport.setOnClickListener(clickText);
+            //tvNameLevel.setOnClickListener(clickText);
 
             //Ajout de la ligne
             listeSport.addView(row);
@@ -111,11 +115,14 @@ public class Inscription2Activity extends AppCompatActivity {
             int indexTableRow = 0;
             for (int i = 2; i < listeSport.getChildCount(); i++)
             {
-                //récupération du textView à l'index i en passant par son arboresence
-                TextView textAnalysee = (TextView) ((LinearLayout) ((ScrollView) ((TableRow) listeSport.getChildAt(i)).getChildAt(0)).getChildAt(0)).getChildAt(0);
+                //récupération du textView à l'index i en passant par son aborescence
+                    //Récupération de l'aborescence
+                LinearLayout arborescence = (LinearLayout) ((LinearLayout) ((ScrollView) ((TableRow) listeSport.getChildAt(i)).getChildAt(0)).getChildAt(0)).getChildAt(0);
+                    //Récupération des textView selon l'arborescence
+                TextView textNameSport = (TextView) arborescence.getChildAt(0);
 
                 //Si le text de textAnalysee est équal à celui à supprimer
-                if(((textAnalysee.getText().toString()).equals(sportASupprimer)
+                if(((textNameSport.getText().toString()).equals(sportASupprimer)
                 && !textTrouve))
                 {
                     //Sauvegarde de l'index trouvé
@@ -162,21 +169,33 @@ public class Inscription2Activity extends AppCompatActivity {
         public void onClick(View view) {
             for (int i = 2; i < listeSport.getChildCount(); i++)
             {
-                //récupération du textView à l'index i en passant par son arboresence
-                TextView textAnalysee = (TextView) ((LinearLayout) ((ScrollView) ((TableRow) listeSport.getChildAt(i)).getChildAt(0)).getChildAt(0)).getChildAt(0);
+                //récupération du textView à l'index i en passant par son aborescence
+                    //Récupération de l'aborescence
+                LinearLayout arborescence = (LinearLayout) ((LinearLayout) ((ScrollView) ((TableRow) listeSport.getChildAt(i)).getChildAt(0)).getChildAt(0)).getChildAt(0);
+                    //Récupération des textView selon l'arborescence
+                TextView textNameSport = (TextView) arborescence.getChildAt(0);
+                TextView textNameLevel = (TextView) arborescence.getChildAt(1);
+
+                //Récupération des textView de l'objet clické
+                TextView textNameSportClick = (TextView) ((LinearLayout) view).getChildAt(0);
+                TextView textNameLevelClick = (TextView) ((LinearLayout) view).getChildAt(1);
 
                 //Si le text de textAnalysee est équal à celui sélectionné
-                if((textAnalysee.getText()).equals(((TextView) view).getText()))
+                if((textNameSport.getText()).equals(textNameSportClick.getText())
+                && (textNameLevel.getText()).equals(textNameLevelClick.getText()))
                 {
-                    sportASupprimer = textAnalysee.getText().toString();
+                    //Sauvegarde du sport sélectionné
+                    sportASupprimer = textNameSport.getText().toString();
 
                     //Met le background à rouge transparent
-                    textAnalysee.setBackgroundColor(Color.parseColor("#68FF0000"));
+                    textNameSport.setBackgroundColor(Color.parseColor("#68FF0000"));
+                    textNameLevel.setBackgroundColor(Color.parseColor("#68FF0000"));
                 }
                 else
                 {
                     //Met le background à blanc
-                    textAnalysee.setBackgroundColor(Color.WHITE);
+                    textNameSport.setBackgroundColor(Color.WHITE);
+                    textNameLevel.setBackgroundColor(Color.WHITE);
                 }
             }
         }
