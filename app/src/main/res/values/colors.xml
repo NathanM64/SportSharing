@@ -9,5 +9,6 @@
     <color name="backgroundTabTitleSports">#51090808</color>
     <color name="backgroundTabSports">#D2090808</color>
     <color name="tabAccueil">#1559D1</color>
+    <color name="blackText">#000000</color>
 
 </resources>

@@ -60,10 +60,23 @@
     <string name="result">Résultats</string>
     <string name="timeBegin">Heure Début</string>
     <string name="timeEnd">Heure Fin</string>
-    <string name="numberPlayerDisplay">Nombre de participants maximum</string>
+    <string name="numberPlayerMax">Nombre de participants maximum</string>
+    <string name="numberPlayer">Nombre de participants</string>
     <string name="description">Description</string>
     <string name="profil">Profil</string>
     <string name="sportPracticed">Sports pratiqués</string>
     <string name="message">Message</string>
+    <string name="timeRecap">Heure début - Durée</string>
+    <string name="levelMinRecommended">Niveau minimum conseillé</string>
+    <string name="suite">Continuer</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 
 </resources>

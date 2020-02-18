@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ConnexionActivity"
+        <activity
+            android:name=".ConnexionActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,34 +20,44 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Inscription1Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Inscription2Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Inscription3Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AccueilActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".RechercheActiviteActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TimeSelectorActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DateSelectorActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".RechercheResultatActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".CreerActiviteActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ProfilActivity"
+        <activity
+            android:name=".Inscription1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscription2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inscription3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AccueilActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RechercheActiviteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TimeSelectorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DateSelectorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RechercheResultatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreerActiviteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfilActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AffichageActivitePostCreationActivity"
             android:screenOrientation="portrait"/>
 
 
         <!-- Déclaration de la clef d'accés à l'API de GoogleMap -->
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCnvSkwZjLdamVmcMcyEeqFBWt_XVCIoS0" />
-
     </application>
 
 </manifest>
