@@ -28,8 +28,6 @@ public class Inscription2Activity extends AppCompatActivity {
     Button previous, next;
 
     //VARIABLES Spinner
-    ArrayAdapter<CharSequence> adapterSport;
-    ArrayAdapter<CharSequence> adapterLevel;
     String nameSport;
     String nameLevel;
 
@@ -50,19 +48,6 @@ public class Inscription2Activity extends AppCompatActivity {
         listeSport = findViewById(R.id.TableLayoutSport);
         previous = findViewById(R.id.buttonPrevious);
         next = findViewById(R.id.buttonNext);
-
-        //Création adapterSport
-        adapterSport = ArrayAdapter.createFromResource(this, R.array.sport_array, android.R.layout.simple_spinner_item);
-        adapterSport.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //Création adapterLevel
-        adapterLevel = ArrayAdapter.createFromResource(this, R.array.level_array, android.R.layout.simple_spinner_item);
-        adapterLevel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //Attribution adapter à spinner
-        sport.setAdapter(adapterSport);
-        level.setAdapter(adapterLevel);
-
 
         //Attribution OnItemSelectedListener à spinner
         sport.setOnItemSelectedListener(itemSport);

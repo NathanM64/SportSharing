@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Liste pour Sport et Niveau -->
+    <string-array name="sport_array">
+        <item>Tennis</item>
+        <item>HandBall</item>
+        <item>Rugby</item>
+        <item>Pelote</item>
+        <item>Surf</item>
+        <item>Vélo</item>
+        <item>Course</item>
+        <item>Gymnastique</item>
+        <item>Musculation</item>
+        <item>Danse</item>
+        <item>Musique</item>
+    </string-array>
+
+    <string-array name="level_array">
+        <item>Non Renseigné</item>
+        <item>Occasionnel</item>
+        <item>Débutant</item>
+        <item>Intermédiaire</item>
+        <item>Professionnel</item>
+    </string-array>
+</resources>
