@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,15 +20,21 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Inscription2Activity extends AppCompatActivity {
 
     //VARIABLES maquette
     Spinner sport, level;
     FloatingActionButton add, sup;
-    TableLayout listeSport;
+    TableLayout listeSportAjoute;
     Button previous, next;
 
-    //VARIABLES Spinner
+    //VARIABLES pour stocker les valeurs
+    ArrayAdapter<String> adapterSport;
+    List<String> listeSport;
     String nameSport;
     String nameLevel;
 
@@ -45,9 +52,17 @@ public class Inscription2Activity extends AppCompatActivity {
         level = findViewById(R.id.spinnerLevel);
         add = findViewById(R.id.addSport);
         sup = findViewById(R.id.supSport);
-        listeSport = findViewById(R.id.TableLayoutSport);
+        listeSportAjoute = findViewById(R.id.TableLayoutSport);
         previous = findViewById(R.id.buttonPrevious);
         next = findViewById(R.id.buttonNext);
+
+        //Adapter Sport
+        listeSport = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.sport_array)));
+        adapterSport = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeSport);
+        adapterSport.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //Application adapter à spinner
+        sport.setAdapter(adapterSport);
 
         //Attribution OnItemSelectedListener à spinner
         sport.setOnItemSelectedListener(itemSport);
@@ -64,8 +79,6 @@ public class Inscription2Activity extends AppCompatActivity {
     View.OnClickListener addSport = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            /////////Faire vérification sport déjà présent/////////////
-
             //Création d'une nouvelle ligne selon le model
             LayoutInflater inflater = getLayoutInflater();
             @SuppressLint("InflateParams") TableRow row = (TableRow) inflater.inflate(R.layout.model_tablerow_inscription_2, null);
@@ -81,11 +94,23 @@ public class Inscription2Activity extends AppCompatActivity {
 
             //Ajout de la méthode focus
             l.setOnClickListener(clickText);
-            //tvNameSport.setOnClickListener(clickText);
-            //tvNameLevel.setOnClickListener(clickText);
 
             //Ajout de la ligne
-            listeSport.addView(row);
+            listeSportAjoute.addView(row);
+
+            //MAJ de la liste des sports
+            try {
+                //Suppression de l'élément dans la liste
+                listeSport.remove(nameSport);
+                adapterSport.notifyDataSetChanged();
+
+                //Modification du sport sélectionné
+                sport.setSelection(0);
+                nameSport = listeSport.get(0);
+            }catch (Exception e) {
+                e.printStackTrace();
+                Log.d("listeSport", "Erreur sup sport");
+            }
 
         }
     };
@@ -95,11 +120,11 @@ public class Inscription2Activity extends AppCompatActivity {
         public void onClick(View view) {
             boolean textTrouve = false;
             int indexTableRow = 0;
-            for (int i = 2; i < listeSport.getChildCount(); i++)
+            for (int i = 2; i < listeSportAjoute.getChildCount(); i++)
             {
                 //récupération du textView à l'index i en passant par son aborescence
                     //Récupération de l'aborescence
-                LinearLayout arborescence = (LinearLayout) ((TableRow) listeSport.getChildAt(i)).getChildAt(0);
+                LinearLayout arborescence = (LinearLayout) ((TableRow) listeSportAjoute.getChildAt(i)).getChildAt(0);
                     //Récupération des textView selon l'arborescence
                 TextView textNameSport = (TextView) arborescence.getChildAt(0);
 
@@ -116,7 +141,21 @@ public class Inscription2Activity extends AppCompatActivity {
             //Supprimer la ligne
             if(textTrouve)
             {
-                listeSport.removeViewAt(indexTableRow);
+                listeSportAjoute.removeViewAt(indexTableRow);
+            }
+
+            //MAJ de la liste des sports
+            try {
+                //Ajout de l'élément dans la liste
+                listeSport.add(0, sportASupprimer);
+                adapterSport.notifyDataSetChanged();
+
+                //Modification du sport sélectionné
+                sport.setSelection(0);
+                nameSport = listeSport.get(0);
+            }catch (Exception e) {
+                e.printStackTrace();
+                Log.d("listeSport", "Erreur add sport");
             }
         }
     };
@@ -149,11 +188,11 @@ public class Inscription2Activity extends AppCompatActivity {
     View.OnClickListener clickText = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            for (int i = 2; i < listeSport.getChildCount(); i++)
+            for (int i = 2; i < listeSportAjoute.getChildCount(); i++)
             {
                 //récupération du textView à l'index i en passant par son aborescence
                     //Récupération de l'aborescence
-                TableRow ligne = (TableRow) listeSport.getChildAt(i);
+                TableRow ligne = (TableRow) listeSportAjoute.getChildAt(i);
                 LinearLayout arborescence = (LinearLayout) ligne.getChildAt(0);
                     //Récupération des textView selon l'arborescence
                 TextView textNameSport = (TextView) arborescence.getChildAt(0);
