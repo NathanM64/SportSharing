@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Maquette connexion -->
     <string name="app_name">SportSharing</string>
     <string name="login">Identifiant</string>
@@ -11,7 +11,7 @@
     <string name="todo">TODO</string>
 
     <!-- Maquette Inscription 1 -->
-    <string name="activity_subscribe_1">Inscription (1/3)</string>
+    <string name="activity_subscribe_1" tools:ignore="TypographyFractions">Inscription (1/3)</string>
     <string name="required">*</string>
     <string name="name">Nom</string>
     <string name="confirmPassword">Confirmer</string>
@@ -69,14 +69,4 @@
     <string name="timeRecap">Heure début - Durée</string>
     <string name="levelMinRecommended">Niveau minimum conseillé</string>
     <string name="suite">Continuer</string>
-    <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-
 </resources>
