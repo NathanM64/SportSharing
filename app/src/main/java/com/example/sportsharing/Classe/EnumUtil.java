@@ -1,31 +1,47 @@
 package com.example.sportsharing.Classe;
 
+/**
+ * EnumUtil est la classe déclarant les différents énumération utile pour la définition du sport
+ * @author groupe 13 (Mathieu BOCCIARELLI)
+ * @version 1.0
+ * @since 24/02/2020
+ */
 public class EnumUtil {
+
+    /**
+     * Enumeration du nom des différents sports possible
+     */
     public enum NameSport {
-        Tennis,
-        HandBall,
-        Rugby,
-        Pelote,
-        Surf,
-        Vélo,
         Course,
-        Gymnastique,
-        Musculation,
         Danse,
-        Musique
+        Gymnastique,
+        HandBall,
+        Musculation,
+        Musique,
+        Pelote,
+        Rugby,
+        Surf,
+        Tennis,
+        Velo
     }
 
+    /**
+     * Catégorie des différents sports possible
+     */
     public enum TypeSport {
-        Raquette,
+        Autre,
         Ballon,
-        Autre
+        Raquette
     }
 
+    /**
+     * Niveau décrivant le niveau du <a href="{@docRoot}/com/example/sportsharing/Classe/Sportif.html">Sportif</a> associé au nom d'un sport
+     */
     public enum NiveauSport {
-        Non_Renseigné,
+        Debutant,
+        Intermediaire,
+        Non_Renseigne,
         Occasionnel,
-        Débutant,
-        Intermédiaire,
         Professionnel
     }
 }

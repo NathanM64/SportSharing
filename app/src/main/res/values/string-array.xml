@@ -7,7 +7,7 @@
         <item>Rugby</item>
         <item>Pelote</item>
         <item>Surf</item>
-        <item>Vélo</item>
+        <item>Velo</item>
         <item>Course</item>
         <item>Gymnastique</item>
         <item>Musculation</item>
@@ -16,10 +16,10 @@
     </string-array>
 
     <string-array name="level_array">
-        <item>Non Renseigné</item>
+        <item>Non Renseigne</item>
         <item>Occasionnel</item>
-        <item>Débutant</item>
-        <item>Intermédiaire</item>
+        <item>Debutant</item>
+        <item>Intermediaire</item>
         <item>Professionnel</item>
     </string-array>
 </resources>
