@@ -36,12 +36,6 @@
             android:name=".RechercheActiviteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TimeSelectorActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".DateSelectorActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".RechercheResultatActivity"
             android:screenOrientation="portrait" />
         <activity
