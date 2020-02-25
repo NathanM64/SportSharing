@@ -74,6 +74,8 @@ public class AccueilActivity extends AppCompatActivity implements OnMapReadyCall
         //OnClick
         tab.addOnTabSelectedListener(tabOnSelected);
         BottomNavigationViewListener.typeNavigation(contextActivity, navBar);
+        creation.setOnClickListener(createActivityListner);
+        recherche.setOnClickListener(searchActivityListener);
     }
 
     //Fonction OnClick
@@ -100,15 +102,25 @@ public class AccueilActivity extends AppCompatActivity implements OnMapReadyCall
         public void onTabReselected(TabLayout.Tab tab) {}
     };
 
+    //Liaison clic boutton avec l'action
+    View.OnClickListener createActivityListner = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            demarre = new Intent(getApplicationContext(), CreerActiviteActivity.class);
+            startActivity(demarre);
+        }
+    };
 
-    /*
-                    CREER Fonction onClickListener pour le bouton recherche et creation
-                    ASSOCIER Fonction aux boutons
+    View.OnClickListener searchActivityListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            demarre = new Intent(getApplicationContext(), RechercheActiviteActivity.class);
+            startActivity(demarre);
+        }
+    };
 
-                    RAPPEL :
-                        recherche ouvre la page RechercheActiviteActivity
-                        creation ouvre la page CreerActiviteActivity
-    */
+
+
 
 
 
