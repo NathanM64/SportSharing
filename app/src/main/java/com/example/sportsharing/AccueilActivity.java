@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -26,7 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccueilActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class AccueilActivity extends AppCompatActivity {
 
     //VARIABLES Maquette générale
     private ConstraintLayout carte, activite;
@@ -54,7 +55,7 @@ public class AccueilActivity extends AppCompatActivity implements OnMapReadyCall
         //Initialisation de la carte GoogleMap
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(new GoogleMapAccueil());
 
         //Définition des items
             //Général
@@ -125,27 +126,33 @@ public class AccueilActivity extends AppCompatActivity implements OnMapReadyCall
     //  Définition des méthodes pour initialiser la map Google                  //
     //////////////////////////////////////////////////////////////////////////////
 
-    @Override
-    public void onMapReady(GoogleMap map) {
 
-        mapView = map;
+    private class GoogleMapAccueil implements OnMapReadyCallback {
 
-        Geocoder geo = new Geocoder(AccueilActivity.this);
-        List<Address> list = new ArrayList<>();
+        @Override
+        public void onMapReady(GoogleMap googleMap) {
+            mapView = googleMap;
 
-        try {
-            list = geo.getFromLocationName("Paris", 1);
-        } catch (IOException e) {
-            System.out.println("Pas de ville trouvé");
-        }
+            mapView.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            mapView.clear();
 
-        if(list.size() > 0)
-        {
-            LatLng position = new LatLng(list.get(0).getLatitude(), list.get(0).getLongitude());
+            Geocoder geo = new Geocoder(AccueilActivity.this);
+            List<Address> list = new ArrayList<>();
 
-            mapView.addMarker(new MarkerOptions().position(position));
-            mapView.moveCamera(CameraUpdateFactory.newLatLng(position));
-            mapView.animateCamera(CameraUpdateFactory.zoomTo(11), 400, null);
+            try {
+                list = geo.getFromLocationName("Paris", 1);
+            } catch (IOException e) {
+                System.out.println("Pas de ville trouvé");
+            }
+
+            if(list.size() > 0)
+            {
+                LatLng position = new LatLng(list.get(0).getLatitude(), list.get(0).getLongitude());
+
+                mapView.addMarker(new MarkerOptions().position(position));
+                mapView.moveCamera(CameraUpdateFactory.newLatLng(position));
+                mapView.animateCamera(CameraUpdateFactory.zoomTo(11), 400, null);
+            }
         }
     }
 }
