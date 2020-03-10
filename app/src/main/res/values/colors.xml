@@ -10,5 +10,6 @@
     <color name="backgroundTabSports">#D2090808</color>
     <color name="tabAccueil">#1559D1</color>
     <color name="blackText">#000000</color>
-
+    <color name="textError">#DD0D0D</color>
+    <color name="textNormal">#000000</color>
 </resources>
