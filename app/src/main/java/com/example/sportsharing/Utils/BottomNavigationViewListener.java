@@ -46,6 +46,7 @@ public class BottomNavigationViewListener {
                     case R.id.navBarUser:
                         if(navBar.getMenu().findItem(R.id.navBarUser).isChecked()) break; //Regarde si l'item navBarUser est déjà sélectionné, si oui quitte
                         demarre = new Intent(context, ProfilActivity.class);
+                        demarre.putExtra("type", "user");
                         context.startActivity(demarre);
                         break;
 

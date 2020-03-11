@@ -10,7 +10,7 @@ public class DossierVariableClasse {
     public static DossierVariableClasse instance = null;
 
     //PourTest
-    public Sportif michelTelo = new Sportif("michelLeTelo","password1","password1","Michel","Telo","michel.telo@gmail.com","12/12/2012","Marseille",13000,"0695364608","Je suis un gitan");
+    public Sportif michelTelo = new Sportif("michelLeTelo","password1","password1","Michel","Telo","michel.telo@gmail.com","01/09/2000","Marseille",13000,"0695364608","Je suis un gitan");
     public Sportif kendJ = new Sportif("kendJ","password2","password2","Kenji","Girac","XxGendji@gmail.com","20/20/1950","Bergerac",24100,"0725564605","Je suis un gitan qui fait de la musique");
     public ArrayList<Activite> listeActivite;
 
@@ -28,6 +28,8 @@ public class DossierVariableClasse {
 
         //Test
         this.utilisateur = michelTelo;
+        this.utilisateur.addSport(new Sport(EnumUtil.NameSport.Tennis, EnumUtil.TypeSport.Raquette), EnumUtil.NiveauSport.Occasionnel);
+        this.utilisateur.addSport(new Sport(EnumUtil.NameSport.Surf, EnumUtil.TypeSport.Autre), EnumUtil.NiveauSport.Non_Renseigne);
         this.createur = new Organisateur(kendJ);
         creationDonneeTest();
     }
