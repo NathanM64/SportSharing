@@ -1,7 +1,5 @@
 package com.example.sportsharing;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.sportsharing.Classe.DossierVariableClasse;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Inscription3Activity extends AppCompatActivity {
 
@@ -20,12 +22,16 @@ public class Inscription3Activity extends AppCompatActivity {
 
     //VARIABLES
     Intent demarre;
+    private DossierVariableClasse global;
     int caractereSaisie = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inscription_3);
+        
+        //Instance de DossierVariableClasse
+        global = DossierVariableClasse.getInstance();
 
         //Initialisation des variables
         presentation = findViewById(R.id.editTextPresentation);
@@ -39,18 +45,23 @@ public class Inscription3Activity extends AppCompatActivity {
         //Attribution OnClick à variables
         previous.setOnClickListener(retourInscription);
         confirm.setOnClickListener(confirmInscription);
+
+        //InitProfil
+        InitProfil();
     }
 
+    private void InitProfil() {
+        presentation.setText(global.utilisateur.getDescription());
+    }
 
     //Fonction OnClick
     View.OnClickListener retourInscription = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            //Récupérer les infos de l'inscription 1 et 2 et les passer à l'ancienne maquette
-
             //Retour maquette Inscription 2
             demarre = new Intent(getApplicationContext(), Inscription2Activity.class);
             startActivity(demarre);
+            finish();
         }
     };
 
@@ -58,11 +69,12 @@ public class Inscription3Activity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             //Sauvegarder toutes les informations dans la bd
-
+            global.utilisateur.setDescription(presentation.getText().toString());
 
             //Chargement maquette Connection
             demarre = new Intent(getApplicationContext(), AccueilActivity.class);
             startActivity(demarre);
+            finish();
         }
     };
 

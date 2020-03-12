@@ -180,7 +180,6 @@
     <!-- Tableau récapitulatif des sports choisis -->
 
     <TableLayout
-        android:id="@+id/TableLayoutSport"
         android:layout_width="0dp"
         android:layout_height="204dp"
         android:background="@drawable/list_border"
@@ -203,11 +202,30 @@
                 android:layout_height="wrap_content"
                 android:text="@string/sportsList"
                 android:textColor="#0F0F0F" />
+
         </TableRow>
 
         <View
             android:layout_height="2dip"
             android:background="@color/backgroundTabSports" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="78dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/listeSportAjoute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+            </ScrollView>
+        </TableRow>
 
     </TableLayout>
 

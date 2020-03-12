@@ -1,18 +1,19 @@
 package com.example.sportsharing;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 
+import com.example.sportsharing.Classe.DossierVariableClasse;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Inscription1Activity extends AppCompatActivity {
 
@@ -23,11 +24,15 @@ public class Inscription1Activity extends AppCompatActivity {
 
     //VARIABLES
     Intent demarre;
+    DossierVariableClasse global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inscription_1);
+
+        //Instance de DossierVariableClasse
+        global = DossierVariableClasse.getInstance();
 
         //Initialisation des variables
         login = findViewById(R.id.login);
@@ -50,6 +55,24 @@ public class Inscription1Activity extends AppCompatActivity {
         //Attribution onClick à variables
         cancel.setOnClickListener(annulerInscription);
         next.setOnClickListener(suiteInscription);
+
+        //Init champs de text
+        InitProfil();
+    }
+
+    private void InitProfil() {
+        login.setText(global.utilisateur.getLogin());
+        password.setText(global.utilisateur.getMotDePasse());
+        confirmPassword.setText(global.utilisateur.getConfirmMotDePasse());
+        name.setText(global.utilisateur.getNom());
+        firstName.setText(global.utilisateur.getPrenom());
+        mail.setText(global.utilisateur.getAdresseMail());
+        birthday.setText(global.utilisateur.getDateNaissance());
+        city.setText(global.utilisateur.getVille());
+        phoneNumber.setText(global.utilisateur.getNumeroTelephone());
+
+        if(global.utilisateur.getCodePostal() != 0 && String.valueOf(global.utilisateur.getCodePostal()).length() == 5)
+            postalCode.setText(String.valueOf(global.utilisateur.getCodePostal()));
     }
 
     //Fonction OnClick
@@ -70,7 +93,7 @@ public class Inscription1Activity extends AppCompatActivity {
 
             ArrayList<TextInputEditText> champTraiter = new ArrayList<>(); //Si vide à la fin des tests alors tous les champs ont validé les tests
             TextInputEditText[] tabAVerifier = {login, password, confirmPassword, name, firstName, mail, birthday};//Récupérer toutes les infos dans un tableau
-            TextInputEditText[] tabChampQuiNeDoiventPasAvoirDespace = {login, password, confirmPassword, firstName, mail, birthday, postalCode, phoneNumber};
+            TextInputEditText[] tabChampQuiNeDoiventPasAvoirDespace = {login, password, confirmPassword, name, firstName, mail, birthday, postalCode, phoneNumber};
             TextInputEditText[] tabChampQuiNePossedePasDeChiffre = {name, firstName, city};
 
             //Traitement des champs qui doivent obligatoirement être renseignés
@@ -139,9 +162,21 @@ public class Inscription1Activity extends AppCompatActivity {
             if(champTraiter.size() == 0) {
 
                 //Save les informations dans le profil de DossierVariableClasse
+                global.utilisateur.setLogin(login.getText().toString());
+                global.utilisateur.setMotDePasse(password.getText().toString());
+                global.utilisateur.setConfirmMotDePasse(confirmPassword.getText().toString());
+                global.utilisateur.setNom(name.getText().toString());
+                global.utilisateur.setPrenom(firstName.getText().toString());
+                global.utilisateur.setAdresseMail(mail.getText().toString());
+                global.utilisateur.setDateNaissance(birthday.getText().toString());
+                global.utilisateur.setVille(city.getText().toString());
+                global.utilisateur.setCodePostal(Integer.valueOf(postalCode.getText().toString()));
+                global.utilisateur.setNumeroTelephone(phoneNumber.getText().toString());
 
+                //Start inscription 2
                 demarre = new Intent(getApplicationContext(), Inscription2Activity.class);
                 startActivity(demarre);
+                finish();
             }
         }
     };

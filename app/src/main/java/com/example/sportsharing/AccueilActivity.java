@@ -83,7 +83,7 @@ public class AccueilActivity extends AppCompatActivity {
         //OnClick
         tab.addOnTabSelectedListener(tabOnSelected);
         BottomNavigationViewListener.typeNavigation(contextActivity, navBar);
-        creation.setOnClickListener(createActivityListner);
+        creation.setOnClickListener(createActivityListener);
         recherche.setOnClickListener(searchActivityListener);
     }
 
@@ -143,11 +143,12 @@ public class AccueilActivity extends AppCompatActivity {
     };
 
     //Liaison clic boutton avec l'action
-    View.OnClickListener createActivityListner = new View.OnClickListener() {
+    View.OnClickListener createActivityListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             demarre = new Intent(getApplicationContext(), CreerActiviteActivity.class);
             startActivity(demarre);
+            finish();
         }
     };
 
@@ -156,6 +157,7 @@ public class AccueilActivity extends AppCompatActivity {
         public void onClick(View view) {
             demarre = new Intent(getApplicationContext(), RechercheActiviteActivity.class);
             startActivity(demarre);
+            finish();
         }
     };
 

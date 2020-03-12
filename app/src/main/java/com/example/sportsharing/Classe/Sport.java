@@ -19,6 +19,16 @@ public class Sport {
 
     /**
      *  <br>
+     *  <b>Constructeur du sport avec comme type EnumUtil.TypeSport.Autre</b>
+     * @param libelle   Nom du sport
+     */
+    public Sport(EnumUtil.NameSport libelle) {
+        this.libelle = libelle;
+        this.type = EnumUtil.TypeSport.Autre;
+    }
+
+    /**
+     *  <br>
      *  <b>Constructeur du sport</b>
      * @param libelle   Nom du sport
      * @param type      Type du sport

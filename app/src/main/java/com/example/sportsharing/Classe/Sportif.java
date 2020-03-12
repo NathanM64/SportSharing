@@ -2,7 +2,9 @@ package com.example.sportsharing.Classe;
 
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Sportif est la classe représentant un utilisateur de l'application
@@ -59,6 +61,27 @@ public class Sportif {
      * Valeur : Element appartenant à l'énumération NiveauSport présent dans EnumUtil
      */
     public Map<Sport, EnumUtil.NiveauSport> mesSports;
+
+    /**
+     * <br>
+     * <b>Constructeur par défault de la classe sportif</b>
+     */
+    public Sportif()
+    {
+        this.login = "";
+        this.motDePasse = "";
+        this.confirmMotDePasse = "";
+        this.nom = "";
+        this.prenom = "";
+        this.adresseMail = "";
+        this.dateNaissance = "";
+        this.ville = "";
+        this.codePostal = 0;
+        this.numeroTelephone = "";
+        this.description = "";
+
+        mesSports = new HashMap<>();
+    }
 
     /**
      * <br>
@@ -168,10 +191,20 @@ public class Sportif {
      */
     public void addSport(Sport s, EnumUtil.NiveauSport n)
     {
-        if(!mesSports.containsKey(s))
-        {
-            mesSports.put(s, n);
+        //Element de la map
+        Set keys = mesSports.keySet();
+        Iterator it = keys.iterator();
+        boolean isAdd = true;
+        //Tant que il y a un element suivant et que l'element n'est pas deja present (presence par isAdd à false)
+        while (it.hasNext() && isAdd) {
+            Sport key = (Sport) it.next();
+            if(key.libelle.equals(s.libelle))
+                isAdd = false;
         }
+
+        //Suppression seulement si l'element n'est pas present (isAdd a true)
+        if(isAdd)
+            mesSports.put(s, n);
     }
 
     /**
@@ -180,10 +213,20 @@ public class Sportif {
      */
     public void suppSport(Sport s)
     {
-        if(mesSports.containsKey(s))
-        {
-            mesSports.remove(s);
+        //Element de la map
+        Set keys = mesSports.keySet();
+        Iterator it = keys.iterator();
+        Sport aSupprimer = null;
+
+        //Tant que il y a un element suivant et que l'element a supprimer n'est pas trouvé
+        while (it.hasNext() && aSupprimer == null) {
+            Sport key = (Sport) it.next();
+            if(key.libelle.equals(s.libelle))
+                aSupprimer = key;
         }
+        //Suppression seulement si l'element est trouve
+        if (aSupprimer != null)
+            mesSports.remove(aSupprimer);
     }
 
     /**

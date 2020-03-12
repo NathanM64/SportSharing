@@ -1,7 +1,5 @@
 package com.example.sportsharing;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,23 +12,28 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.EnumUtil;
+import com.example.sportsharing.Classe.Sport;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Inscription2Activity extends AppCompatActivity {
 
     //VARIABLES maquette
     Spinner sport, level;
     FloatingActionButton add, sup;
-    TableLayout listeSportAjoute;
     Button previous, next;
+    LinearLayout listeSportAjoute;
 
     //VARIABLES pour stocker les valeurs
     ArrayAdapter<String> adapterSport;
@@ -40,6 +43,7 @@ public class Inscription2Activity extends AppCompatActivity {
 
     //VARIABLES
     Intent demarre;
+    DossierVariableClasse global;
     String sportASupprimer;
 
     @Override
@@ -47,12 +51,15 @@ public class Inscription2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inscription_2);
 
+        //Instance de DossierVariableClasse
+        global = DossierVariableClasse.getInstance();
+
         //Initialisation des variables
         sport = findViewById(R.id.spinnerSport);
         level = findViewById(R.id.spinnerLevel);
         add = findViewById(R.id.addSport);
         sup = findViewById(R.id.supSport);
-        listeSportAjoute = findViewById(R.id.TableLayoutSport);
+        listeSportAjoute = findViewById(R.id.listeSportAjoute);
         previous = findViewById(R.id.buttonPrevious);
         next = findViewById(R.id.buttonNext);
 
@@ -73,6 +80,56 @@ public class Inscription2Activity extends AppCompatActivity {
         sup.setOnClickListener(supSport);
         previous.setOnClickListener(retourInscription);
         next.setOnClickListener(suiteInscription);
+
+        //InitProfil
+        InitProfil();
+    }
+
+    private void InitProfil() {
+        //Init sport
+        Set keys = global.utilisateur.mesSports.keySet();
+        Iterator it = keys.iterator();
+        while (it.hasNext()) {
+            Sport key = (Sport) it.next();
+
+            String sport = key.libelle.toString();
+            String level = global.utilisateur.mesSports.get(key).toString().replace("_", " ");
+
+            ajoutLigne(sport, level);
+        }
+    }
+
+    private void ajoutLigne(String s, String l) {
+        LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams") LinearLayout row = (LinearLayout) inflater.inflate(R.layout.model_tablerow_inscription_2, null);
+
+        //Ecriture des éléments dans la nouvelle ligne
+        TextView tvNameSport = (TextView) row.getChildAt(0);
+        TextView tvNameLevel = (TextView) row.getChildAt(1);
+
+        //Changement du texte
+        tvNameSport.setText(s);
+        tvNameLevel.setText(l);
+
+        //Ajout de la méthode focus
+        row.setOnClickListener(clickText);
+
+        //Ajout de la ligne
+        listeSportAjoute.addView(row);
+
+        //MAJ de la liste des sports
+        try {
+            //Suppression de l'élément dans la liste
+            listeSport.remove(s);
+            adapterSport.notifyDataSetChanged();
+
+            //Modification du sport sélectionné
+            sport.setSelection(0);
+            nameSport = listeSport.get(0);
+        }catch (Exception e) {
+            e.printStackTrace();
+            Log.d("listeSport", "Erreur sup sport");
+        }
     }
 
     //Fonction OnClick
@@ -80,38 +137,7 @@ public class Inscription2Activity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             //Création d'une nouvelle ligne selon le model
-            LayoutInflater inflater = getLayoutInflater();
-            @SuppressLint("InflateParams") TableRow row = (TableRow) inflater.inflate(R.layout.model_tablerow_inscription_2, null);
-
-            //Ecriture des éléments dans la nouvelle ligne
-            LinearLayout l = (LinearLayout) row.getChildAt(0);
-            TextView tvNameSport = (TextView) l.getChildAt(0);
-            TextView tvNameLevel = (TextView) l.getChildAt(1);
-
-            //Changement du texte
-            tvNameSport.setText(nameSport);
-            tvNameLevel.setText(nameLevel);
-
-            //Ajout de la méthode focus
-            l.setOnClickListener(clickText);
-
-            //Ajout de la ligne
-            listeSportAjoute.addView(row);
-
-            //MAJ de la liste des sports
-            try {
-                //Suppression de l'élément dans la liste
-                listeSport.remove(nameSport);
-                adapterSport.notifyDataSetChanged();
-
-                //Modification du sport sélectionné
-                sport.setSelection(0);
-                nameSport = listeSport.get(0);
-            }catch (Exception e) {
-                e.printStackTrace();
-                Log.d("listeSport", "Erreur sup sport");
-            }
-
+            ajoutLigne(nameSport, nameLevel);
         }
     };
 
@@ -120,11 +146,11 @@ public class Inscription2Activity extends AppCompatActivity {
         public void onClick(View view) {
             boolean textTrouve = false;
             int indexTableRow = 0;
-            for (int i = 2; i < listeSportAjoute.getChildCount(); i++)
+            for (int i = 0; i < listeSportAjoute.getChildCount(); i++)
             {
                 //récupération du textView à l'index i en passant par son aborescence
                     //Récupération de l'aborescence
-                LinearLayout arborescence = (LinearLayout) ((TableRow) listeSportAjoute.getChildAt(i)).getChildAt(0);
+                LinearLayout arborescence = (LinearLayout) listeSportAjoute.getChildAt(i);
                     //Récupération des textView selon l'arborescence
                 TextView textNameSport = (TextView) arborescence.getChildAt(0);
 
@@ -143,6 +169,17 @@ public class Inscription2Activity extends AppCompatActivity {
             {
                 listeSportAjoute.removeViewAt(indexTableRow);
             }
+
+            //Supprimer dans les sports du joueurs si déjà présent
+            Sport s = null;
+            for (EnumUtil.NameSport sport : EnumUtil.NameSport.values()) {
+                if((sportASupprimer).equals(sport.toString())) {
+                    s = new Sport(sport);
+                    Log.d("listeSport", "Sport crée");
+                }
+            }
+            if(s != null)
+                global.utilisateur.suppSport(s);
 
             //MAJ de la liste des sports
             try {
@@ -163,24 +200,44 @@ public class Inscription2Activity extends AppCompatActivity {
     View.OnClickListener retourInscription = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            //Récupérer les infos de l'inscription 1 et les passer à l'ancienne maquette
-
             //Retour maquette Inscription 1
             demarre = new Intent(getApplicationContext(), Inscription1Activity.class);
             startActivity(demarre);
+            finish();
         }
     };
 
     View.OnClickListener suiteInscription = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            //Récupérer toutes les infos
-            //Vérifier la bonne saisie des informations
-            // Passer les anciennes et les nouvelles infos à la prochaine maquette
+            //Ajout des sports à l'utilisateur
+            for (int i = 0; i < listeSportAjoute.getChildCount(); i++)
+            {
+                //Récupération de l'aborescence
+                LinearLayout arborescence = (LinearLayout) listeSportAjoute.getChildAt(i);
+                //Récupération des textView selon l'arborescence
+                TextView textNameSport = (TextView) arborescence.getChildAt(0);
+                TextView textNameLevel = (TextView) arborescence.getChildAt(1);
+
+                Sport s = null;
+                for (EnumUtil.NameSport sport : EnumUtil.NameSport.values()) {
+                    if((textNameSport.getText().toString()).equals(sport.toString())) {
+                        s = new Sport(sport);
+                    }
+                }
+                for (EnumUtil.NiveauSport niveau : EnumUtil.NiveauSport.values()) {
+                    if((textNameLevel.getText().toString()).equals(niveau.toString().replace("_", " "))) {
+                        global.utilisateur.addSport(s, niveau);
+                    }
+                }
+            }
+
+            Log.d("listeSport", global.utilisateur.mesSports.toString());
 
             //Chargement maquette Incription 3
             demarre = new Intent(getApplicationContext(), Inscription3Activity.class);
             startActivity(demarre);
+            finish();
         }
     };
 
@@ -188,12 +245,11 @@ public class Inscription2Activity extends AppCompatActivity {
     View.OnClickListener clickText = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            for (int i = 2; i < listeSportAjoute.getChildCount(); i++)
+            for (int i = 0; i < listeSportAjoute.getChildCount(); i++)
             {
                 //récupération du textView à l'index i en passant par son aborescence
                     //Récupération de l'aborescence
-                TableRow ligne = (TableRow) listeSportAjoute.getChildAt(i);
-                LinearLayout arborescence = (LinearLayout) ligne.getChildAt(0);
+                LinearLayout arborescence = (LinearLayout) listeSportAjoute.getChildAt(i);
                     //Récupération des textView selon l'arborescence
                 TextView textNameSport = (TextView) arborescence.getChildAt(0);
                 TextView textNameLevel = (TextView) arborescence.getChildAt(1);
@@ -208,14 +264,15 @@ public class Inscription2Activity extends AppCompatActivity {
                 {
                     //Sauvegarde du sport sélectionné
                     sportASupprimer = textNameSport.getText().toString();
+                    Log.d("listeSport", "Sport a supprimer selected : " +sportASupprimer);
 
                     //Met le background à rouge transparent
-                    ligne.setBackgroundColor(Color.parseColor("#68FF0000")); //Rouge clair
+                    arborescence.setBackgroundColor(Color.parseColor("#68FF0000")); //Rouge clair
                 }
                 else
                 {
                     //Met le background à blanc
-                    ligne.setBackgroundColor(Color.parseColor("#00FFFFFF")); //Texture blanche transparente
+                    arborescence.setBackgroundColor(Color.parseColor("#00FFFFFF")); //Texture blanche transparente
                 }
             }
         }

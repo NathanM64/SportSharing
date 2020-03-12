@@ -1,13 +1,9 @@
 package com.example.sportsharing;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfilActivity extends AppCompatActivity {
 
@@ -74,7 +72,7 @@ public class ProfilActivity extends AppCompatActivity {
             textDateProfil.setText(calculAge(currentTime.format(new Date()), global.utilisateur.getDateNaissance()) + " ans");
 
             //Ville
-            textVilleProfil.setText(global.utilisateur.getVille());
+            textVilleProfil.setText(global.utilisateur.getCodePostal()+" "+global.utilisateur.getVille());
 
             //Description
             textDescProfil.setText(global.utilisateur.getDescription());
