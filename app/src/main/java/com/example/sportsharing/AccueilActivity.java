@@ -1,31 +1,30 @@
 package com.example.sportsharing;
 
-import com.example.sportsharing.Utils.BottomNavigationViewListener;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.sportsharing.Utils.BottomNavigationViewListener;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class AccueilActivity extends AppCompatActivity {
 
@@ -39,6 +38,7 @@ public class AccueilActivity extends AppCompatActivity {
 
     //VARIABLES GoogleMap
     private GoogleMap mapView;
+    private FusedLocationProviderClient fusedLocationClient;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
 
     //VARIABLES autres
@@ -52,23 +52,29 @@ public class AccueilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil);
 
+        //Demande de permission
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            this.requestPermissions(permissions, 2);
+        }
+
         //Initialisation de la carte GoogleMap
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(new GoogleMapAccueil());
 
         //Définition des items
-            //Général
+        //Général
         carte = findViewById(R.id.ConstraintLayoutAccueilCarte);
         activite = findViewById(R.id.ConstraintLayoutAccueilActivite);
         navBar = findViewById(R.id.bottomNavigationView);
         tab = findViewById(R.id.tab);
 
-            //Carte - classique
+        //Carte - classique
         recherche = findViewById(R.id.buttonSearch);
         creation = findViewById(R.id.buttonCreateActivity);
 
-            //Mes Activités
+        //Mes Activités
 
 
         //Changer icone navBar selectionnee
@@ -81,6 +87,37 @@ public class AccueilActivity extends AppCompatActivity {
         recherche.setOnClickListener(searchActivityListener);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 2) {
+            if (permissions.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                mapView.setMyLocationEnabled(true);
+
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+                fusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                // Got last known location. In some rare situations this can be null.
+                                if (location != null) {
+                                    // Logic to handle location object
+                                    LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
+                                    mapView.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 11));
+                                }
+                            }
+                        });
+
+
+            } else {
+                mapView.setMyLocationEnabled(false);
+            }
+
+        }
+
+    }
+
     //Fonction OnClick
     TabLayout.OnTabSelectedListener tabOnSelected = new TabLayout.OnTabSelectedListener() {
 
@@ -89,10 +126,10 @@ public class AccueilActivity extends AppCompatActivity {
             switch (tab.getPosition()) {
                 case 0:
                     carte.setVisibility(View.VISIBLE);
-                    activite.setVisibility(View.INVISIBLE);
+                    activite.setVisibility(View.GONE);
                     break;
                 case 1:
-                    carte.setVisibility(View.INVISIBLE);
+                    carte.setVisibility(View.GONE);
                     activite.setVisibility(View.VISIBLE);
                     break;
                 default:
@@ -135,24 +172,6 @@ public class AccueilActivity extends AppCompatActivity {
 
             mapView.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mapView.clear();
-
-            Geocoder geo = new Geocoder(AccueilActivity.this);
-            List<Address> list = new ArrayList<>();
-
-            try {
-                list = geo.getFromLocationName("Paris", 1);
-            } catch (IOException e) {
-                System.out.println("Pas de ville trouvé");
-            }
-
-            if(list.size() > 0)
-            {
-                LatLng position = new LatLng(list.get(0).getLatitude(), list.get(0).getLongitude());
-
-                mapView.addMarker(new MarkerOptions().position(position));
-                mapView.moveCamera(CameraUpdateFactory.newLatLng(position));
-                mapView.animateCamera(CameraUpdateFactory.zoomTo(11), 400, null);
-            }
         }
     }
 }
