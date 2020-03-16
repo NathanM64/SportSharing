@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,7 +29,9 @@ import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 import com.mapbox.mapboxsdk.plugins.places.picker.PlacePicker;
 import com.mapbox.mapboxsdk.plugins.places.picker.model.PlacePickerOptions;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,36 +57,6 @@ public class RechercheActiviteActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_PLACEPICKER = 2;
     private static final int ITEM_NAV_BAR_SELECTED = R.id.navBarSearch;
     private Context contextActivity = RechercheActiviteActivity.this;
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_AUTOCOMPLETE) {
-
-            CarmenFeature selectedCarmenFeature = PlaceAutocomplete.getPlace(data);
-
-            startActivityForResult(
-                    new PlacePicker.IntentBuilder()
-                            .accessToken(getString(R.string.access_token_api))
-                            .placeOptions(PlacePickerOptions.builder()
-                                    .statingCameraPosition(new CameraPosition.Builder()
-                                            .target(new LatLng(((Point) selectedCarmenFeature.geometry()).latitude(), ((Point) selectedCarmenFeature.geometry()).longitude())).zoom(14).build())
-                                    .build())
-                            .build(this), REQUEST_CODE_PLACEPICKER);
-        }
-
-        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_PLACEPICKER) {
-            CarmenFeature carmenFeature = PlacePicker.getPlace(data);
-
-            Log.d("positionInfo", String.format("Selected location information:\\n%1$s", carmenFeature.toJson()));
-
-            int start = carmenFeature.toJson().lastIndexOf("place_name") + 13;
-            int fin = carmenFeature.toJson().lastIndexOf("place_type") - 3;
-
-            lieu.setText(carmenFeature.toJson().substring(start, fin));
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +85,49 @@ public class RechercheActiviteActivity extends AppCompatActivity {
         imageDay.setOnClickListener(openCalendar);
         imageTime.setOnClickListener(openTimer);
         lieu.setOnFocusChangeListener(openPlacePicker);
+
+        //Init Date
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+        String dateCurrent = currentDate.format(new Date());
+        annee = Integer.valueOf(dateCurrent.substring(6));
+        mois = Integer.valueOf(dateCurrent.substring(3,5));
+        jour = Integer.valueOf(dateCurrent.substring(0,2));
+
+        //Init time
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+        String timeCurrent = currentTime.format(new Date());
+        heure = Integer.valueOf(timeCurrent.substring(0,2));
+        minute = Integer.valueOf(timeCurrent.substring(3));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_AUTOCOMPLETE) {
+
+            CarmenFeature selectedCarmenFeature = PlaceAutocomplete.getPlace(data);
+
+            //Start le PlacePicker
+            startActivityForResult(
+                    new PlacePicker.IntentBuilder()
+                            .accessToken(getString(R.string.access_token_api))
+                            .placeOptions(PlacePickerOptions.builder()
+                                    .statingCameraPosition(new CameraPosition.Builder()
+                                            .target(new LatLng(((Point) selectedCarmenFeature.geometry()).latitude(), ((Point) selectedCarmenFeature.geometry()).longitude())).zoom(14).build())
+                                    .build())
+                            .build(this), REQUEST_CODE_PLACEPICKER);
+        }
+
+        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_PLACEPICKER) {
+            CarmenFeature carmenFeature = PlacePicker.getPlace(data);
+
+            //Récupération des index de départ et de fin qui représentent l'adresse choisi
+            int start = carmenFeature.toJson().lastIndexOf("place_name") + 13;
+            int fin = carmenFeature.toJson().lastIndexOf("place_type") - 3;
+
+            lieu.setText(carmenFeature.toJson().substring(start, fin));
+        }
     }
 
     //Fonction OnClick
@@ -120,8 +135,9 @@ public class RechercheActiviteActivity extends AppCompatActivity {
         @Override
         public void onFocusChange(View view, boolean b) {
             if(b) {
-                lieu.clearFocus();
+                lieu.clearFocus(); //Enleve le focus de l'edit text
 
+                //Start le PlaceAutoComplete
                 Intent intent = new PlaceAutocomplete.IntentBuilder()
                         .accessToken(getString(R.string.access_token_api))
                         .placeOptions(PlaceOptions.builder()
@@ -149,7 +165,26 @@ public class RechercheActiviteActivity extends AppCompatActivity {
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
-                            displayDay.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+                            String dateCurrent = currentDate.format(new Date());
+                            int yearCurrent = Integer.valueOf(dateCurrent.substring(6));
+                            int monthOfYearCurrent = Integer.valueOf(dateCurrent.substring(3,5));
+                            int dayOfMonthCurrent = Integer.valueOf(dateCurrent.substring(0,2));
+
+                            boolean error = false;
+                            if(year <= yearCurrent) {
+                                if(monthOfYear <= monthOfYearCurrent){
+                                    if(dayOfMonth < dayOfMonthCurrent) {
+                                        Toast.makeText(contextActivity, "Veuillez choisir une date correcte", Toast.LENGTH_LONG).show();
+                                        displayDay.setText("");
+                                        error = true;
+                                    }
+                                }
+                            }
+
+                            if(!error)
+                                displayDay.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                         }
                     }, annee, mois, jour);
             datePickerDialog.show();
@@ -169,8 +204,37 @@ public class RechercheActiviteActivity extends AppCompatActivity {
 
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
-                                              int minute) {
-                            displayTime.setText(hourOfDay + ":" + minute);
+                                              int minuteOfHour) {
+                            //Date
+                            SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+                            String dateCurrent = currentDate.format(new Date());
+                            int yearCurrent = Integer.valueOf(dateCurrent.substring(6));
+                            int monthOfYearCurrent = Integer.valueOf(dateCurrent.substring(3,5));
+                            int dayOfMonthCurrent = Integer.valueOf(dateCurrent.substring(0,2));
+
+                            //Heure
+                            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+                            String timeCurrent = currentTime.format(new Date());
+                            int hourCurrent = Integer.valueOf(timeCurrent.substring(0,2));
+                            int minuteCurrent = Integer.valueOf(timeCurrent.substring(3));
+
+                            boolean error = false;
+                            if(annee <= yearCurrent) {
+                                if(mois <= monthOfYearCurrent){
+                                    if(jour <= dayOfMonthCurrent) {
+                                        if(hourOfDay <= hourCurrent) {
+                                            if(minuteOfHour <= minuteCurrent) {
+                                                Toast.makeText(contextActivity, "Veuillez choisir une heure correcte", Toast.LENGTH_LONG).show();
+                                                displayTime.setText("");
+                                                error = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(!error)
+                                displayTime.setText(hourOfDay + ":" + minuteOfHour);
                         }
                     }, heure, minute, true);
             timePickerDialog.show();
