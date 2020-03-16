@@ -11,20 +11,24 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
+import com.mapbox.mapboxsdk.location.modes.CameraMode;
+import com.mapbox.mapboxsdk.location.modes.RenderMode;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.maps.Style;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 public class AccueilActivity extends AppCompatActivity {
 
@@ -36,10 +40,9 @@ public class AccueilActivity extends AppCompatActivity {
     //VARIABLES Maquette (Carte - classique)
     private Button recherche, creation;
 
-    //VARIABLES GoogleMap
-    private GoogleMap mapView;
-    private FusedLocationProviderClient fusedLocationClient;
-    private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
+    //VARIABLES MapBox
+    private MapView mapView;
+    private MapboxMap mapboxMap;
 
     //VARIABLES autres
     Intent demarre;
@@ -50,18 +53,14 @@ public class AccueilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Mapbox.getInstance(contextActivity, getString(R.string.access_token_api));
         setContentView(R.layout.accueil);
 
         //Demande de permission
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             this.requestPermissions(permissions, 2);
         }
-
-        //Initialisation de la carte GoogleMap
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapView);
-        mapFragment.getMapAsync(new GoogleMapAccueil());
 
         //Définition des items
         //Général
@@ -69,6 +68,7 @@ public class AccueilActivity extends AppCompatActivity {
         activite = findViewById(R.id.ConstraintLayoutAccueilActivite);
         navBar = findViewById(R.id.bottomNavigationView);
         tab = findViewById(R.id.tab);
+        mapView = findViewById(R.id.mapView);
 
         //Carte - classique
         recherche = findViewById(R.id.buttonSearch);
@@ -79,6 +79,10 @@ public class AccueilActivity extends AppCompatActivity {
 
         //Changer icone navBar selectionnee
         navBar.getMenu().findItem(ITEM_NAV_BAR_SELECTED).setChecked(true);
+
+        //Init map
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(new MapAccueil());
 
         //OnClick
         tab.addOnTabSelectedListener(tabOnSelected);
@@ -92,26 +96,13 @@ public class AccueilActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == 2) {
-            if (permissions.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mapView.setMyLocationEnabled(true);
+            if (permissions.length != 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED ||
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
 
-                fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-                fusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                            @Override
-                            public void onSuccess(Location location) {
-                                // Got last known location. In some rare situations this can be null.
-                                if (location != null) {
-                                    // Logic to handle location object
-                                    LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
-                                    mapView.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 11));
-                                }
-                            }
-                        });
-
+                startLocationUser(mapboxMap.getStyle());
 
             } else {
-                mapView.setMyLocationEnabled(false);
+
             }
 
         }
@@ -166,14 +157,42 @@ public class AccueilActivity extends AppCompatActivity {
     //////////////////////////////////////////////////////////////////////////////
 
 
-    private class GoogleMapAccueil implements OnMapReadyCallback {
+    private class MapAccueil implements OnMapReadyCallback {
 
         @Override
-        public void onMapReady(GoogleMap googleMap) {
-            mapView = googleMap;
+        public void onMapReady(@NonNull MapboxMap mapboxMap) {
+            AccueilActivity.this.mapboxMap = mapboxMap;
 
-            mapView.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            mapView.clear();
+            mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+                @Override
+                public void onStyleLoaded(@NonNull Style style) {
+                    startLocationUser(style);
+                }
+            });
+        }
+    }
+
+    private void startLocationUser(@NonNull Style loadedMapStyle) {
+        if(ContextCompat.checkSelfPermission(AccueilActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(AccueilActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Get an instance of the component
+            LocationComponent locationComponent = mapboxMap.getLocationComponent();
+
+            /* Activate with options */
+            locationComponent.activateLocationComponent(LocationComponentActivationOptions.builder(this, loadedMapStyle).build());
+
+            // Enable to make component visible
+            locationComponent.setLocationComponentEnabled(true);
+
+            // Set the component's camera mode
+            locationComponent.setCameraMode(CameraMode.TRACKING);
+
+            // Set the component's render mode
+            locationComponent.setRenderMode(RenderMode.COMPASS);
+
+            //Zoom
+            Location posUser = locationComponent.getLastKnownLocation();
+            mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(posUser.getLatitude(), posUser.getLongitude()), 14));
         }
     }
 }

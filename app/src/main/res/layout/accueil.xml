@@ -109,6 +109,8 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+    <!-- Définition Accueil (Activite) -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayoutAccueilCarte"
         android:layout_width="0dp"
@@ -116,8 +118,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/top_guideline3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/top_guideline2">
+        app:layout_constraintTop_toTopOf="@+id/top_guideline2"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/left_guideline2"
@@ -144,19 +148,17 @@
 
         <!-- Carte Google avec activité proche selon géolocalisation -->
 
-        <fragment
+        <!-- Bouton raccourci pour créer et recherche une activité -->
+
+        <com.mapbox.mapboxsdk.maps.MapView
             android:id="@+id/mapView"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/buttonCreateActivity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context=".AccueilActivity"/>
-
-        <!-- Bouton raccourci pour créer et recherche une activité -->
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/buttonCreateActivity"
@@ -185,8 +187,6 @@
             app:layout_constraintStart_toStartOf="@+id/left_guideline2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Définition Accueil (Activite) -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayoutAccueilActivite"
