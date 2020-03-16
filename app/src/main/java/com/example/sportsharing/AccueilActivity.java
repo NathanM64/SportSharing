@@ -99,7 +99,7 @@ public class AccueilActivity extends AppCompatActivity {
             if (permissions.length != 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED ||
                     grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
 
-                startLocationUser(mapboxMap.getStyle());
+
 
             } else {
 

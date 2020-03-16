@@ -184,13 +184,12 @@
                 android:textColor="#000000"
                 android:textSize="17sp" />
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCETlieu"
+            <EditText
+                android:id="@+id/lieu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:hint="@string/exampleCity"
-                android:inputType="textAutoCorrect|text|textAutoComplete" />
+                android:hint="@string/exampleCity" />
         </LinearLayout>
 
         <LinearLayout
