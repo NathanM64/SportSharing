@@ -32,14 +32,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.10" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.30" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline3"
@@ -103,6 +103,33 @@
 
     <!-- Bouton connexion -->
 
+    <!-- Mot de passe oublié -->
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout">
+
+        <Switch
+            android:id="@+id/switchStayConnected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/label_stay_connected"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/connect"
         android:layout_width="103dp"
@@ -114,9 +141,7 @@
         android:textColor="#F8F7F7"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toLeftOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
-
-    <!-- Mot de passe oublié -->
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <TextView
         android:id="@+id/passwordOublie"

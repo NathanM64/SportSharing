@@ -69,4 +69,5 @@
     <string name="timeRecap">Heure début - Durée</string>
     <string name="levelMinRecommended">Niveau minimum conseillé</string>
     <string name="suite">Continuer</string>
+    <string name="label_stay_connected">Restez connecté</string>
 </resources>

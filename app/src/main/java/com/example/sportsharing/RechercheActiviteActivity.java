@@ -1,5 +1,6 @@
 package com.example.sportsharing;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -87,17 +88,17 @@ public class RechercheActiviteActivity extends AppCompatActivity {
         lieu.setOnFocusChangeListener(openPlacePicker);
 
         //Init Date
-        SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
         String dateCurrent = currentDate.format(new Date());
-        annee = Integer.valueOf(dateCurrent.substring(6));
-        mois = Integer.valueOf(dateCurrent.substring(3,5));
-        jour = Integer.valueOf(dateCurrent.substring(0,2));
+        annee = Integer.parseInt(dateCurrent.substring(6));
+        mois = Integer.parseInt(dateCurrent.substring(3,5));
+        jour = Integer.parseInt(dateCurrent.substring(0,2));
 
         //Init time
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
         String timeCurrent = currentTime.format(new Date());
-        heure = Integer.valueOf(timeCurrent.substring(0,2));
-        minute = Integer.valueOf(timeCurrent.substring(3));
+        heure = Integer.parseInt(timeCurrent.substring(0,2));
+        minute = Integer.parseInt(timeCurrent.substring(3));
     }
 
     @Override
@@ -162,15 +163,16 @@ public class RechercheActiviteActivity extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(RechercheActiviteActivity.this,
                     new DatePickerDialog.OnDateSetListener() {
 
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
 
-                            SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+                            @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
                             String dateCurrent = currentDate.format(new Date());
-                            int yearCurrent = Integer.valueOf(dateCurrent.substring(6));
-                            int monthOfYearCurrent = Integer.valueOf(dateCurrent.substring(3,5));
-                            int dayOfMonthCurrent = Integer.valueOf(dateCurrent.substring(0,2));
+                            int yearCurrent = Integer.parseInt(dateCurrent.substring(6));
+                            int monthOfYearCurrent = Integer.parseInt(dateCurrent.substring(3,5));
+                            int dayOfMonthCurrent = Integer.parseInt(dateCurrent.substring(0,2));
 
                             boolean error = false;
                             if(year <= yearCurrent) {
@@ -202,21 +204,22 @@ public class RechercheActiviteActivity extends AppCompatActivity {
             TimePickerDialog timePickerDialog = new TimePickerDialog(RechercheActiviteActivity.this,
                     new TimePickerDialog.OnTimeSetListener() {
 
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minuteOfHour) {
                             //Date
-                            SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+                            @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
                             String dateCurrent = currentDate.format(new Date());
-                            int yearCurrent = Integer.valueOf(dateCurrent.substring(6));
-                            int monthOfYearCurrent = Integer.valueOf(dateCurrent.substring(3,5));
-                            int dayOfMonthCurrent = Integer.valueOf(dateCurrent.substring(0,2));
+                            int yearCurrent = Integer.parseInt(dateCurrent.substring(6));
+                            int monthOfYearCurrent = Integer.parseInt(dateCurrent.substring(3,5));
+                            int dayOfMonthCurrent = Integer.parseInt(dateCurrent.substring(0,2));
 
                             //Heure
-                            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+                            @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
                             String timeCurrent = currentTime.format(new Date());
-                            int hourCurrent = Integer.valueOf(timeCurrent.substring(0,2));
-                            int minuteCurrent = Integer.valueOf(timeCurrent.substring(3));
+                            int hourCurrent = Integer.parseInt(timeCurrent.substring(0,2));
+                            int minuteCurrent = Integer.parseInt(timeCurrent.substring(3));
 
                             boolean error = false;
                             if(annee <= yearCurrent) {

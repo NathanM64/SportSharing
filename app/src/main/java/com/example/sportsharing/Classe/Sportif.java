@@ -53,6 +53,11 @@ public class Sportif {
      *  Présentation du sportif initialisé à ""
      */
     protected String description = "";
+    /**
+     * Permet de savoir si ce profil doit être charger sans saisie du login et motDePasse (true)
+     * Sinon (false)
+     */
+    protected boolean resteConnecte;
 
     //Autre variables
     /**
@@ -79,6 +84,7 @@ public class Sportif {
         this.codePostal = 0;
         this.numeroTelephone = "";
         this.description = "";
+        this.resteConnecte = true;
 
         mesSports = new HashMap<>();
     }
@@ -113,6 +119,38 @@ public class Sportif {
         this.codePostal = codePostal;
         this.numeroTelephone = numeroTelephone;
         this.description = description;
+        this.resteConnecte = false;
+
+        mesSports = new HashMap<>();
+    }
+
+    /**
+     * <br>
+     * <b>Constructeur de la classe sportif pour charger le profil d'un autre sportif sélectionné</b>
+     * @param nom               Nom du sportif
+     * @param prenom            Prénom du sportif
+     * @param adresseMail       Adresse mail du sportif
+     * @param dateNaissance     Date de naissance du sportif
+     * @param ville             Ville du lieu d'utilisation de l'application (Facultatif)
+     * @param codePostal        Code postal de la ville (Facultatif)
+     * @param numeroTelephone   Numéro de téléphone du sportif (Facultatif)
+     * @param description       Présentation du sportif (Facultatif)
+     */
+    public Sportif(String nom, String prenom,
+                   String adresseMail, String dateNaissance, String ville, int codePostal, String numeroTelephone, String description)
+    {
+        this.login = "";
+        this.motDePasse = "";
+        this.confirmMotDePasse = "";
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresseMail = adresseMail;
+        this.dateNaissance = dateNaissance;
+        this.ville = ville;
+        this.codePostal = codePostal;
+        this.numeroTelephone = numeroTelephone;
+        this.description = description;
+        this.resteConnecte = false;
 
         mesSports = new HashMap<>();
     }
@@ -140,48 +178,32 @@ public class Sportif {
 
     public String getDescription() { return description; }
 
-    //METHODES SETTER
-    public void setLogin(String login) {
-        this.login = login;
-    }
+    public int isResteConnecte() { return (resteConnecte?1:0); }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
-    }
+    //METHODES SETTER
+    public void setLogin(String login) { this.login = login; }
+
+    public void setMotDePasse(String motDePasse) { this.motDePasse = motDePasse; }
 
     public void setConfirmMotDePasse(String confirmMotDePasse) { this.confirmMotDePasse = confirmMotDePasse; }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public void setNom(String nom) { this.nom = nom; }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+    public void setPrenom(String prenom) { this.prenom = prenom; }
 
-    public void setAdresseMail(String adresseMail) {
-        this.adresseMail = adresseMail;
-    }
+    public void setAdresseMail(String adresseMail) { this.adresseMail = adresseMail; }
 
-    public void setDateNaissance(String dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
+    public void setDateNaissance(String dateNaissance) { this.dateNaissance = dateNaissance; }
 
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
+    public void setVille(String ville) { this.ville = ville; }
 
-    public void setCodePostal(int codePostal) {
-        this.codePostal = codePostal;
-    }
+    public void setCodePostal(int codePostal) { this.codePostal = codePostal; }
 
-    public void setNumeroTelephone(String numeroTelephone) {
-        this.numeroTelephone = numeroTelephone;
-    }
+    public void setNumeroTelephone(String numeroTelephone) { this.numeroTelephone = numeroTelephone; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
+
+    public void setResteConnecte(boolean resteConnecte) { this.resteConnecte = resteConnecte; }
 
     //AUTRES METHODES
     /**

@@ -70,6 +70,7 @@ public class Inscription3Activity extends AppCompatActivity {
         public void onClick(View view) {
             //Sauvegarder toutes les informations dans la bd
             global.utilisateur.setDescription(presentation.getText().toString());
+            global.utilisateur.setResteConnecte(true);
 
             //Chargement maquette Connection
             demarre = new Intent(getApplicationContext(), AccueilActivity.class);

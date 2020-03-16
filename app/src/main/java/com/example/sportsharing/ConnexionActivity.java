@@ -8,7 +8,10 @@ import android.widget.TextView;
 
 import com.example.sportsharing.Classe.DossierVariableClasse;
 import com.example.sportsharing.Classe.Sportif;
+import com.example.sportsharing.ClasseDAO.SportifDAO;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +25,8 @@ public class ConnexionActivity extends AppCompatActivity {
     //VARIABLES
     Intent demarre;
     DossierVariableClasse global;
+    SportifDAO sportifDAO;
+    ArrayList<Sportif> utilisateurs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,10 @@ public class ConnexionActivity extends AppCompatActivity {
 
         //Instance de DossierVariableClasse
         global = DossierVariableClasse.getInstance();
+
+        //Instance sportifDAO
+        sportifDAO = new SportifDAO(this);
+        utilisateurs = sportifDAO.getAllSportifs();
 
         //Initialisation des Variables
         login = findViewById(R.id.login);
@@ -48,8 +57,8 @@ public class ConnexionActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             //Récupération info login et password
-            System.out.println(login.getText());
-            System.out.println(password.getText());
+            String loginText = login.getText().toString();
+            String motDePasseText = password.getText().toString();
 
             //Ouverture maquette Accueil
             ///////////////////////////A conditionner selon BD
