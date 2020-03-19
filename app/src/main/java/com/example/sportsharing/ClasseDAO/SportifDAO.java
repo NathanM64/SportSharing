@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.sportsharing.Classe.DossierVariableClasse;
 import com.example.sportsharing.Classe.Sportif;
 
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 public class SportifDAO extends DAO {
     public SportifDAO(Context context) {
         super(context);
-        addSportif(DossierVariableClasse.getInstance().michelTelo);
     }
 
     public void addSportif(Sportif sportif) {

@@ -158,10 +158,18 @@ public class Inscription1Activity extends AppCompatActivity {
                 }
             }
 
+            //Traitement de l'égalité entre motDePasse et confirmMotDePasse
+            if(!champTraiter.contains(password) && !champTraiter.contains(confirmPassword)) {
+                isAProblem = afficheErreur( confirmPassword , !password.getText().toString().equals(confirmPassword.getText().toString()) , "Le mot de passe doit être identique" );
+                if(isAProblem) {
+                    champTraiter.add(confirmPassword);
+                }
+            }
+
             //Chargement maquette Inscription 2 si aucun problème n'a été rencontré
             if(champTraiter.size() == 0) {
 
-                //Save les informations dans le profil de DossierVariableClasse
+                //Enregistrements des informations dans le profil de DossierVariableClasse
                 global.utilisateur.setLogin(login.getText().toString());
                 global.utilisateur.setMotDePasse(password.getText().toString());
                 global.utilisateur.setConfirmMotDePasse(confirmPassword.getText().toString());
