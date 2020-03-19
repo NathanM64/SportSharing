@@ -16,19 +16,26 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ConnexionActivity extends AppCompatActivity {
 
     //VARIABLES maquette
-    TextInputEditText login, password;
-    Button connect;
-    TextView passwordOublie, inscription;
+    private TextInputEditText login, password;
+    private Button connect;
+    private TextView passwordOublie, inscription;
 
     //VARIABLES
-    Intent demarre;
-    DossierVariableClasse global;
-    SportifDAO sportifDAO;
+    private Intent demarre;
+    private DossierVariableClasse global;
+    private SportifDAO sportifDAO;
+
+    private String MESSAGE_ERROR_LOGIN;
+    private String MESSAGE_ERROR_PASSWORD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connexion_application);
+
+        //Initialisation des messages d'erreurs
+        MESSAGE_ERROR_LOGIN = getString(R.string.error_login);
+        MESSAGE_ERROR_PASSWORD = getString(R.string.error_password);
 
         //Instance de DossierVariableClasse
         global = DossierVariableClasse.getInstance();
@@ -81,11 +88,11 @@ public class ConnexionActivity extends AppCompatActivity {
                     finish();
                 }
                 else {
-                    password.setError("Mot de passe incorrect");
+                    password.setError(MESSAGE_ERROR_PASSWORD);
                 }
             }
             else {
-                login.setError("Login incorrect");
+                login.setError(MESSAGE_ERROR_LOGIN);
             }
         }
     };

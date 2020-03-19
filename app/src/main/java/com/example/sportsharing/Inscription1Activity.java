@@ -18,18 +18,40 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Inscription1Activity extends AppCompatActivity {
 
     //VARIABLES maquette
-    TextInputEditText login, password, confirmPassword, name, firstName, mail, birthday, city, postalCode, phoneNumber;
-    Switch condition, notification;
-    Button cancel, next;
+    private TextInputEditText login, password, confirmPassword, name, firstName, mail, birthday, city, postalCode, phoneNumber;
+    private Switch condition, notification;
+    private Button cancel, next;
 
     //VARIABLES
-    Intent demarre;
-    DossierVariableClasse global;
+    private Intent demarre;
+    private DossierVariableClasse global;
+
+    private String MESSAGE_ERROR_EMPTY_FIELD;
+    private String MESSAGE_ERROR_NO_SPACE;
+    private String MESSAGE_ERROR_MAIL;
+    private String MESSAGE_ERROR_BIRTHDAY;
+    private String MESSAGE_ERROR_BIRTHDAY_MODEL;
+    private String MESSAGE_ERROR_WITH_NUMBER;
+    private String MESSAGE_ERROR_POSTAL_CODE;
+    private String MESSAGE_ERROR_PHONE_NUMBER;
+    private String MESSAGE_ERROR_SIMILAR_PASSWORD;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inscription_1);
+
+        //Initialisation des messages d'erreurs
+        MESSAGE_ERROR_EMPTY_FIELD = getString(R.string.error_empty_field);
+        MESSAGE_ERROR_NO_SPACE = getString(R.string.error_no_space);
+        MESSAGE_ERROR_MAIL = getString(R.string.error_mail);
+        MESSAGE_ERROR_BIRTHDAY = getString(R.string.error_birthday);
+        MESSAGE_ERROR_BIRTHDAY_MODEL = getString(R.string.error_birthday_model);
+        MESSAGE_ERROR_WITH_NUMBER = getString(R.string.error_with_number);
+        MESSAGE_ERROR_POSTAL_CODE = getString(R.string.error_postal_code);
+        MESSAGE_ERROR_PHONE_NUMBER = getString(R.string.error_phone_number);
+        MESSAGE_ERROR_SIMILAR_PASSWORD = getString(R.string.error_similar_password);
 
         //Instance de DossierVariableClasse
         global = DossierVariableClasse.getInstance();
@@ -99,7 +121,7 @@ public class Inscription1Activity extends AppCompatActivity {
             //Traitement des champs qui doivent obligatoirement être renseignés
             for (TextInputEditText inputEditText : tabAVerifier) {
                 if (!champTraiter.contains(inputEditText)) {
-                    isAProblem = afficheErreur(inputEditText, isCompleted(inputEditText), "champ obligatoirement renseigné");
+                    isAProblem = afficheErreur(inputEditText, isCompleted(inputEditText), MESSAGE_ERROR_EMPTY_FIELD);
                     if (isAProblem) {
                         champTraiter.add(inputEditText);
                     }
@@ -109,7 +131,7 @@ public class Inscription1Activity extends AppCompatActivity {
             //Traitement des champs qui ne doivent pas contenir d'espace et supression de ceci
             for (TextInputEditText textInputEditText : tabChampQuiNeDoiventPasAvoirDespace) {
                 if (!champTraiter.contains(textInputEditText)) {
-                    isAProblem = afficheErreur(textInputEditText, replaceSpaces(textInputEditText), "ce champs ne peut pas contenir d'espace");
+                    isAProblem = afficheErreur(textInputEditText, replaceSpaces(textInputEditText), MESSAGE_ERROR_NO_SPACE);
                     if (isAProblem) {
                         champTraiter.add(textInputEditText);
                     }
@@ -118,7 +140,7 @@ public class Inscription1Activity extends AppCompatActivity {
 
             //Traitement de l'email
             if(!champTraiter.contains(mail)) {
-                isAProblem = afficheErreur( mail , emailPatternIsCorect(mail) , "l'adresse email n'a pas été correctement saisit" );
+                isAProblem = afficheErreur( mail , emailPatternIsCorect(mail) , MESSAGE_ERROR_MAIL );
                 if(isAProblem) {
                     champTraiter.add(mail);
                 }
@@ -126,7 +148,7 @@ public class Inscription1Activity extends AppCompatActivity {
 
             //Traitement de l'email
             if(!champTraiter.contains(birthday)) {
-                isAProblem = afficheErreur( birthday , birthdayPatternIsCorect(birthday) , "la date de naissance n'a pas été correctement saisit.\nElle doit être de la forme (jj/mm/aaaa)" );
+                isAProblem = afficheErreur( birthday , birthdayPatternIsCorect(birthday) , MESSAGE_ERROR_BIRTHDAY+"\n"+MESSAGE_ERROR_BIRTHDAY_MODEL );
                 if(isAProblem) {
                     champTraiter.add(birthday);
                 }
@@ -135,7 +157,7 @@ public class Inscription1Activity extends AppCompatActivity {
             //Traitement des champs qui ne doivent pas contenir de chiffres
             for (TextInputEditText textInputEditText : tabChampQuiNePossedePasDeChiffre) {
                 if (!champTraiter.contains(textInputEditText)) {
-                    isAProblem = afficheErreur(textInputEditText, containNumber(textInputEditText), "ce champs ne peut pas contenir de chiffre");
+                    isAProblem = afficheErreur(textInputEditText, containNumber(textInputEditText), MESSAGE_ERROR_WITH_NUMBER);
                     if (isAProblem) {
                         champTraiter.add(textInputEditText);
                     }
@@ -144,7 +166,7 @@ public class Inscription1Activity extends AppCompatActivity {
 
             //Traitement du code postal si non vide
             if(!champTraiter.contains(postalCode) && postalCode.getText().toString().length() != 0) {
-                isAProblem = afficheErreur( postalCode , postalCodePatternIsCorrect(postalCode) , "le code postal n'a pas été correctement saisit" );
+                isAProblem = afficheErreur( postalCode , postalCodePatternIsCorrect(postalCode) , MESSAGE_ERROR_POSTAL_CODE );
                 if(isAProblem) {
                     champTraiter.add(postalCode);
                 }
@@ -152,7 +174,7 @@ public class Inscription1Activity extends AppCompatActivity {
 
             //Traitement du numéro de tel si non vide
             if(!champTraiter.contains(phoneNumber) && phoneNumber.getText().toString().length() != 0) {
-                isAProblem = afficheErreur( phoneNumber , phoneNumberPatternIsCorrect(phoneNumber) , "le numéro de téléphone n'a pas été correctement saisit" );
+                isAProblem = afficheErreur( phoneNumber , phoneNumberPatternIsCorrect(phoneNumber) , MESSAGE_ERROR_PHONE_NUMBER );
                 if(isAProblem) {
                     champTraiter.add(phoneNumber);
                 }
@@ -160,7 +182,7 @@ public class Inscription1Activity extends AppCompatActivity {
 
             //Traitement de l'égalité entre motDePasse et confirmMotDePasse
             if(!champTraiter.contains(password) && !champTraiter.contains(confirmPassword)) {
-                isAProblem = afficheErreur( confirmPassword , !password.getText().toString().equals(confirmPassword.getText().toString()) , "Le mot de passe doit être identique" );
+                isAProblem = afficheErreur( confirmPassword , !password.getText().toString().equals(confirmPassword.getText().toString()) , MESSAGE_ERROR_SIMILAR_PASSWORD );
                 if(isAProblem) {
                     champTraiter.add(confirmPassword);
                 }
