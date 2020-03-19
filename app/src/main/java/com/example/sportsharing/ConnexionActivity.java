@@ -11,8 +11,6 @@ import com.example.sportsharing.Classe.Sportif;
 import com.example.sportsharing.ClasseDAO.SportifDAO;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.ArrayList;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ConnexionActivity extends AppCompatActivity {
@@ -26,7 +24,6 @@ public class ConnexionActivity extends AppCompatActivity {
     Intent demarre;
     DossierVariableClasse global;
     SportifDAO sportifDAO;
-    ArrayList<Sportif> utilisateurs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +47,6 @@ public class ConnexionActivity extends AppCompatActivity {
             finish();
         }
 
-        //récupération de tous les sportifs
-        utilisateurs = sportifDAO.getAllSportifs();
-
         //Initialisation des Variables
         login = findViewById(R.id.login);
         password = findViewById(R.id.password);
@@ -73,11 +67,26 @@ public class ConnexionActivity extends AppCompatActivity {
             String loginText = login.getText().toString();
             String motDePasseText = password.getText().toString();
 
-            //Ouverture maquette Accueil
-            ///////////////////////////A conditionner selon BD
-            demarre = new Intent(getApplicationContext(), AccueilActivity.class);
-            startActivity(demarre);
-            finish();
+            //Récupération du sportif dans la base de donnée
+            Sportif utilisateur = sportifDAO.getSportif(loginText);
+            if(utilisateur != null) {
+                if(motDePasseText.equals(utilisateur.getMotDePasse())) {
+
+                    //Définition du profil chargé
+                    global.setUtilisateur(utilisateur);
+
+                    //Ouverture maquette Accueil
+                    demarre = new Intent(getApplicationContext(), AccueilActivity.class);
+                    startActivity(demarre);
+                    finish();
+                }
+                else {
+                    password.setError("Mot de passe incorrect");
+                }
+            }
+            else {
+                login.setError("Login incorrect");
+            }
         }
     };
 

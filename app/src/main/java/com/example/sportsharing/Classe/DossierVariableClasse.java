@@ -27,9 +27,8 @@ public class DossierVariableClasse {
         this.createur = null;
 
         //Test
-        this.utilisateur = michelTelo;
-        this.utilisateur.addSport(new Sport(EnumUtil.NameSport.Tennis, EnumUtil.TypeSport.Raquette), EnumUtil.NiveauSport.Occasionnel);
-        this.utilisateur.addSport(new Sport(EnumUtil.NameSport.Surf, EnumUtil.TypeSport.Autre), EnumUtil.NiveauSport.Non_Renseigne);
+        michelTelo.addSport(new Sport(EnumUtil.NameSport.Tennis, EnumUtil.TypeSport.Raquette), EnumUtil.NiveauSport.Occasionnel);
+        michelTelo.addSport(new Sport(EnumUtil.NameSport.Surf, EnumUtil.TypeSport.Autre), EnumUtil.NiveauSport.Non_Renseigne);
         this.createur = new Organisateur(kendJ);
         creationDonneeTest();
     }
