@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.ClasseDAO.SportifDAO;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -71,6 +72,10 @@ public class Inscription3Activity extends AppCompatActivity {
             //Sauvegarder toutes les informations dans la bd
             global.utilisateur.setDescription(presentation.getText().toString());
             global.utilisateur.setResteConnecte(true);
+
+            //Ajout à la bd
+            SportifDAO sportifDAO = new SportifDAO(Inscription3Activity.this);
+            sportifDAO.addSportif(global.utilisateur);
 
             //Chargement maquette Connection
             demarre = new Intent(getApplicationContext(), AccueilActivity.class);

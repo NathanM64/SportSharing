@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.sportsharing.Classe.DossierVariableClasse;
 import com.example.sportsharing.Classe.Sportif;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 public class SportifDAO extends DAO {
     public SportifDAO(Context context) {
         super(context);
+        addSportif(DossierVariableClasse.getInstance().michelTelo);
     }
 
     public void addSportif(Sportif sportif) {
@@ -30,10 +32,14 @@ public class SportifDAO extends DAO {
         valeurs.put("codePostal", sportif.getCodePostal());
         valeurs.put("numeroTelephone", sportif.getNumeroTelephone());
         valeurs.put("description", sportif.getDescription());
-        valeurs.put("resteConnecte", 1);
+        valeurs.put("resteConnecte", sportif.isResteConnecte());
 
         //Ajout à la table
         db.insert("Sportif", null, valeurs);
+    }
+
+    public void enleveResteConnectASportifAvecResteConnecte(String login) {
+        this.getWritableDatabase().rawQuery("update Sportif SET resteConnecte=0 WHERE login=?", new String[]{login});
     }
 
     public Sportif getSportif(String login) {
@@ -42,6 +48,17 @@ public class SportifDAO extends DAO {
 
         //Requete
         curseur = this.getReadableDatabase().rawQuery("select * from Sportif where login=?;", new String[]{login});
+        sportif = curseurToSportif(curseur);
+
+        return sportif;
+    }
+
+    public Sportif getSportifResteConnecte() {
+        Sportif sportif = null;
+        Cursor curseur;
+
+        //Requete
+        curseur = this.getReadableDatabase().rawQuery("select * from Sportif where resteConnecte=?;", new String[]{1+""});
         sportif = curseurToSportif(curseur);
 
         return sportif;

@@ -3,7 +3,6 @@ package com.example.sportsharing.ClasseDAO;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DAO extends SQLiteOpenHelper {
 
@@ -29,8 +28,6 @@ public class DAO extends SQLiteOpenHelper {
                 "numeroTelephone VARCHAR(12) NOT NULL," +
                 "description TEXT NOT NULL," +
                 "resteConnecte INTEGER NOT NULL);");
-
-        Log.d("dbSportif", "data base create");
     }
 
     @Override

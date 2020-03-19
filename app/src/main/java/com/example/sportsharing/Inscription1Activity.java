@@ -170,7 +170,8 @@ public class Inscription1Activity extends AppCompatActivity {
                 global.utilisateur.setAdresseMail(mail.getText().toString());
                 global.utilisateur.setDateNaissance(birthday.getText().toString());
                 global.utilisateur.setVille(city.getText().toString());
-                global.utilisateur.setCodePostal(Integer.valueOf(postalCode.getText().toString()));
+                if(!postalCode.getText().toString().equals(""))
+                    global.utilisateur.setCodePostal(Integer.valueOf(postalCode.getText().toString()));
                 global.utilisateur.setNumeroTelephone(phoneNumber.getText().toString());
 
                 //Start inscription 2

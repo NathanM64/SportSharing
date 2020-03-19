@@ -25,13 +25,13 @@
     <show-object-properties value="false" />
     <loaded-nodes>
       <connection connection-id="c436ad8c-c477-40f4-9441-2dbf280a27e7">
-        <schema name="main" object-types="index, view, constraint, column, table, dataset trigger" />
+        <schema name="main" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="c436ad8c-c477-40f4-9441-2dbf280a27e7">
-      <console name="SportSharing" type="STANDARD" schema="main" session="Main"><![CDATA[select * from Sportif;]]></console>
+      <console name="SportSharing" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

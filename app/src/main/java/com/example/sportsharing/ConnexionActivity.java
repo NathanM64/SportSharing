@@ -38,6 +38,19 @@ public class ConnexionActivity extends AppCompatActivity {
 
         //Instance sportifDAO
         sportifDAO = new SportifDAO(this);
+
+        //Récupération du profil à charger avec le paramètre resteConnecte à true
+        Sportif aConnecte = sportifDAO.getSportifResteConnecte();
+        if(aConnecte != null) {
+            global.utilisateur = aConnecte;
+
+            //Ouverture maquette Accueil
+            demarre = new Intent(getApplicationContext(), AccueilActivity.class);
+            startActivity(demarre);
+            finish();
+        }
+
+        //récupération de tous les sportifs
         utilisateurs = sportifDAO.getAllSportifs();
 
         //Initialisation des Variables

@@ -44,17 +44,11 @@ public class DossierVariableClasse {
         return instance;
     }
 
-    public void setUtilisateur(Sportif utilisateur) {
-        this.utilisateur = utilisateur;
-    }
+    public void setUtilisateur(Sportif utilisateur) {this.utilisateur = utilisateur;}
 
-    public void setProfilVisite(Sportif profilVisite) {
-        this.profilVisite = profilVisite;
-    }
+    public void setProfilVisite(Sportif profilVisite) {this.profilVisite = profilVisite;}
 
-    public void setCreateur() {
-        this.createur = new Organisateur(utilisateur);
-    }
+    public void setCreateur() {this.createur = new Organisateur(utilisateur);}
 
     //Création de données de test pour les vues de l'application
     public void creationDonneeTest() {
