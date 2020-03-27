@@ -1,12 +1,9 @@
 package com.example.sportsharing.Classe;
 
-import java.sql.Date;
-import java.sql.Time;
-
 /**
  * Activite est la classe représentant une activite sportive créé par un organisateur
  * @author groupe 13 (Mathieu BOCCIARELLI)
- * @version 1.0
+ * @version 2.0
  * @since 24/02/2020
  */
 public class Activite {
@@ -19,17 +16,20 @@ public class Activite {
     /**
      * Date du jour de réalisation de l'activité
      */
-    protected Date jour;
+    protected String jour;
     /**
      * Heure de début de l'activité
+     * Model : jj/MM/yyyy
      */
-    protected Time heureDebut;
+    protected String heureDebut;
     /**
      * Heure de fin théorique de l'activité
+     * Model : hh/mm
      */
-    protected Time heureFin;
+    protected String heureFin;
     /**
      * Description de l'activité
+     * Model : hh/mm
      */
     protected String description = "";
     /**
@@ -72,7 +72,7 @@ public class Activite {
      * @param lieu              Lieu de l'activité
      * @param sport             Sport concerné par l'activité
      */
-    public Activite(int id, Date jour, Time heureDebut, Time heureFin, String description, int nbMaxPersonnes, Organisateur createur, Adresse lieu, Sport sport) {
+    public Activite(int id, String jour, String heureDebut, String heureFin, String description, int nbMaxPersonnes, Organisateur createur, Adresse lieu, Sport sport) {
         this.id = id;
         this.jour = jour;
         this.heureDebut = heureDebut;
@@ -97,7 +97,7 @@ public class Activite {
      *
      * @return Retourne le jour de participation
      */
-    public Date getJour() {
+    public String getJour() {
         return jour;
     }
 
@@ -105,7 +105,7 @@ public class Activite {
      *
      * @return Retourne l'heure de début de l'activité
      */
-    public Time getHeureDebut() {
+    public String getHeureDebut() {
         return heureDebut;
     }
 
@@ -113,7 +113,7 @@ public class Activite {
      *
      * @return Retourne l'heure de fin de l'activité
      */
-    public Time getHeureFin() {
+    public String getHeureFin() {
         return heureFin;
     }
 
@@ -131,7 +131,7 @@ public class Activite {
      *
      * @param jour              Définit le jour de participation
      */
-    public void setJour(Date jour) {
+    public void setJour(String jour) {
         this.jour = jour;
     }
 
@@ -139,7 +139,7 @@ public class Activite {
      *
      * @param heureDebut        Définit l'heure de début de l'activité
      */
-    public void setHeureDebut(Time heureDebut) {
+    public void setHeureDebut(String heureDebut) {
         this.heureDebut = heureDebut;
     }
 
@@ -147,7 +147,7 @@ public class Activite {
      *
      * @param heureFin          Définit l'heure de fin de l'activité
      */
-    public void setHeureFin(Time heureFin) {
+    public void setHeureFin(String heureFin) {
         this.heureFin = heureFin;
     }
 
