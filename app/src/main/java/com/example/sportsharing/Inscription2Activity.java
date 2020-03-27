@@ -1,6 +1,5 @@
 package com.example.sportsharing;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -101,7 +100,7 @@ public class Inscription2Activity extends AppCompatActivity {
 
     private void ajoutLigne(String s, String l) {
         LayoutInflater inflater = getLayoutInflater();
-        @SuppressLint("InflateParams") LinearLayout row = (LinearLayout) inflater.inflate(R.layout.model_tablerow_inscription_2, null);
+        LinearLayout row = (LinearLayout) inflater.inflate(R.layout.model_tablerow_inscription_2, null);
 
         //Ecriture des éléments dans la nouvelle ligne
         TextView tvNameSport = (TextView) row.getChildAt(0);

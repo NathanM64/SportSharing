@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableLayout;
 
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,6 +40,9 @@ public class AccueilActivity extends AppCompatActivity {
 
     //VARIABLES Maquette (Carte - classique)
     private Button recherche, creation;
+
+    //VARIABLES Mes Activités
+    private TableLayout TableLayoutRegisteredActivity, TableLayoutCompletedActivity, TableLayoutMyActivites;
 
     //VARIABLES MapBox
     private MapView mapView;
@@ -75,7 +79,9 @@ public class AccueilActivity extends AppCompatActivity {
         creation = findViewById(R.id.buttonCreateActivity);
 
         //Mes Activités
-
+        TableLayoutRegisteredActivity = findViewById(R.id.TableLayoutRegisteredActivity);
+        TableLayoutCompletedActivity = findViewById(R.id.TableLayoutCompletedActivity);
+        TableLayoutMyActivites = findViewById(R.id.TableLayoutMyActivites);
 
         //Changer icone navBar selectionnee
         navBar.getMenu().findItem(ITEM_NAV_BAR_SELECTED).setChecked(true);
@@ -98,9 +104,14 @@ public class AccueilActivity extends AppCompatActivity {
         if (requestCode == 2) {
             if (permissions.length != 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED ||
                     grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
-
-
-
+                if(mapboxMap != null) {
+                    mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+                        @Override
+                        public void onStyleLoaded(@NonNull Style style) {
+                            startLocationUser(style);
+                        }
+                    });
+                }
             } else {
 
             }
