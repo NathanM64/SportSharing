@@ -103,7 +103,8 @@ public class SportifDAO extends DAO {
         String login, motDePasse, confirmMotDePasse, nom, prenom, adresseMail, dateNaissance, ville, numeroTelephone, description;
         int codePostal, resteConnecte;
 
-        if(curseur.getCount() > 0) {
+        curseur.moveToFirst();
+        while(!curseur.isAfterLast()) {
             curseur.moveToFirst();
             login = curseur.getString(0);
             motDePasse = curseur.getString(1);
@@ -122,6 +123,8 @@ public class SportifDAO extends DAO {
             if(resteConnecte == 1)
                 sportif.setResteConnecte(true);
             listSportif.add(sportif);
+
+            curseur.moveToNext();
         }
 
         return listSportif;
