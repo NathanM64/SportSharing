@@ -36,7 +36,7 @@ public class DAO extends SQLiteOpenHelper {
 
         //Activite
         db.execSQL("create table Activite(" +
-                "id INTEGER PRIMARY KEY," +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "jour VARCHAR(10) NOT NULL," +
                 "heureDebut VARCHAR(5) NOT NULL," +
                 "heureFin VARCHAR(5) NOT NULL," +

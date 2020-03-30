@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Organisateur;
 import com.example.sportsharing.Classe.Sportif;
 import com.example.sportsharing.ClasseDAO.SportifDAO;
 import com.google.android.material.textfield.TextInputEditText;
@@ -47,6 +48,7 @@ public class ConnexionActivity extends AppCompatActivity {
         Sportif aConnecte = sportifDAO.getSportifResteConnecte();
         if(aConnecte != null) {
             global.utilisateur = aConnecte;
+            global.createur = new Organisateur(global.utilisateur);
 
             //Ouverture maquette Accueil
             demarre = new Intent(getApplicationContext(), AccueilActivity.class);

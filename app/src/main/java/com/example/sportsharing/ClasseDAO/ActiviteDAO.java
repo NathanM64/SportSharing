@@ -1,5 +1,6 @@
 package com.example.sportsharing.ClasseDAO;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -19,7 +20,27 @@ public class ActiviteDAO extends DAO {
     }
 
     public void addActivite(Activite activite) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("jour", activite.getJour());
+        contentValues.put("heureDebut", activite.getHeureDebut());
+        contentValues.put("heureFin", activite.getHeureFin());
+        contentValues.put("description", activite.getDescription());
+        contentValues.put("nbMaxPersonnes", activite.nbMaxPersonnes);
+        contentValues.put("estTermine", activite.estTermine?1:0);
+        contentValues.put("idCreateur", activite.createur.getLogin());
+        contentValues.put("libelleSport", activite.sport.getLibelle().toString());
+        contentValues.put("niveauSport", activite.niveauSport.toString());
 
+        int id = getIdByAdresse(activite.lieu.getNumeroRue(), activite.lieu.getNomRue(), activite.lieu.getCodePostal(), activite.lieu.getVille());
+        if(id != -1) {
+            contentValues.put("idAdresse", id);
+        } else {
+            addAdresse(activite.lieu.getNumeroRue(), activite.lieu.getNomRue(), activite.lieu.getCodePostal(), activite.lieu.getVille());
+            id = getIdByAdresse(activite.lieu.getNumeroRue(), activite.lieu.getNomRue(), activite.lieu.getCodePostal(), activite.lieu.getVille());
+            contentValues.put("idAdresse", id);
+        }
+
+        this.getWritableDatabase().insert("Activite", null, contentValues);
     }
 
     public ArrayList<Activite> getAllActiviteBySportifLogin(String login) {
@@ -34,6 +55,7 @@ public class ActiviteDAO extends DAO {
         ArrayList<Activite> listActivite = new ArrayList<>();
         int id, nbMaxPersonne;
         String jour, heureDebut, heureFin, description;
+        EnumUtil.NiveauSport niveau;
         boolean estTermine;
         Organisateur createur;
         Adresse lieu;
@@ -51,10 +73,11 @@ public class ActiviteDAO extends DAO {
             nbMaxPersonne = curseur.getInt(5);
             estTermine = curseur.getInt(6) != 0;
             createur = getOrganisateurByLogin(curseur.getString(7));
+            niveau = EnumUtil.NiveauSport.valueOf(curseur.getString(9));
             lieu = getAdresseById(curseur.getInt(10));
             sport = getSportByLibelle(EnumUtil.NameSport.valueOf(curseur.getString(8)));
 
-            Activite activite = new Activite(id, jour, heureDebut, heureFin, description, nbMaxPersonne, createur, lieu, sport);
+            Activite activite = new Activite(id, jour, heureDebut, heureFin, description, nbMaxPersonne, niveau, createur, lieu, sport);
             activite.setEstTermine(estTermine);
 
             listActivite.add(activite);
@@ -109,7 +132,7 @@ public class ActiviteDAO extends DAO {
     }
 
     private Organisateur curseurToOrganisateur(Cursor curseur) {
-        Sportif sportif = null;
+        Sportif sportif = new Sportif();
         String login, motDePasse, confirmMotDePasse, nom, prenom, adresseMail, dateNaissance, ville, numeroTelephone, description;
         int codePostal, resteConnecte;
 
@@ -134,5 +157,30 @@ public class ActiviteDAO extends DAO {
         }
 
         return new Organisateur(sportif);
+    }
+
+    public int getIdByAdresse(int numero, String nom, int codePostal, String ville) {
+        Cursor curseur;
+
+        //Requete
+        curseur = this.getReadableDatabase().rawQuery("select id from Adresse where numero=? and nom=? and codePostal=? and ville=?", new String[]{numero+"", nom, codePostal+"", ville});
+
+        curseur.moveToFirst();
+        if(curseur.getCount() > 0) {
+            return curseur.getInt(0);
+        } else {
+            return -1;
+        }
+    }
+
+    public void addAdresse(int numero, String nom, int codePostal, String ville) {
+        ContentValues adresse = new ContentValues();
+
+        adresse.put("numero", numero);
+        adresse.put("nom", nom);
+        adresse.put("codePostal", codePostal);
+        adresse.put("ville", ville);
+
+        this.getWritableDatabase().insert("Adresse", null, adresse);
     }
 }

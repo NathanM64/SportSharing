@@ -37,6 +37,11 @@ public class Activite {
      */
     public int nbMaxPersonnes;
     /**
+     * Niveau minimum conseillé pour pratiquer l'activité
+     * @see EnumUtil.NiveauSport
+     */
+    public EnumUtil.NiveauSport niveauSport;
+    /**
      * (True) si l'activité est terminé, (False) sinon
      */
     public boolean estTermine;
@@ -68,17 +73,19 @@ public class Activite {
      * @param heureFin          Heure de fin de l'activité
      * @param description       Description de l'activité
      * @param nbMaxPersonnes    Nombre maximum de participants
+     * @param niveau
      * @param createur          Créateur de l'activité
      * @param lieu              Lieu de l'activité
      * @param sport             Sport concerné par l'activité
      */
-    public Activite(int id, String jour, String heureDebut, String heureFin, String description, int nbMaxPersonnes, Organisateur createur, Adresse lieu, Sport sport) {
+    public Activite(int id, String jour, String heureDebut, String heureFin, String description, int nbMaxPersonnes, EnumUtil.NiveauSport niveau, Organisateur createur, Adresse lieu, Sport sport) {
         this.id = id;
         this.jour = jour;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.description = description;
         this.nbMaxPersonnes = nbMaxPersonnes;
+        this.niveauSport = niveau;
         this.estTermine = false;
         this.createur = createur;
         this.lieu = lieu;

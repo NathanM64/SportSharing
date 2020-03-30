@@ -70,7 +70,7 @@
     <string name="levelMinRecommended">Niveau minimum conseillé</string>
     <string name="suite">Continuer</string>
     <string name="label_stay_connected">Restez connecté</string>
-    
+
     <!-- Message d'erreur -->
     <string name="error_login">Login incorrect</string>
     <string name="error_password">Mot de passe incorrect</string>

@@ -16,6 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sportsharing.Classe.Activite;
+import com.example.sportsharing.Classe.Adresse;
+import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.EnumUtil;
+import com.example.sportsharing.Classe.Sport;
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,6 +32,9 @@ import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 import com.mapbox.mapboxsdk.plugins.places.picker.PlacePicker;
 import com.mapbox.mapboxsdk.plugins.places.picker.model.PlacePickerOptions;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -52,15 +60,23 @@ public class CreerActiviteActivity extends AppCompatActivity {
     private Context contextActivity = CreerActiviteActivity.this;
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private static final int REQUEST_CODE_PLACEPICKER = 2;
+    private DossierVariableClasse global;
 
     public int nbPlayer;
     int annee, mois, jour, heure, minute;
     boolean isBegin;
 
+    //VARIABLES lieu
+    int numero, codePostal;
+    String nom, ville;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creer_activite);
+
+        //Récupération de DossierGlobalClasse
+        global = DossierVariableClasse.getInstance();
 
         //Initialisation des variables
         navBar = findViewById(R.id.bottomNavigationView);
@@ -131,10 +147,17 @@ public class CreerActiviteActivity extends AppCompatActivity {
             CarmenFeature carmenFeature = PlacePicker.getPlace(data);
 
             //Récupération des index de départ et de fin qui représentent l'adresse choisi
-            int start = carmenFeature.toJson().lastIndexOf("place_name") + 13;
-            int fin = carmenFeature.toJson().lastIndexOf("place_type") - 3;
+            try {
+                JSONObject object = new JSONObject(carmenFeature.toJson());
+                nom = object.getString("text");
+                numero = Integer.parseInt(object.getString("address"));
+                codePostal = Integer.parseInt(object.getJSONArray("context").getJSONObject(0).getString("text"));
+                ville = object.getJSONArray("context").getJSONObject(1).getString("text");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-            lieu.setText(carmenFeature.toJson().substring(start, fin));
+            lieu.setText(numero + " " + nom + ", "+codePostal+" " +ville);
         }
     }
 
@@ -304,8 +327,28 @@ public class CreerActiviteActivity extends AppCompatActivity {
     View.OnClickListener confirmListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            demarre = new Intent(getApplicationContext(), AccueilActivity.class);
-            startActivity(demarre);
+
+            if(!lieu.getText().toString().equals("") &&
+                    !displayDay.getText().toString().equals("") &&
+                    !displayTimeBegin.getText().toString().equals("") &&
+                    !displayTimeEnd.getText().toString().equals("") && nbPlayer != 0) {
+
+                global.activiteCurrent = new Activite(-1,
+                        displayDay.getText().toString(),
+                        displayTimeBegin.getText().toString(),
+                        displayTimeEnd.getText().toString(),
+                        editTextDescription.getText().toString(),
+                        nbPlayer,
+                        EnumUtil.NiveauSport.valueOf(((String) spinnerLevel.getSelectedItem()).replace(" ","_")),
+                        global.createur,
+                        new Adresse(numero, nom, codePostal, ville),
+                        new Sport(EnumUtil.NameSport.valueOf((String) spinnerSport.getSelectedItem())));
+
+                demarre = new Intent(getApplicationContext(), AccueilActivity.class);
+                startActivity(demarre);
+            } else {
+                Toast.makeText(CreerActiviteActivity.this, "Vous n'avez pas rempli tous les champs", Toast.LENGTH_LONG).show();
+            }
         }
     };
 }
