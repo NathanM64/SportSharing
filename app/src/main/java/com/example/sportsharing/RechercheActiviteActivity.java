@@ -30,6 +30,9 @@ import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 import com.mapbox.mapboxsdk.plugins.places.picker.PlacePicker;
 import com.mapbox.mapboxsdk.plugins.places.picker.model.PlacePickerOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,6 +61,10 @@ public class RechercheActiviteActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_PLACEPICKER = 2;
     private static final int ITEM_NAV_BAR_SELECTED = R.id.navBarSearch;
     private Context contextActivity = RechercheActiviteActivity.this;
+
+    //VARIABLES lieu
+    int numero, codePostal;
+    String nom, ville;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,11 +130,18 @@ public class RechercheActiviteActivity extends AppCompatActivity {
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_PLACEPICKER) {
             CarmenFeature carmenFeature = PlacePicker.getPlace(data);
 
-            //Récupération des index de départ et de fin qui représentent l'adresse choisi
-            int start = carmenFeature.toJson().lastIndexOf("place_name") + 13;
-            int fin = carmenFeature.toJson().lastIndexOf("place_type") - 3;
+            //Récupération de l'adresse
+            try {
+                JSONObject object = new JSONObject(carmenFeature.toJson());
+                nom = object.getString("text");
+                numero = Integer.parseInt(object.getString("address"));
+                codePostal = Integer.parseInt(object.getJSONArray("context").getJSONObject(0).getString("text"));
+                ville = object.getJSONArray("context").getJSONObject(1).getString("text");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-            lieu.setText(carmenFeature.toJson().substring(start, fin));
+            lieu.setText(numero + " " + nom + ", "+codePostal+" " +ville);
         }
     }
 

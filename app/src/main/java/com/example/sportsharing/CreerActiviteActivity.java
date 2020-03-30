@@ -146,7 +146,7 @@ public class CreerActiviteActivity extends AppCompatActivity {
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_PLACEPICKER) {
             CarmenFeature carmenFeature = PlacePicker.getPlace(data);
 
-            //Récupération des index de départ et de fin qui représentent l'adresse choisi
+            //Récupération de l'adresse
             try {
                 JSONObject object = new JSONObject(carmenFeature.toJson());
                 nom = object.getString("text");
