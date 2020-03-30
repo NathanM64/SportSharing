@@ -58,7 +58,7 @@
     <string name="searchTab">Recherche</string>
     <string name="suggestion">Suggestion</string>
     <string name="result">Résultats</string>
-    <string name="timeBegin">Heure Début</string>
+    <string name="timeBegin">Heure\nDébut</string>
     <string name="timeEnd">Heure Fin</string>
     <string name="numberPlayerMax">Nombre de participants maximum</string>
     <string name="numberPlayer">Nombre de participants</string>

@@ -185,14 +185,17 @@ public class RechercheActiviteActivity extends AppCompatActivity {
                                 }
                             }
 
-                            if(!error)
+                            if(!error) {
                                 displayDay.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                annee = year;
+                                mois = monthOfYear + 1;
+                                jour = dayOfMonth;
+                            }
                         }
                     }, annee, mois, jour);
             datePickerDialog.show();
         }
     };
-
     View.OnClickListener openTimer = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -222,22 +225,44 @@ public class RechercheActiviteActivity extends AppCompatActivity {
                             int minuteCurrent = Integer.parseInt(timeCurrent.substring(3));
 
                             boolean error = false;
-                            if(annee <= yearCurrent) {
-                                if(mois <= monthOfYearCurrent){
-                                    if(jour <= dayOfMonthCurrent) {
-                                        if(hourOfDay <= hourCurrent) {
-                                            if(minuteOfHour <= minuteCurrent) {
-                                                Toast.makeText(contextActivity, "Veuillez choisir une heure correcte", Toast.LENGTH_LONG).show();
-                                                displayTime.setText("");
-                                                error = true;
+                            //Si l'année est inférieur à l'année courante (Erreur)
+                            if(annee < yearCurrent) {
+                                error = true;
+                            } else {
+
+                                //Si le mois est inférieur au mois courant (Erreur)
+                                if(mois < monthOfYearCurrent){
+                                    error = true;
+                                } else {
+
+                                    //Si le jour est inférieur au jour courant (Erreur)
+                                    if(jour < dayOfMonthCurrent) {
+                                        error = true;
+                                    } else {
+
+                                        //Si le jour est égal au jour courant
+                                        if(jour == dayOfMonthCurrent) {
+
+                                            //Si l'heure est inférieur à l'heure courante (Erreur)
+                                            if(hourOfDay <= hourCurrent) {
+
+                                                //Et si les minutes sont inférieur aux minutes courantes (Erreur)
+                                                if(minuteOfHour <= minuteCurrent) {
+                                                    error = true;
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
 
-                            if(!error)
+                            if(!error) {
                                 displayTime.setText(hourOfDay + ":" + minuteOfHour);
+                            }
+                            else {
+                                Toast.makeText(contextActivity, "Veuillez choisir une heure correcte", Toast.LENGTH_LONG).show();
+                                displayTime.setText("");
+                            }
                         }
                     }, heure, minute, true);
             timePickerDialog.show();
