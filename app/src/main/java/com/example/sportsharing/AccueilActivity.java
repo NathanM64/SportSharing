@@ -40,6 +40,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
+
 public class AccueilActivity extends AppCompatActivity {
 
     //VARIABLES Maquette générale
