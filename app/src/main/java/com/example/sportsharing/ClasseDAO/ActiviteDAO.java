@@ -46,9 +46,20 @@ public class ActiviteDAO extends DAO {
 
     public ArrayList<Activite> getAllActiviteBySportifLogin(String login) {
         Cursor curseur;
-
         //Requete
         curseur = this.getReadableDatabase().rawQuery("select * from Activite where idCreateur=?", new String[]{login});
+        return curseurToActiviteArrayList(curseur);
+    }
+    public ArrayList<Activite> getAllActiviteInscriteBySportifLogin(String login) {
+        Cursor curseur;
+        //Requete
+        curseur = this.getReadableDatabase().rawQuery("select * from Participer where estAccepte=1 and loginSportif=?", new String[]{login});
+        return curseurToActiviteArrayList(curseur);
+    }
+    public ArrayList<Activite> getAllActiviteTermineBySportifLogin(String login) {
+        Cursor curseur;
+        //Requete
+        curseur = this.getReadableDatabase().rawQuery("select * from Participer, Activite where idCreateur=? and estTermine=1", new String[]{login});
         return curseurToActiviteArrayList(curseur);
     }
 
