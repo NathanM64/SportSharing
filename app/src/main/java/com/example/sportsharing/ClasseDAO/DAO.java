@@ -1,5 +1,6 @@
 package com.example.sportsharing.ClasseDAO;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -77,6 +78,23 @@ public class DAO extends SQLiteOpenHelper {
                 "PRIMARY KEY(loginSportif, libelleSport)," +
                 "FOREIGN KEY(loginSportif) REFERENCES Sportif(login)," +
                 "FOREIGN KEY(libelleSport) REFERENCES Sport(libelle));");
+        //Création du sportif de test
+        ContentValues valeurs = new ContentValues();
+        valeurs.put("login", "test");
+        valeurs.put("motDePasse", "test");
+        valeurs.put("confirmMotDePasse", "test");
+        valeurs.put("nom", "test");
+        valeurs.put("prenom", "test");
+        valeurs.put("adresseMail", "test@test.fr");
+        valeurs.put("dateNaissance", "01/01/2020");
+        valeurs.put("ville", "Anglet");
+        valeurs.put("codePostal", 64600);
+        valeurs.put("numeroTelephone", "0606060606");
+        valeurs.put("description", "description");
+        valeurs.put("resteConnecte", 1);
+
+        //Ajout à la table
+        db.insert("Sportif", null, valeurs);
     }
 
     @Override

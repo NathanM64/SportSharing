@@ -113,75 +113,20 @@ public class AccueilActivity extends AppCompatActivity {
     public void initTabMesActivites(){
 
         ActiviteDAO activiteDAO= new ActiviteDAO(this);
-
         ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(DossierVariableClasse.getInstance().utilisateur.getLogin());
+        //Si l'utilisateur possède des activitées, elle s'affiche sinon non.
+        if(!activites.isEmpty()) {
+            LayoutInflater inflate = getLayoutInflater();
 
-        LayoutInflater inflate = getLayoutInflater();
+            TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
 
-        TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
 
-        for(Activite a: activites) {
-            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
-            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
+            for (Activite a : activites) {
+                ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
+                ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
+            }
+            TableLayoutMyActivites.addView(mesActivites);
         }
-        TableLayoutMyActivites.addView(mesActivites);
-
-    }
-    public void initTabActiviteInscrite(){
-
-        ActiviteDAO activiteDAO= new ActiviteDAO(this);
-
-        ArrayList<Activite> activites = activiteDAO.getAllActiviteInscriteBySportifLogin(DossierVariableClasse.getInstance().utilisateur.getLogin());
-
-        LayoutInflater inflate = getLayoutInflater();
-
-        TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
-
-        DossierVariableClasse ressource = DossierVariableClasse.getInstance();
-
-        for(Activite a: activites) {
-            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
-            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
-        }
-        TableLayoutMyActivites.addView(mesActivites);
-
-    }
-    public void initTabActiviteTermine(){
-
-        ActiviteDAO activiteDAO= new ActiviteDAO(this);
-
-        ArrayList<Activite> activites = activiteDAO.getAllActiviteTermineBySportifLogin(DossierVariableClasse.getInstance().utilisateur.getLogin());
-
-        LayoutInflater inflate = getLayoutInflater();
-
-        TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
-
-        DossierVariableClasse ressource = DossierVariableClasse.getInstance();
-
-        for(Activite a: activites) {
-            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
-            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
-        }
-        TableLayoutMyActivites.addView(mesActivites);
-
-    }
-    public void initTabMesActivites(){
-
-        ActiviteDAO activiteDAO= new ActiviteDAO(this);
-
-        ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(DossierVariableClasse.getInstance().utilisateur.getLogin());
-
-        LayoutInflater inflate = getLayoutInflater();
-
-        TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
-        
-
-        for(Activite a: activites) {
-            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
-            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
-        }
-        TableLayoutMyActivites.addView(mesActivites);
-
     }
 
     @Override
