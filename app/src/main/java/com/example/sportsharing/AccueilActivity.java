@@ -7,10 +7,17 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
+import com.example.sportsharing.Classe.Activite;
+import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.ClasseDAO.ActiviteDAO;
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -25,6 +32,8 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -95,6 +104,26 @@ public class AccueilActivity extends AppCompatActivity {
         BottomNavigationViewListener.typeNavigation(contextActivity, navBar);
         creation.setOnClickListener(createActivityListener);
         recherche.setOnClickListener(searchActivityListener);
+
+        initTabMesActivites();
+    }
+
+    public void initTabMesActivites(){
+
+        ActiviteDAO activiteDAO= new ActiviteDAO(this);
+
+        ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(DossierVariableClasse.getInstance().utilisateur.getLogin());
+
+        LayoutInflater inflate = getLayoutInflater();
+
+        TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
+
+        for(Activite a: activites) {
+            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
+            ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
+        }
+        TableLayoutMyActivites.addView(mesActivites);
+
     }
 
     @Override
