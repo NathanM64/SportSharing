@@ -211,7 +211,7 @@ public class CreerActiviteActivity extends AppCompatActivity {
                         }
 
                         if(!error) {
-                            displayDay.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            displayDay.setText((dayOfMonth<10?"0":"") + dayOfMonth + "/" + (monthOfYear+1<10?"0":"") + (monthOfYear + 1) + "/" + year);
                             annee = year;
                             mois = monthOfYear+1;
                             jour = dayOfMonth;
@@ -249,31 +249,38 @@ public class CreerActiviteActivity extends AppCompatActivity {
                         int minuteCurrent = Integer.parseInt(timeCurrent.substring(3));
 
                         boolean error = false;
+                        String messageError = "";
                         //Si l'année est inférieur à l'année courante (Erreur)
                         if(annee < yearCurrent) {
                             error = true;
+                            messageError = "L'année choisi doit être supérieure ou égale à l'année courante";
                         } else {
 
                             //Si le mois est inférieur au mois courant (Erreur)
                             if(mois < monthOfYearCurrent){
                                 error = true;
+                                messageError = "Le mois choisi doit être supérieur ou égale au mois courant";
                             } else {
 
                                 //Si le jour est inférieur au jour courant (Erreur)
                                 if(jour < dayOfMonthCurrent) {
                                     error = true;
-                                } else {
+                                    messageError = "Le jour choisi doit être supérieur ou égale au jour courant";
+                                }
+                                else {
 
                                     //Si le jour est égal au jour courant
                                     if(jour == dayOfMonthCurrent) {
 
                                         //Si l'heure est inférieur à l'heure courante (Erreur)
-                                        if(hourOfDay <= hourCurrent) {
-
-                                            //Et si les minutes sont inférieur aux minutes courantes (Erreur)
-                                            if(minuteOfHour <= minuteCurrent) {
-                                                error = true;
-                                            }
+                                        if(hourOfDay < hourCurrent) {
+                                            error = true;
+                                            messageError = "Pour ce jour, l'heure choisi doit être supérieure ou égale à l'heure courante";
+                                        }
+                                        //Ou si les minutes sont inférieur aux minutes courantes (Erreur)
+                                        if(minuteOfHour < minuteCurrent && hourOfDay == hourCurrent) {
+                                            error = true;
+                                            messageError = "Pour ce jour, les minutes choisi doivent être supérieures ou égale aux minutes courantes";
                                         }
                                     }
                                 }
@@ -281,13 +288,51 @@ public class CreerActiviteActivity extends AppCompatActivity {
                         }
 
                         if(!error) {
+                            //Vérification de la cohérence entre l'heure de fin et l'heure de début seulement si pas d'erreur
+                            String time;
+                            switch (view.getId()) {
+                                case R.id.imageTimeBegin:
+                                    time = displayTimeEnd.getText().toString();
+                                    if(!time.equals("")) {
+                                        int hFin = Integer.parseInt(time.split(":")[0]);
+                                        int mFin = Integer.parseInt(time.split(":")[1]);
+                                        if(hFin < hourOfDay) {
+                                            error = true;
+                                            messageError = "L'heure de début ne peut être supérieur à l'heure de fin";
+                                        }
+                                        if(mFin < minuteOfHour && hFin == hourOfDay) {
+                                            error = true;
+                                            messageError = "Les minutes de début pour cette heure ne peuvent être supérieures aux minutes de l'heure de fin";
+                                        }
+                                    }
+                                    break;
+
+                                case R.id.imageTimeEnd:
+                                    time = displayTimeBegin.getText().toString();
+                                    if(!time.equals("")) {
+                                        int hDebut = Integer.parseInt(time.split(":")[0]);
+                                        int mDebut = Integer.parseInt(time.split(":")[1]);
+                                        if(hDebut > hourOfDay) {
+                                            error = true;
+                                            messageError = "L'heure de fin ne peut être inférieur à l'heure de début";
+                                        }
+                                        if(mDebut > minuteOfHour && hDebut == hourOfDay) {
+                                            error = true;
+                                            messageError = "Les minutes de fin pour cette heure ne peuvent être inférieures aux minutes de l'heure de début";
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
+
+                        if(!error) {
                             if(isBegin) {
-                                displayTimeBegin.setText(hourOfDay + ":" + minuteOfHour);
+                                displayTimeBegin.setText(hourOfDay + ":" + (minuteOfHour<10?"0":"") + minuteOfHour);
                             } else {
-                                displayTimeEnd.setText(hourOfDay + ":" + minuteOfHour);
+                                displayTimeEnd.setText(hourOfDay + ":" + (minuteOfHour<10?"0":"") + minuteOfHour);
                             }
                         } else {
-                            Toast.makeText(contextActivity, "Veuillez choisir une heure correcte", Toast.LENGTH_LONG).show();
+                            Toast.makeText(contextActivity, messageError, Toast.LENGTH_LONG).show();
                             if(isBegin) {
                                 displayTimeBegin.setText("");
                             } else {
@@ -344,7 +389,7 @@ public class CreerActiviteActivity extends AppCompatActivity {
                         new Adresse(numero, nom, codePostal, ville),
                         new Sport(EnumUtil.NameSport.valueOf((String) spinnerSport.getSelectedItem())));
 
-                demarre = new Intent(getApplicationContext(), AccueilActivity.class);
+                demarre = new Intent(getApplicationContext(), AffichageActivitePostCreationActivity.class);
                 startActivity(demarre);
             } else {
                 Toast.makeText(CreerActiviteActivity.this, "Vous n'avez pas rempli tous les champs", Toast.LENGTH_LONG).show();

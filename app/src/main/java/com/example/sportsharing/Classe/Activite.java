@@ -24,12 +24,12 @@ public class Activite {
     protected String heureDebut;
     /**
      * Heure de fin théorique de l'activité
-     * Model : hh/mm
+     * Model : hh:mm
      */
     protected String heureFin;
     /**
      * Description de l'activité
-     * Model : hh/mm
+     * Model : hh:mm
      */
     protected String description = "";
     /**

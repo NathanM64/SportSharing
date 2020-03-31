@@ -95,6 +95,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/top_guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +165,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="@dimen/margeChampsActivity" />
 
-            <com.google.android.gms.maps.MapView
+            <com.mapbox.mapboxsdk.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
                 android:layout_height="123dp"
@@ -174,7 +175,7 @@
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/adresseActivité"
+                android:id="@+id/adresseActivite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margeChampsActivity"
@@ -192,15 +193,15 @@
                 android:textColor="@color/blackText" />
 
             <TextView
-                android:id="@+id/heureDuree2"
+                android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margeChampsActivityDouble"
                 android:layout_marginLeft="@dimen/margeChampsActivityDouble"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="@dimen/margeChampsActivity"
                 android:layout_marginRight="@dimen/margeChampsActivity"
-                android:textColor="@color/blackText"
-                android:layout_marginStart="@dimen/margeChampsActivityDouble"
-                android:layout_marginEnd="@dimen/margeChampsActivity" />
+                android:textColor="@color/blackText" />
 
             <View
                 android:id="@+id/divider"
@@ -252,7 +253,7 @@
     <!-- Barre de navigation générale de l'application -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"

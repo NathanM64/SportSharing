@@ -114,12 +114,6 @@ public class Adresse {
      */
     @Override
     public String toString() {
-        return "Adresse{" +
-                "numeroRue=" + numeroRue +
-                ", nomRue='" + nomRue + '\'' +
-                ", codePostal=" + codePostal +
-                ", ville='" + ville + '\'' +
-                ", possede=" + possede +
-                '}';
+        return (numeroRue + " " + nomRue + ", " +codePostal + " " + ville);
     }
 }
