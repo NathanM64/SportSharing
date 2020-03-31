@@ -78,6 +78,57 @@ public class DAO extends SQLiteOpenHelper {
                 "PRIMARY KEY(loginSportif, libelleSport)," +
                 "FOREIGN KEY(loginSportif) REFERENCES Sportif(login)," +
                 "FOREIGN KEY(libelleSport) REFERENCES Sport(libelle));");
+
+        //Création des sports
+        ContentValues sport = new ContentValues();
+        sport.put("libelle", "Course");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Foot");
+        sport.put("type", "Ballon");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Danse");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Gymnastique");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "HandBall");
+        sport.put("type", "Ballon");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Musculation");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Musique");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Pelote");
+        sport.put("type", "Raquette");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Rugby");
+        sport.put("type", "Ballon");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Surf");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Tennis");
+        sport.put("type", "Raquette");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Velo");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
         //Création du sportif de test
         ContentValues valeurs = new ContentValues();
         valeurs.put("login", "test");
@@ -95,6 +146,68 @@ public class DAO extends SQLiteOpenHelper {
 
         //Ajout à la table
         db.insert("Sportif", null, valeurs);
+
+
+        valeurs.put("login", "test2");
+        valeurs.put("motDePasse", "test2");
+        valeurs.put("confirmMotDePasse", "test2");
+        valeurs.put("nom", "test2");
+        valeurs.put("prenom", "test2");
+        valeurs.put("adresseMail", "test2@test2.fr");
+        valeurs.put("dateNaissance", "01/01/2020");
+        valeurs.put("ville", "Anglet");
+        valeurs.put("codePostal", 64600);
+        valeurs.put("numeroTelephone", "0606060606");
+        valeurs.put("description", "description");
+        valeurs.put("resteConnecte", 0);
+
+        //Ajout à la table
+        db.insert("Sportif", null, valeurs);
+
+        valeurs = new ContentValues();
+        valeurs.put("id", "2");
+        valeurs.put("numero", "8");
+        valeurs.put("nom", "chemin de la Cabette");
+        valeurs.put("codePostal", "64400");
+        valeurs.put("ville", "Saint Goin");
+
+
+        //Ajout à la table
+        db.insert("Adresse", null, valeurs);
+
+
+        valeurs = new ContentValues();
+        valeurs.put("jour", "01/04/2020");
+        valeurs.put("heureDebut", "14:00");
+        valeurs.put("heureFin", "15:30");
+        valeurs.put("description", "test");
+        valeurs.put("nbMaxPersonnes", "1");
+        valeurs.put("estTermine", 0);
+        valeurs.put("idCreateur", "test2");
+        valeurs.put("libelleSport", "Surf");
+        valeurs.put("niveauSport", "Intermediaire");
+        valeurs.put("idAdresse", 2);
+
+        //Ajout à la table
+        db.insert("Activite", null, valeurs);
+
+
+        valeurs.put("jour", "01/04/2020");
+        valeurs.put("heureDebut", "15:30");
+        valeurs.put("heureFin", "17:00");
+        valeurs.put("description", "test");
+        valeurs.put("nbMaxPersonnes", "1");
+        valeurs.put("estTermine", 0);
+        valeurs.put("idCreateur", "test");
+        valeurs.put("libelleSport", "Foot");
+        valeurs.put("niveauSport", "Intermediaire");
+        valeurs.put("idAdresse", 2);
+
+        //Ajout à la table
+        db.insert("Activite", null, valeurs);
+
+
+
     }
 
     @Override

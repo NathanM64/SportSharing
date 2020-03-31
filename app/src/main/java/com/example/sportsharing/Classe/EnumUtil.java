@@ -22,7 +22,8 @@ public class EnumUtil {
         Rugby,
         Surf,
         Tennis,
-        Velo
+        Velo,
+        Foot
     }
 
     /**
