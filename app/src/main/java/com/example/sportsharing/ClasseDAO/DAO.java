@@ -1,5 +1,6 @@
 package com.example.sportsharing.ClasseDAO;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -77,6 +78,70 @@ public class DAO extends SQLiteOpenHelper {
                 "PRIMARY KEY(loginSportif, libelleSport)," +
                 "FOREIGN KEY(loginSportif) REFERENCES Sportif(login)," +
                 "FOREIGN KEY(libelleSport) REFERENCES Sport(libelle));");
+
+        //Création des sports
+        ContentValues sport = new ContentValues();
+        sport.put("libelle", "Course");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Danse");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Gymnastique");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "HandBall");
+        sport.put("type", "Ballon");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Musculation");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Musique");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Pelote");
+        sport.put("type", "Raquette");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Rugby");
+        sport.put("type", "Ballon");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Surf");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Tennis");
+        sport.put("type", "Raquette");
+        db.insert("Sport", null, sport);
+
+        sport.put("libelle", "Velo");
+        sport.put("type", "Autre");
+        db.insert("Sport", null, sport);
+
+        //Création du sportif de test
+        ContentValues sportif = new ContentValues();
+        sportif.put("login", "test");
+        sportif.put("motDePasse", "test");
+        sportif.put("confirmMotDePasse", "test");
+        sportif.put("nom", "test");
+        sportif.put("prenom", "test");
+        sportif.put("adresseMail", "test@test.fr");
+        sportif.put("dateNaissance", "01/01/2020");
+        sportif.put("ville", "Anglet");
+        sportif.put("codePostal", 64600);
+        sportif.put("numeroTelephone", "0606060606");
+        sportif.put("description", "description");
+        sportif.put("resteConnecte", 1);
+
+        //Ajout à la table
+        db.insert("Sportif", null, sportif);
     }
 
     @Override
