@@ -3,6 +3,7 @@ package com.example.sportsharing.ClasseDAO;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.sportsharing.Classe.Activite;
 import com.example.sportsharing.Classe.Adresse;
@@ -40,7 +41,7 @@ public class ActiviteDAO extends DAO {
             contentValues.put("idAdresse", id);
         }
 
-        this.getWritableDatabase().insert("Activite", null, contentValues);
+        Log.d("Test", this.getWritableDatabase().insert("Activite", null, contentValues)+"");
     }
 
     public ArrayList<Activite> getAllActiviteBySportifLogin(String login) {
@@ -85,25 +86,6 @@ public class ActiviteDAO extends DAO {
         }
 
         return listActivite;
-    }
-
-    private Adresse getAdresseById(int id) {
-        Cursor curseur;
-        Adresse adresse = null;
-
-        //Requete
-        curseur = this.getReadableDatabase().rawQuery("select numero, nom, codePostal, ville from Adresse where id=?", new String[]{id+""});
-
-        curseur.moveToFirst();
-        if(curseur.getCount() > 0) {
-            int numero = curseur.getInt(0);
-            String nom = curseur.getString(1);
-            int codePostal = curseur.getInt(2);
-            String ville = curseur.getString(3);
-
-            adresse = new Adresse(numero, nom, codePostal, ville);
-        }
-        return adresse;
     }
 
     private Sport getSportByLibelle(EnumUtil.NameSport libelle) {
@@ -157,6 +139,25 @@ public class ActiviteDAO extends DAO {
         }
 
         return new Organisateur(sportif);
+    }
+
+    private Adresse getAdresseById(int id) {
+        Cursor curseur;
+        Adresse adresse = null;
+
+        //Requete
+        curseur = this.getReadableDatabase().rawQuery("select * from Adresse where id=?", new String[]{id+""});
+
+        curseur.moveToFirst();
+        if(curseur.getCount() > 0) {
+            int numero = curseur.getInt(1);
+            String nom = curseur.getString(2);
+            int codePostal = curseur.getInt(3);
+            String ville = curseur.getString(4);
+
+            adresse = new Adresse(numero, nom, codePostal, ville);
+        }
+        return adresse;
     }
 
     public int getIdByAdresse(int numero, String nom, int codePostal, String ville) {

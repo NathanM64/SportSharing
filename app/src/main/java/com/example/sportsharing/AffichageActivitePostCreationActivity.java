@@ -1,6 +1,7 @@
 package com.example.sportsharing;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.ClasseDAO.ActiviteDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -78,6 +80,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
 
         //Attribution listeners bouton
         back.setOnClickListener(returnCreation);
+        suite.setOnClickListener(createActivity);
     }
 
     private void InitActivite() {
@@ -112,14 +115,20 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
             t = hHeureFin - hHeureDebut;
         }
 
-        time.setText(hHeureDebut +"h" + (mHeureDebut<10?"0":"") + mHeureDebut + " - Dans environ : " + t + (isMin?" min(s)":" heure(s)"));
+        time.setText(hHeureDebut +"h" + (mHeureDebut<10?"0":"") + mHeureDebut + " - Dure environ : " + t + (isMin?" min(s)":" heure(s)"));
         description.setText(global.activiteCurrent.getDescription());
     }
 
 
     //Listeners
     View.OnClickListener returnCreation = view -> AffichageActivitePostCreationActivity.this.finish();
-
+    View.OnClickListener createActivity = view -> {
+        ActiviteDAO activiteDAO = new ActiviteDAO(AffichageActivitePostCreationActivity.this);
+        activiteDAO.addActivite(global.activiteCurrent);
+        Intent demarre = new Intent(getApplicationContext(), AccueilActivity.class);
+        startActivity(demarre);
+        finish();
+    };
 
 
     //////////////////////////////////////////////////////////////////////////////
