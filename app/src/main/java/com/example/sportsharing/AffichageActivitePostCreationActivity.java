@@ -45,6 +45,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
 
     //VARIABLES autres
     DossierVariableClasse global;
+    String context;
 
     //VARIABLES MapBox
     private MapView mapView;
@@ -54,6 +55,9 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.affichage_activite_post_creation);
+
+        //Récupération des extras
+        context = this.getIntent().getStringExtra("context");
 
         //Récupération de DossierVariableGlobal
         global = DossierVariableClasse.getInstance();
