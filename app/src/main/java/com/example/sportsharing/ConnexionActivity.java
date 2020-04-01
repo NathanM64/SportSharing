@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.sportsharing.Classe.DossierVariableClasse;
@@ -20,6 +21,7 @@ public class ConnexionActivity extends AppCompatActivity {
     private TextInputEditText login, password;
     private Button connect;
     private TextView passwordOublie, inscription;
+    private Switch switchStayConnected;
 
     //VARIABLES
     private Intent demarre;
@@ -62,6 +64,7 @@ public class ConnexionActivity extends AppCompatActivity {
         connect = findViewById(R.id.connect);
         passwordOublie = findViewById(R.id.passwordOublie);
         inscription = findViewById(R.id.inscription);
+        switchStayConnected = findViewById(R.id.switchStayConnected);
 
         //Attribution OnClick à variable
         connect.setOnClickListener(connexionAppli);
@@ -80,6 +83,10 @@ public class ConnexionActivity extends AppCompatActivity {
             Sportif utilisateur = sportifDAO.getSportif(loginText);
             if(utilisateur != null) {
                 if(motDePasseText.equals(utilisateur.getMotDePasse())) {
+
+                    //Si le switch est actionné définir resté connecté sur le profil dans la bd.
+                    if(switchStayConnected.isChecked())
+                        sportifDAO.setResteConnectASportif(utilisateur.getLogin());
 
                     //Définition du profil chargé
                     global.setUtilisateur(utilisateur);

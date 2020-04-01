@@ -43,6 +43,13 @@ public class SportifDAO extends DAO {
         this.getWritableDatabase().update("Sportif", values, "login=?", new String[]{login});
     }
 
+    public void setResteConnectASportif(String login) {
+        ContentValues values = new ContentValues();
+        values.put("resteConnecte", 1);
+
+        this.getWritableDatabase().update("Sportif", values, "login=?", new String[]{login});
+    }
+
     public Sportif getSportif(String login) {
         Sportif sportif = null;
         Cursor curseur;
