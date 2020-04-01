@@ -37,7 +37,10 @@ public class SportifDAO extends DAO {
     }
 
     public void enleveResteConnectASportifAvecResteConnecte(String login) {
-        this.getWritableDatabase().rawQuery("update Sportif SET resteConnecte=0 WHERE login=?", new String[]{login});
+        ContentValues values = new ContentValues();
+        values.put("resteConnecte", 0);
+
+        this.getWritableDatabase().update("Sportif", values, "login=?", new String[]{login});
     }
 
     public Sportif getSportif(String login) {

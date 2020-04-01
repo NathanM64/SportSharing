@@ -83,5 +83,14 @@
     <string name="error_postal_code">Code postal incorrect</string>
     <string name="error_phone_number">Numéro de téléphone incorrect</string>
     <string name="error_similar_password">Les mots de passe doivent être identique</string>
+    <string name="avis">Avis</string>
+    <string name="opinions_left">Avis laissés</string>
+    <string name="opinions_received">Avis reçu</string>
+    <string name="my_account">Mon Compte</string>
+    <string name="general_informations">Informations générales</string>
+    <string name="home_address">Adresse postale</string>
+    <string name="profil_picture">Photo de profil</string>
+    <string name="logout">Déconnexion</string>
+    <string name="my_activity">Mes activités</string>
 
 </resources>

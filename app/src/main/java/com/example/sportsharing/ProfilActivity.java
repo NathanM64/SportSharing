@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ public class ProfilActivity extends AppCompatActivity {
     private BottomNavigationView navBar;
     private TextView pseudoUser, textDateProfil, textVilleProfil, textDescProfil;
     private LinearLayout listeSport;
+    private ImageView parameter;
 
     //VARIABLES autres
     Intent demarre;
@@ -48,6 +51,7 @@ public class ProfilActivity extends AppCompatActivity {
         textVilleProfil = findViewById(R.id.textVilleProfil);
         textDescProfil = findViewById(R.id.textDescProfil);
         listeSport = findViewById(R.id.listeSport);
+        parameter = findViewById(R.id.parameter);
 
         //Init variable autres
         global = DossierVariableClasse.getInstance();
@@ -57,6 +61,9 @@ public class ProfilActivity extends AppCompatActivity {
 
         //Init bottom navigation bar
         BottomNavigationViewListener.typeNavigation(contextActivity, navBar);
+
+        //Attribution
+        parameter.setOnClickListener(setParameters);
 
         //Init profil
         initProfil();
@@ -117,5 +124,9 @@ public class ProfilActivity extends AppCompatActivity {
         return String.valueOf(age);
     }
 
-
+    //Listeners
+    View.OnClickListener setParameters = view -> {
+        demarre = new Intent(getApplicationContext(), ProfilParametreActivity.class);
+        startActivity(demarre);
+    };
 }
