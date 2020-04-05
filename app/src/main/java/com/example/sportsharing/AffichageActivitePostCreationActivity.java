@@ -44,7 +44,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
     private FloatingActionButton back;
 
     //VARIABLES autres
-    Ressource global;
+    Ressource ressource;
     String context;
 
     //VARIABLES MapBox
@@ -60,7 +60,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
         context = this.getIntent().getStringExtra("context");
 
         //Récupération de DossierVariableGlobal
-        global = Ressource.getInstance();
+        ressource = Ressource.getInstance();
 
         //Initialisation des variables de la maquette
         nameUser = findViewById(R.id.nameUser);
@@ -89,27 +89,27 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
 
     private void InitActivite() {
 
-        nameUser.setText(global.activiteCurrent.createur.getNom()+ " " + global.activiteCurrent.createur.getPrenom());
-        sport.setText(global.activiteCurrent.sport.libelle.toString().replace("/", " "));
-        niveau.setText(global.activiteCurrent.niveauSport.toString().replace("_", " "));
-        number.setText(global.activiteCurrent.nbMaxPersonnes +"");
+        nameUser.setText(ressource.activiteCurrent.createur.getNom()+ " " + ressource.activiteCurrent.createur.getPrenom());
+        sport.setText(ressource.activiteCurrent.sport.libelle.toString().replace("/", " "));
+        niveau.setText(ressource.activiteCurrent.niveauSport.toString().replace("_", " "));
+        number.setText(ressource.activiteCurrent.nbMaxPersonnes +"");
 
         try {
-            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(global.activiteCurrent.getJour());
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(ressource.activiteCurrent.getJour());
             String newDate = new SimpleDateFormat("EEEE dd MMMM yyyy").format(date);
             dateActivite.setText(newDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        adresseActivite.setText(global.activiteCurrent.lieu.toString());
+        adresseActivite.setText(ressource.activiteCurrent.lieu.toString());
 
         //Calcul du time
         int t, hHeureDebut, hHeureFin, mHeureDebut, mHeureFin; //mins et heures
-        hHeureDebut = Integer.parseInt(global.activiteCurrent.getHeureDebut().split(":")[0]);
-        mHeureDebut = Integer.parseInt(global.activiteCurrent.getHeureDebut().split(":")[1]);
-        hHeureFin = Integer.parseInt(global.activiteCurrent.getHeureFin().split(":")[0]);
-        mHeureFin = Integer.parseInt(global.activiteCurrent.getHeureFin().split(":")[1]);
+        hHeureDebut = Integer.parseInt(ressource.activiteCurrent.getHeureDebut().split(":")[0]);
+        mHeureDebut = Integer.parseInt(ressource.activiteCurrent.getHeureDebut().split(":")[1]);
+        hHeureFin = Integer.parseInt(ressource.activiteCurrent.getHeureFin().split(":")[0]);
+        mHeureFin = Integer.parseInt(ressource.activiteCurrent.getHeureFin().split(":")[1]);
         boolean isMin = false;
         if(hHeureDebut == hHeureFin) {
             t = mHeureFin - mHeureDebut;
@@ -120,7 +120,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
         }
 
         time.setText(hHeureDebut +"h" + (mHeureDebut<10?"0":"") + mHeureDebut + " - Dure environ : " + t + (isMin?" min(s)":" heure(s)"));
-        description.setText(global.activiteCurrent.getDescription());
+        description.setText(ressource.activiteCurrent.getDescription());
     }
 
 
@@ -128,7 +128,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
     View.OnClickListener returnCreation = view -> AffichageActivitePostCreationActivity.this.finish();
     View.OnClickListener createActivity = view -> {
         ActiviteDAO activiteDAO = new ActiviteDAO(AffichageActivitePostCreationActivity.this);
-        activiteDAO.addActivite(global.activiteCurrent);
+        activiteDAO.addActivite(ressource.activiteCurrent);
         Intent demarre = new Intent(getApplicationContext(), AccueilActivity.class);
         startActivity(demarre);
         finish();
@@ -153,7 +153,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
             List<Address> list = new ArrayList<>();
 
             try {
-                list = geo.getFromLocationName(global.activiteCurrent.lieu.toString(), 1);
+                list = geo.getFromLocationName(ressource.activiteCurrent.lieu.toString(), 1);
             } catch (IOException e) {
                 Timber.d("Pas de ville trouvé");
             }

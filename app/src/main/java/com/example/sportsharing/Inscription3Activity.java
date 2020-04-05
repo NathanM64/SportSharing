@@ -24,7 +24,7 @@ public class Inscription3Activity extends AppCompatActivity {
 
     //VARIABLES
     Intent demarre;
-    private Ressource global;
+    private Ressource ressource;
     int caractereSaisie = 0;
 
     @Override
@@ -33,7 +33,7 @@ public class Inscription3Activity extends AppCompatActivity {
         setContentView(R.layout.inscription_3);
         
         //Instance de DossierVariableClasse
-        global = Ressource.getInstance();
+        ressource = Ressource.getInstance();
 
         //Initialisation des variables
         presentation = findViewById(R.id.editTextPresentation);
@@ -53,7 +53,7 @@ public class Inscription3Activity extends AppCompatActivity {
     }
 
     private void InitProfil() {
-        presentation.setText(global.utilisateur.getDescription());
+        presentation.setText(ressource.utilisateur.getDescription());
     }
 
     //Fonction OnClick
@@ -71,15 +71,15 @@ public class Inscription3Activity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             //Sauvegarder toutes les informations dans la bd
-            global.utilisateur.setDescription(presentation.getText().toString());
-            global.utilisateur.setResteConnecte(true);
+            ressource.utilisateur.setDescription(presentation.getText().toString());
+            ressource.utilisateur.setResteConnecte(true);
 
             //Ajout à la bd
             SportifDAO sportifDAO = new SportifDAO(Inscription3Activity.this);
-            sportifDAO.addSportif(global.utilisateur);
+            sportifDAO.addSportif(ressource.utilisateur);
 
             //Création de l'organisateur
-            global.createur = new Organisateur(global.utilisateur);
+            ressource.createur = new Organisateur(ressource.utilisateur);
 
             //Chargement maquette Connection
             demarre = new Intent(getApplicationContext(), AccueilActivity.class);

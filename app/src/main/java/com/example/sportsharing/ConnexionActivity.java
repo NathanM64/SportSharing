@@ -25,7 +25,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
     //VARIABLES
     private Intent demarre;
-    private Ressource global;
+    private Ressource ressource;
     private SportifDAO sportifDAO;
 
     private String MESSAGE_ERROR_LOGIN;
@@ -41,7 +41,7 @@ public class ConnexionActivity extends AppCompatActivity {
         MESSAGE_ERROR_PASSWORD = getString(R.string.error_password);
 
         //Instance de DossierVariableClasse
-        global = Ressource.getInstance();
+        ressource = Ressource.getInstance();
 
         //Instance sportifDAO
         sportifDAO = new SportifDAO(this);
@@ -49,8 +49,8 @@ public class ConnexionActivity extends AppCompatActivity {
         //Récupération du profil à charger avec le paramètre resteConnecte à true
         Sportif aConnecte = sportifDAO.getSportifResteConnecte();
         if(aConnecte != null) {
-            global.utilisateur = aConnecte;
-            global.createur = new Organisateur(global.utilisateur);
+            ressource.utilisateur = aConnecte;
+            ressource.createur = new Organisateur(ressource.utilisateur);
 
             //Ouverture maquette Accueil
             demarre = new Intent(getApplicationContext(), AccueilActivity.class);
@@ -89,7 +89,7 @@ public class ConnexionActivity extends AppCompatActivity {
                         sportifDAO.setResteConnectASportif(utilisateur.getLogin());
 
                     //Définition du profil chargé
-                    global.setUtilisateur(utilisateur);
+                    ressource.setUtilisateur(utilisateur);
 
                     //Ouverture maquette Accueil
                     demarre = new Intent(getApplicationContext(), AccueilActivity.class);
@@ -110,7 +110,7 @@ public class ConnexionActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             //Création du nouveau profil
-            global.utilisateur = new Sportif();
+            ressource.utilisateur = new Sportif();
 
             //Ouverture maquette inscription
             demarre = new Intent(getApplicationContext(), Inscription1Activity.class);

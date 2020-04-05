@@ -24,7 +24,7 @@ public class Inscription1Activity extends AppCompatActivity {
 
     //VARIABLES
     private Intent demarre;
-    private Ressource global;
+    private Ressource ressource;
 
     private String MESSAGE_ERROR_EMPTY_FIELD;
     private String MESSAGE_ERROR_NO_SPACE;
@@ -54,7 +54,7 @@ public class Inscription1Activity extends AppCompatActivity {
         MESSAGE_ERROR_SIMILAR_PASSWORD = getString(R.string.error_similar_password);
 
         //Instance de DossierVariableClasse
-        global = Ressource.getInstance();
+        ressource = Ressource.getInstance();
 
         //Initialisation des variables
         login = findViewById(R.id.login);
@@ -83,18 +83,18 @@ public class Inscription1Activity extends AppCompatActivity {
     }
 
     private void InitProfil() {
-        login.setText(global.utilisateur.getLogin());
-        password.setText(global.utilisateur.getMotDePasse());
-        confirmPassword.setText(global.utilisateur.getConfirmMotDePasse());
-        name.setText(global.utilisateur.getNom());
-        firstName.setText(global.utilisateur.getPrenom());
-        mail.setText(global.utilisateur.getAdresseMail());
-        birthday.setText(global.utilisateur.getDateNaissance());
-        city.setText(global.utilisateur.getVille());
-        phoneNumber.setText(global.utilisateur.getNumeroTelephone());
+        login.setText(ressource.utilisateur.getLogin());
+        password.setText(ressource.utilisateur.getMotDePasse());
+        confirmPassword.setText(ressource.utilisateur.getConfirmMotDePasse());
+        name.setText(ressource.utilisateur.getNom());
+        firstName.setText(ressource.utilisateur.getPrenom());
+        mail.setText(ressource.utilisateur.getAdresseMail());
+        birthday.setText(ressource.utilisateur.getDateNaissance());
+        city.setText(ressource.utilisateur.getVille());
+        phoneNumber.setText(ressource.utilisateur.getNumeroTelephone());
 
-        if(global.utilisateur.getCodePostal() != 0 && String.valueOf(global.utilisateur.getCodePostal()).length() == 5)
-            postalCode.setText(String.valueOf(global.utilisateur.getCodePostal()));
+        if(ressource.utilisateur.getCodePostal() != 0 && String.valueOf(ressource.utilisateur.getCodePostal()).length() == 5)
+            postalCode.setText(String.valueOf(ressource.utilisateur.getCodePostal()));
     }
 
     //Fonction OnClick
@@ -192,17 +192,17 @@ public class Inscription1Activity extends AppCompatActivity {
             if(champTraiter.size() == 0) {
 
                 //Enregistrements des informations dans le profil de DossierVariableClasse
-                global.utilisateur.setLogin(login.getText().toString());
-                global.utilisateur.setMotDePasse(password.getText().toString());
-                global.utilisateur.setConfirmMotDePasse(confirmPassword.getText().toString());
-                global.utilisateur.setNom(name.getText().toString());
-                global.utilisateur.setPrenom(firstName.getText().toString());
-                global.utilisateur.setAdresseMail(mail.getText().toString());
-                global.utilisateur.setDateNaissance(birthday.getText().toString());
-                global.utilisateur.setVille(city.getText().toString());
+                ressource.utilisateur.setLogin(login.getText().toString());
+                ressource.utilisateur.setMotDePasse(password.getText().toString());
+                ressource.utilisateur.setConfirmMotDePasse(confirmPassword.getText().toString());
+                ressource.utilisateur.setNom(name.getText().toString());
+                ressource.utilisateur.setPrenom(firstName.getText().toString());
+                ressource.utilisateur.setAdresseMail(mail.getText().toString());
+                ressource.utilisateur.setDateNaissance(birthday.getText().toString());
+                ressource.utilisateur.setVille(city.getText().toString());
                 if(!postalCode.getText().toString().equals(""))
-                    global.utilisateur.setCodePostal(Integer.valueOf(postalCode.getText().toString()));
-                global.utilisateur.setNumeroTelephone(phoneNumber.getText().toString());
+                    ressource.utilisateur.setCodePostal(Integer.valueOf(postalCode.getText().toString()));
+                ressource.utilisateur.setNumeroTelephone(phoneNumber.getText().toString());
 
                 //Start inscription 2
                 demarre = new Intent(getApplicationContext(), Inscription2Activity.class);

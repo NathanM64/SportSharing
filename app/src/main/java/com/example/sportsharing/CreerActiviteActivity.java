@@ -60,7 +60,7 @@ public class CreerActiviteActivity extends AppCompatActivity {
     private Context contextActivity = CreerActiviteActivity.this;
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private static final int REQUEST_CODE_PLACEPICKER = 2;
-    private Ressource global;
+    private Ressource ressource;
 
     public int nbPlayer;
     int annee, mois, jour, heure, minute;
@@ -76,7 +76,7 @@ public class CreerActiviteActivity extends AppCompatActivity {
         setContentView(R.layout.creer_activite);
 
         //Récupération de DossierGlobalClasse
-        global = Ressource.getInstance();
+        ressource = Ressource.getInstance();
 
         //Initialisation des variables
         navBar = findViewById(R.id.bottomNavigationView);
@@ -378,14 +378,14 @@ public class CreerActiviteActivity extends AppCompatActivity {
                     !displayTimeBegin.getText().toString().equals("") &&
                     !displayTimeEnd.getText().toString().equals("") && nbPlayer != 0) {
 
-                global.activiteCurrent = new Activite(-1,
+                ressource.activiteCurrent = new Activite(-1,
                         displayDay.getText().toString(),
                         displayTimeBegin.getText().toString(),
                         displayTimeEnd.getText().toString(),
                         editTextDescription.getText().toString(),
                         nbPlayer,
                         EnumUtil.NiveauSport.valueOf(((String) spinnerLevel.getSelectedItem()).replace(" ","_")),
-                        global.createur,
+                        ressource.createur,
                         new Adresse(numero, nom, codePostal, ville),
                         new Sport(EnumUtil.NameSport.valueOf((String) spinnerSport.getSelectedItem())));
 

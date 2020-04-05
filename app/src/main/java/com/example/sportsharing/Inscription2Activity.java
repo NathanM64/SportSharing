@@ -42,7 +42,7 @@ public class Inscription2Activity extends AppCompatActivity {
 
     //VARIABLES
     Intent demarre;
-    Ressource global;
+    Ressource ressource;
     String sportASupprimer;
 
     @Override
@@ -51,7 +51,7 @@ public class Inscription2Activity extends AppCompatActivity {
         setContentView(R.layout.inscription_2);
 
         //Instance de DossierVariableClasse
-        global = Ressource.getInstance();
+        ressource = Ressource.getInstance();
 
         //Initialisation des variables
         sport = findViewById(R.id.spinnerSport);
@@ -86,13 +86,13 @@ public class Inscription2Activity extends AppCompatActivity {
 
     private void InitProfil() {
         //Init sport
-        Set keys = global.utilisateur.mesSports.keySet();
+        Set keys = ressource.utilisateur.mesSports.keySet();
         Iterator it = keys.iterator();
         while (it.hasNext()) {
             Sport key = (Sport) it.next();
 
             String sport = key.libelle.toString();
-            String level = global.utilisateur.mesSports.get(key).toString().replace("_", " ");
+            String level = ressource.utilisateur.mesSports.get(key).toString().replace("_", " ");
 
             ajoutLigne(sport, level);
         }
@@ -178,7 +178,7 @@ public class Inscription2Activity extends AppCompatActivity {
                 }
             }
             if(s != null)
-                global.utilisateur.suppSport(s);
+                ressource.utilisateur.suppSport(s);
 
             //MAJ de la liste des sports
             try {
@@ -226,12 +226,12 @@ public class Inscription2Activity extends AppCompatActivity {
                 }
                 for (EnumUtil.NiveauSport niveau : EnumUtil.NiveauSport.values()) {
                     if((textNameLevel.getText().toString()).equals(niveau.toString().replace("_", " "))) {
-                        global.utilisateur.addSport(s, niveau);
+                        ressource.utilisateur.addSport(s, niveau);
                     }
                 }
             }
 
-            Log.d("listeSport", global.utilisateur.mesSports.toString());
+            Log.d("listeSport", ressource.utilisateur.mesSports.toString());
 
             //Chargement maquette Incription 3
             demarre = new Intent(getApplicationContext(), Inscription3Activity.class);

@@ -31,7 +31,7 @@ public class ProfilActivity extends AppCompatActivity {
 
     //VARIABLES autres
     Intent demarre;
-    Ressource global;
+    Ressource ressource;
     private String typeProfil;
     private static final int ITEM_NAV_BAR_SELECTED = R.id.navBarUser;
     private Context contextActivity = ProfilActivity.this;
@@ -54,7 +54,7 @@ public class ProfilActivity extends AppCompatActivity {
         parameter = findViewById(R.id.parameter);
 
         //Init variable autres
-        global = Ressource.getInstance();
+        ressource = Ressource.getInstance();
 
         //Changer icone navBar selectionnee
         navBar.getMenu().findItem(ITEM_NAV_BAR_SELECTED).setChecked(true);
@@ -72,22 +72,22 @@ public class ProfilActivity extends AppCompatActivity {
     private void initProfil() {
         if(typeProfil.equals("user")) {
             //Nom
-            pseudoUser.setText(global.utilisateur.getNom() + " " + global.utilisateur.getPrenom());
+            pseudoUser.setText(ressource.utilisateur.getNom() + " " + ressource.utilisateur.getPrenom());
 
             //Age
             SimpleDateFormat currentTime = new SimpleDateFormat("dd/MM/yyyy"); // jour (0 à 2), mois (3 à 5), annee (à partir de 6)
-            textDateProfil.setText(calculAge(currentTime.format(new Date()), global.utilisateur.getDateNaissance()) + " ans");
+            textDateProfil.setText(calculAge(currentTime.format(new Date()), ressource.utilisateur.getDateNaissance()) + " ans");
 
             //Ville
-            textVilleProfil.setText(global.utilisateur.getCodePostal()+" "+global.utilisateur.getVille());
+            textVilleProfil.setText(ressource.utilisateur.getCodePostal()+" "+ ressource.utilisateur.getVille());
 
             //Description
-            textDescProfil.setText(global.utilisateur.getDescription());
+            textDescProfil.setText(ressource.utilisateur.getDescription());
 
             LayoutInflater inflate = getLayoutInflater();
 
             //Element de la map
-            Set keys = global.utilisateur.mesSports.keySet();
+            Set keys = ressource.utilisateur.mesSports.keySet();
             Iterator it = keys.iterator();
             while (it.hasNext()) {
                 //Récupération du sport
@@ -97,7 +97,7 @@ public class ProfilActivity extends AppCompatActivity {
                 LinearLayout sport = (LinearLayout) inflate.inflate(R.layout.model_linearlayout_profil, null);
 
                 //Init du linearLayout puis ajout
-                ((TextView) sport.getChildAt(1)).setText(key.getLibelle()+"\n"+global.utilisateur.mesSports.get(key));
+                ((TextView) sport.getChildAt(1)).setText(key.getLibelle()+"\n"+ ressource.utilisateur.mesSports.get(key));
                 listeSport.addView(sport);
             }
         }
