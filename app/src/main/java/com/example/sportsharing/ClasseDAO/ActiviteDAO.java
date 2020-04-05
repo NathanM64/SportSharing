@@ -137,7 +137,6 @@ public class ActiviteDAO extends DAO {
             activite.setEstTermine(estTermine);
 
             listActivite.add(activite);
-            Log.d("testGetSportif", id+"");
             curseur.moveToNext();
         }
 

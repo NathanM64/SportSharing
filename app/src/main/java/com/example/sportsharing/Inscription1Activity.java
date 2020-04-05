@@ -234,7 +234,7 @@ public class Inscription1Activity extends AppCompatActivity {
         Pattern p = Pattern.compile("\\d");
         Matcher m = p.matcher(text.getText().toString());
 
-        return (m.find());
+        return m.find();
     }
 
     public boolean emailPatternIsCorect(TextInputEditText email){
@@ -242,16 +242,23 @@ public class Inscription1Activity extends AppCompatActivity {
         Pattern p = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$");
         Matcher m = p.matcher(email.getText().toString());
 
-        return !(m.find());
+        return !m.find();
 
     }
 
-    public boolean birthdayPatternIsCorect(TextInputEditText email){
+    public boolean birthdayPatternIsCorect(TextInputEditText text){
+        Pattern p2 = Pattern.compile("[0-9]{8}$");
+        Matcher m2 = p2.matcher(text.getText().toString());
+
+        if(m2.find()) {
+            text.setText(text.getText().insert(2, "/"));
+            text.setText(text.getText().insert(5, "/"));
+        }
 
         Pattern p = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{4}$");
-        Matcher m = p.matcher(email.getText().toString());
+        Matcher m = p.matcher(text.getText().toString());
 
-        return !(m.find());
+        return !m.find();
 
     }
 
@@ -259,14 +266,14 @@ public class Inscription1Activity extends AppCompatActivity {
         Pattern p = Pattern.compile("[0-9]{5,5}$");
         Matcher m = p.matcher(postalCode.getText().toString());
 
-        return !(m.find());
+        return !m.find();
     }
 
     public boolean phoneNumberPatternIsCorrect(TextInputEditText postalCode) {
         Pattern p = Pattern.compile("(0|\\+33)[0-9]{9,9}$");
         Matcher m = p.matcher(postalCode.getText().toString());
 
-        return !(m.find());
+        return !m.find();
     }
 
     private boolean afficheErreur(View view, boolean aErreur, String message) {

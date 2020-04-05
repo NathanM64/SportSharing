@@ -78,7 +78,7 @@
     <string name="error_no_space">Ce champs ne peut pas contenir d\'espace</string>
     <string name="error_mail">Mail inccorect</string>
     <string name="error_birthday">la date de naissance n\'a pas été correctement saisit.</string>
-    <string name="error_birthday_model">Elle doit être de la forme (jj/mm/aaaa)</string>
+    <string name="error_birthday_model">Elle doit être de la forme (jj/mm/aaaa) ou (jjmmaaaa)</string>
     <string name="error_with_number">Ce champs ne peut pas contenir de chiffre</string>
     <string name="error_postal_code">Code postal incorrect</string>
     <string name="error_phone_number">Numéro de téléphone incorrect</string>
