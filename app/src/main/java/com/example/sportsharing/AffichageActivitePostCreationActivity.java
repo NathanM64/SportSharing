@@ -46,6 +46,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
     //VARIABLES autres
     Ressource ressource;
     String context;
+    ActiviteDAO activiteDAO;
 
     //VARIABLES MapBox
     private MapView mapView;
@@ -59,8 +60,10 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
         //Récupération des extras
         context = this.getIntent().getStringExtra("context");
 
-        //Récupération de DossierVariableGlobal
+        //Récupération des Ressources
         ressource = Ressource.getInstance();
+
+        activiteDAO = new ActiviteDAO(this);
 
         //Initialisation des variables de la maquette
         nameUser = findViewById(R.id.nameUser);
@@ -127,7 +130,6 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
     //Listeners
     View.OnClickListener returnCreation = view -> AffichageActivitePostCreationActivity.this.finish();
     View.OnClickListener createActivity = view -> {
-        ActiviteDAO activiteDAO = new ActiviteDAO(AffichageActivitePostCreationActivity.this);
         activiteDAO.addActivite(ressource.activiteCurrent);
         Intent demarre = new Intent(getApplicationContext(), AccueilActivity.class);
         startActivity(demarre);

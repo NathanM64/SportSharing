@@ -57,7 +57,9 @@ public class ActiviteDAO extends DAO {
             contentValues.put("idAdresse", id);
         }
 
-        Log.d("Test", this.getWritableDatabase().insert("Activite", null, contentValues)+"");
+        this.getWritableDatabase().insert("Activite", null, contentValues);
+
+        Log.d("testAddAdresse", "Ajout OK");
     }
 
     /**
@@ -119,8 +121,6 @@ public class ActiviteDAO extends DAO {
 
         curseur.moveToFirst();
         while(!curseur.isAfterLast()) {
-            curseur.moveToFirst();
-
             id = curseur.getInt(0);
             jour = curseur.getString(1);
             heureDebut = curseur.getString(2);
@@ -137,6 +137,7 @@ public class ActiviteDAO extends DAO {
             activite.setEstTermine(estTermine);
 
             listActivite.add(activite);
+            Log.d("testGetSportif", id+"");
             curseur.moveToNext();
         }
 

@@ -176,7 +176,6 @@ public class DAO extends SQLiteOpenHelper {
         valeurs.put("codePostal", "64400");
         valeurs.put("ville", "Saint Goin");
 
-
         //Ajout à la table
         db.insert("Adresse", null, valeurs);
 

@@ -105,67 +105,70 @@ public class AccueilActivity extends AppCompatActivity {
         creation.setOnClickListener(createActivityListener);
         recherche.setOnClickListener(searchActivityListener);
 
-        initTabActivitesInscrite();
-        initTabActivitesTerminee();
+        //initTabActivitesInscrite();
+        //initTabActivitesTerminee();
         initTabMesActivites();
     }
 
     public void initTabActivitesInscrite(){
 
-        ActiviteDAO activiteDAO= new ActiviteDAO(this);
+        ActiviteDAO activiteDAO = new ActiviteDAO(this);
         ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(Ressource.getInstance().utilisateur.getLogin());
         //Si l'utilisateur possède des activitées, elle s'affiche sinon non.
         if(!activites.isEmpty()) {
             LayoutInflater inflate = getLayoutInflater();
 
-            TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
-
-
+            TableLayoutRegisteredActivity.removeAllViews();
             for (Activite a : activites) {
+                TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
+
                 ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
                 ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
+
+                TableLayoutRegisteredActivity.addView(mesActivites);
             }
-            TableLayoutMyActivites.addView(mesActivites);
         }
     }
 
 
     public void initTabActivitesTerminee(){
 
-        ActiviteDAO activiteDAO= new ActiviteDAO(this);
+        ActiviteDAO activiteDAO = new ActiviteDAO(this);
         ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(Ressource.getInstance().utilisateur.getLogin());
         //Si l'utilisateur possède des activitées, elle s'affiche sinon non.
         if(!activites.isEmpty()) {
             LayoutInflater inflate = getLayoutInflater();
 
-            TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
-
-
+            TableLayoutCompletedActivity.removeAllViews();
             for (Activite a : activites) {
+                TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
+
                 ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
                 ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
+
+                TableLayoutCompletedActivity.addView(mesActivites);
             }
-            TableLayoutMyActivites.addView(mesActivites);
         }
     }
 
 
     public void initTabMesActivites(){
 
-        ActiviteDAO activiteDAO= new ActiviteDAO(this);
+        ActiviteDAO activiteDAO = new ActiviteDAO(this);
         ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(Ressource.getInstance().utilisateur.getLogin());
         //Si l'utilisateur possède des activitées, elle s'affiche sinon non.
         if(!activites.isEmpty()) {
             LayoutInflater inflate = getLayoutInflater();
 
-            TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
-
-
+            TableLayoutMyActivites.removeAllViews();
             for (Activite a : activites) {
+                TableRow mesActivites = (TableRow) inflate.inflate(R.layout.model_tablerow_accueil, null);
+
                 ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(0)).setText(a.lieu.getVille());
                 ((TextView) ((LinearLayout) mesActivites.getChildAt(1)).getChildAt(1)).setText(a.getJour());
+
+                TableLayoutMyActivites.addView(mesActivites);
             }
-            TableLayoutMyActivites.addView(mesActivites);
         }
     }
 
@@ -177,12 +180,7 @@ public class AccueilActivity extends AppCompatActivity {
             if (permissions.length != 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED ||
                     grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
                 if(mapboxMap != null) {
-                    mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
-                        @Override
-                        public void onStyleLoaded(@NonNull Style style) {
-                            startLocationUser(style);
-                        }
-                    });
+                    mapboxMap.setStyle(Style.MAPBOX_STREETS, style -> startLocationUser(style));
                 }
             } else {
 
