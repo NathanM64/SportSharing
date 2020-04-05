@@ -16,7 +16,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.sportsharing.Classe.Activite;
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.example.sportsharing.ClasseDAO.ActiviteDAO;
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,8 +39,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-
-import java.util.ArrayList;
 
 public class AccueilActivity extends AppCompatActivity {
 
@@ -115,7 +113,7 @@ public class AccueilActivity extends AppCompatActivity {
     public void initTabActivitesInscrite(){
 
         ActiviteDAO activiteDAO= new ActiviteDAO(this);
-        ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(DossierVariableClasse.getInstance().utilisateur.getLogin());
+        ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(Ressource.getInstance().utilisateur.getLogin());
         //Si l'utilisateur possède des activitées, elle s'affiche sinon non.
         if(!activites.isEmpty()) {
             LayoutInflater inflate = getLayoutInflater();
@@ -135,7 +133,7 @@ public class AccueilActivity extends AppCompatActivity {
     public void initTabActivitesTerminee(){
 
         ActiviteDAO activiteDAO= new ActiviteDAO(this);
-        ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(DossierVariableClasse.getInstance().utilisateur.getLogin());
+        ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(Ressource.getInstance().utilisateur.getLogin());
         //Si l'utilisateur possède des activitées, elle s'affiche sinon non.
         if(!activites.isEmpty()) {
             LayoutInflater inflate = getLayoutInflater();
@@ -155,7 +153,7 @@ public class AccueilActivity extends AppCompatActivity {
     public void initTabMesActivites(){
 
         ActiviteDAO activiteDAO= new ActiviteDAO(this);
-        ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(DossierVariableClasse.getInstance().utilisateur.getLogin());
+        ArrayList<Activite> activites = activiteDAO.getAllActiviteBySportifLogin(Ressource.getInstance().utilisateur.getLogin());
         //Si l'utilisateur possède des activitées, elle s'affiche sinon non.
         if(!activites.isEmpty()) {
             LayoutInflater inflate = getLayoutInflater();

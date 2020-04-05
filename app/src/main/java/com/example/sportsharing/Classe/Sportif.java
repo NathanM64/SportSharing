@@ -38,23 +38,27 @@ public class Sportif {
      */
     protected String dateNaissance;
     /**
-     * Ville du lieu d'utilisation de l'application initialisé à ""
+     * Ville du lieu d'utilisation de l'application<br>
+     * Par défault à ""
      */
     protected String ville = "";
     /**
-     * Code postal de la ville initialisé à 00000
+     * Code postal de la ville<br>
+     * Par défault à 00000
      */
     protected int codePostal = 00000;
     /**
-     *  Numéro de téléphone du sportif initialisé à ""
+     *  Numéro de téléphone du sportif<br>
+     *  Par défault à ""
      */
     protected String numeroTelephone = "";
     /**
-     *  Présentation du sportif initialisé à ""
+     *  Présentation du sportif<br>
+     *  Par défault à ""
      */
     protected String description = "";
     /**
-     * Permet de savoir si ce profil doit être charger sans saisie du login et motDePasse (true)
+     * Permet de savoir si ce profil doit être charger sans saisie du login et motDePasse (true)<br>
      * Sinon (false)
      */
     protected boolean resteConnecte;
@@ -156,53 +160,151 @@ public class Sportif {
     }
 
     //METHODES GETTER
+
+    /**
+     * Retourne le login du sportif
+     * @return
+     */
     public String getLogin() { return login; }
 
+    /**
+     * Retourne le mot de passe du sportif
+     * @return
+     */
     public String getMotDePasse() { return motDePasse; }
 
+    /**
+     * Retourne le mot de passe du sportif
+     * @return
+     */
     public String getConfirmMotDePasse() { return confirmMotDePasse; }
 
+    /**
+     * Retourne le nom du sportif
+     * @return
+     */
     public String getNom() { return nom; }
 
+    /**
+     * Retourne le prenom du sportif
+     * @return
+     */
     public String getPrenom() { return prenom; }
 
+    /**
+     * Retourne l'adresse mail du sportif
+     * @return
+     */
     public String getAdresseMail() { return adresseMail; }
 
+    /**
+     * Retourne la date de naissance du sportif
+     * @return
+     */
     public String getDateNaissance() { return dateNaissance; }
 
+    /**
+     * Retourne la ville du sportif
+     * @return
+     */
     public String getVille() { return ville; }
 
+    /**
+     * Retourne le code postal du sportif
+     * @return
+     */
     public int getCodePostal() { return codePostal; }
 
+    /**
+     * Retourne le numero de téléphone du sportif
+     * @return
+     */
     public String getNumeroTelephone() { return numeroTelephone; }
 
+    /**
+     * Retourne la description du sportif
+     * @return
+     */
     public String getDescription() { return description; }
 
+    /**
+     * Retourne si le sportif doit se charger seul lors de l'ouverture de l'application
+     * @return Conversion du boolean en int (1 = TRUE ou 0 = FALSE)
+     */
     public int isResteConnecte() { return (resteConnecte?1:0); }
 
     //METHODES SETTER
+
+    /**
+     * Définit le login du sportif
+     * @param login
+     */
     public void setLogin(String login) { this.login = login; }
 
+    /**
+     * Définit le mot de passe du sportif
+     * @param motDePasse
+     */
     public void setMotDePasse(String motDePasse) { this.motDePasse = motDePasse; }
 
+    /**
+     * Définit le mot de passe du sportif
+     * @param confirmMotDePasse
+     */
     public void setConfirmMotDePasse(String confirmMotDePasse) { this.confirmMotDePasse = confirmMotDePasse; }
 
+    /**
+     * Définit le nom du sportif
+     * @param nom
+     */
     public void setNom(String nom) { this.nom = nom; }
 
+    /**
+     * Définit le prénom du sportif
+     * @param prenom
+     */
     public void setPrenom(String prenom) { this.prenom = prenom; }
 
+    /**
+     * Définit l'adresse mail du sportif
+     * @param adresseMail
+     */
     public void setAdresseMail(String adresseMail) { this.adresseMail = adresseMail; }
 
+    /**
+     * Définit la date de naissance du sportif
+     * @param dateNaissance
+     */
     public void setDateNaissance(String dateNaissance) { this.dateNaissance = dateNaissance; }
 
+    /**
+     * Définit la ville du sportif
+     * @param ville
+     */
     public void setVille(String ville) { this.ville = ville; }
 
+    /**
+     * Définit le code postal du sportif
+     * @param codePostal
+     */
     public void setCodePostal(int codePostal) { this.codePostal = codePostal; }
 
+    /**
+     * Définit le numéro de téléphone
+     * @param numeroTelephone
+     */
     public void setNumeroTelephone(String numeroTelephone) { this.numeroTelephone = numeroTelephone; }
 
+    /**
+     * Définit la description du sportif
+     * @param description
+     */
     public void setDescription(String description) { this.description = description; }
 
+    /**
+     * Retourne si le sportif doit rester connecté
+     * @param resteConnecte     (TRUE) reste connecté sinon (FALSE)
+     */
     public void setResteConnecte(boolean resteConnecte) { this.resteConnecte = resteConnecte; }
 
     //AUTRES METHODES

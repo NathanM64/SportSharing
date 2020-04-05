@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.example.sportsharing.Classe.Sport;
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,7 +31,7 @@ public class ProfilActivity extends AppCompatActivity {
 
     //VARIABLES autres
     Intent demarre;
-    DossierVariableClasse global;
+    Ressource global;
     private String typeProfil;
     private static final int ITEM_NAV_BAR_SELECTED = R.id.navBarUser;
     private Context contextActivity = ProfilActivity.this;
@@ -54,7 +54,7 @@ public class ProfilActivity extends AppCompatActivity {
         parameter = findViewById(R.id.parameter);
 
         //Init variable autres
-        global = DossierVariableClasse.getInstance();
+        global = Ressource.getInstance();
 
         //Changer icone navBar selectionnee
         navBar.getMenu().findItem(ITEM_NAV_BAR_SELECTED).setChecked(true);

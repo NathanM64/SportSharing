@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.example.sportsharing.Classe.Organisateur;
 import com.example.sportsharing.Classe.Sportif;
 import com.example.sportsharing.ClasseDAO.SportifDAO;
@@ -25,7 +25,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
     //VARIABLES
     private Intent demarre;
-    private DossierVariableClasse global;
+    private Ressource global;
     private SportifDAO sportifDAO;
 
     private String MESSAGE_ERROR_LOGIN;
@@ -41,7 +41,7 @@ public class ConnexionActivity extends AppCompatActivity {
         MESSAGE_ERROR_PASSWORD = getString(R.string.error_password);
 
         //Instance de DossierVariableClasse
-        global = DossierVariableClasse.getInstance();
+        global = Ressource.getInstance();
 
         //Instance sportifDAO
         sportifDAO = new SportifDAO(this);

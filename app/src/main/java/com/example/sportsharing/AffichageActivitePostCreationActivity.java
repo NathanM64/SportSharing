@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.example.sportsharing.ClasseDAO.ActiviteDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
@@ -44,7 +44,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
     private FloatingActionButton back;
 
     //VARIABLES autres
-    DossierVariableClasse global;
+    Ressource global;
     String context;
 
     //VARIABLES MapBox
@@ -60,7 +60,7 @@ public class AffichageActivitePostCreationActivity extends AppCompatActivity {
         context = this.getIntent().getStringExtra("context");
 
         //Récupération de DossierVariableGlobal
-        global = DossierVariableClasse.getInstance();
+        global = Ressource.getInstance();
 
         //Initialisation des variables de la maquette
         nameUser = findViewById(R.id.nameUser);

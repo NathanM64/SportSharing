@@ -11,6 +11,11 @@ public class DAO extends SQLiteOpenHelper {
         super(context, ParamDAO.base, null, ParamDAO.version);
     }
 
+    /**
+     * Crée la base de données
+     * La méthode n'est pas appelé si la base de données est déjà créé
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -210,6 +215,12 @@ public class DAO extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Méthode qui permet de mettre à jour la base
+     * @param db
+     * @param i
+     * @param i1
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 

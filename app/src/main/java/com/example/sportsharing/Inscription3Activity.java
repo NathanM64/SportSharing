@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.example.sportsharing.Classe.Organisateur;
 import com.example.sportsharing.ClasseDAO.SportifDAO;
 
@@ -24,7 +24,7 @@ public class Inscription3Activity extends AppCompatActivity {
 
     //VARIABLES
     Intent demarre;
-    private DossierVariableClasse global;
+    private Ressource global;
     int caractereSaisie = 0;
 
     @Override
@@ -33,7 +33,7 @@ public class Inscription3Activity extends AppCompatActivity {
         setContentView(R.layout.inscription_3);
         
         //Instance de DossierVariableClasse
-        global = DossierVariableClasse.getInstance();
+        global = Ressource.getInstance();
 
         //Initialisation des variables
         presentation = findViewById(R.id.editTextPresentation);

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.sportsharing.Classe.Activite;
 import com.example.sportsharing.Classe.Adresse;
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.example.sportsharing.Classe.EnumUtil;
 import com.example.sportsharing.Classe.Sport;
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
@@ -60,7 +60,7 @@ public class CreerActiviteActivity extends AppCompatActivity {
     private Context contextActivity = CreerActiviteActivity.this;
     private static final int REQUEST_CODE_AUTOCOMPLETE = 1;
     private static final int REQUEST_CODE_PLACEPICKER = 2;
-    private DossierVariableClasse global;
+    private Ressource global;
 
     public int nbPlayer;
     int annee, mois, jour, heure, minute;
@@ -76,7 +76,7 @@ public class CreerActiviteActivity extends AppCompatActivity {
         setContentView(R.layout.creer_activite);
 
         //Récupération de DossierGlobalClasse
-        global = DossierVariableClasse.getInstance();
+        global = Ressource.getInstance();
 
         //Initialisation des variables
         navBar = findViewById(R.id.bottomNavigationView);

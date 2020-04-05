@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.example.sportsharing.ClasseDAO.SportifDAO;
 import com.example.sportsharing.Utils.BottomNavigationViewListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,7 +35,7 @@ public class ProfilParametreActivity extends AppCompatActivity {
         navBar = findViewById(R.id.bottomNavigationView);
 
         //Init pseudo
-        pseudoUser.setText(DossierVariableClasse.getInstance().utilisateur.getNom() +" "+ DossierVariableClasse.getInstance().utilisateur.getPrenom());
+        pseudoUser.setText(Ressource.getInstance().utilisateur.getNom() +" "+ Ressource.getInstance().utilisateur.getPrenom());
 
         //Changer icone navBar selectionnee
         navBar.getMenu().findItem(ITEM_NAV_BAR_SELECTED).setChecked(true);
@@ -54,7 +54,7 @@ public class ProfilParametreActivity extends AppCompatActivity {
         SportifDAO sportifDAO = new SportifDAO(ProfilParametreActivity.this);
 
         //Deconnecte le profil à l'attribut resteConnecte
-        sportifDAO.enleveResteConnectASportifAvecResteConnecte(DossierVariableClasse.getInstance().utilisateur.getLogin());
+        sportifDAO.enleveResteConnectASportifAvecResteConnecte(Ressource.getInstance().utilisateur.getLogin());
 
         Intent demarre = new Intent(getApplicationContext(), ConnexionActivity.class);
         startActivity(demarre);

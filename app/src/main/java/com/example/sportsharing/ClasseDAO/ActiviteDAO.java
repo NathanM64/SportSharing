@@ -14,12 +14,28 @@ import com.example.sportsharing.Classe.Sportif;
 
 import java.util.ArrayList;
 
+/**
+ * ActiviteDAO est la classe qui fait la liaison entre la base de données et la classe Activité
+ * @see Activite
+ * @author groupe 13 (Mathieu BOCCIARELLI)
+ * @version 1.0
+ * @since 30/03/2020
+ */
 public class ActiviteDAO extends DAO {
 
+    /**
+     * <br>
+     * <b>Constructeur de la classe ActiviteDAO</b>
+     * @param context       Activity dans laquelle cette classe est appelé
+     */
     public ActiviteDAO(Context context) {
         super(context);
     }
 
+    /**
+     * Ajout d'une nouvelle activité à la base de donnée
+     * @param activite
+     */
     public void addActivite(Activite activite) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("jour", activite.getJour());
@@ -44,18 +60,40 @@ public class ActiviteDAO extends DAO {
         Log.d("Test", this.getWritableDatabase().insert("Activite", null, contentValues)+"");
     }
 
+    /**
+     * Retourne la liste des activités d'un sportif
+     * @see Activite
+     * @param login     Login du sportif à chercher
+     * @return
+     */
     public ArrayList<Activite> getAllActiviteBySportifLogin(String login) {
         Cursor curseur;
         //Requete
         curseur = this.getReadableDatabase().rawQuery("select * from Activite where idCreateur=?", new String[]{login});
         return curseurToActiviteArrayList(curseur);
     }
+
+    /**
+     * Retourne la liste des activités auxquelles est inscrit un sportif
+     * (INCOMPLET)
+     * @see Activite
+     * @param login     Login du sportif à chercher
+     * @return
+     */
     public ArrayList<Activite> getAllActiviteInscriteBySportifLogin(String login) {
         Cursor curseur;
         //Requete
         curseur = this.getReadableDatabase().rawQuery("select * from Participer where estAccepte=1 and loginSportif=?", new String[]{login});
         return curseurToActiviteArrayList(curseur);
     }
+
+    /**
+     * Retourne la liste des activités terminés auxquelles le sportif est créateur
+     * (INCOMPLET)
+     * @see Activite
+     * @param login     Login du sportif à chercher
+     * @return
+     */
     public ArrayList<Activite> getAllActiviteTermineBySportifLogin(String login) {
         Cursor curseur;
         //Requete
@@ -63,6 +101,12 @@ public class ActiviteDAO extends DAO {
         return curseurToActiviteArrayList(curseur);
     }
 
+    /**
+     * Retourne la liste des activités contenue dans un curseur
+     * @see Cursor
+     * @param curseur
+     * @return
+     */
     private ArrayList<Activite> curseurToActiviteArrayList(Cursor curseur) {
         ArrayList<Activite> listActivite = new ArrayList<>();
         int id, nbMaxPersonne;
@@ -99,6 +143,13 @@ public class ActiviteDAO extends DAO {
         return listActivite;
     }
 
+    /**
+     * Retourne un sport
+     * @see Sport
+     * @param libelle   Libelle du sport à récupérer
+     * @see com.example.sportsharing.Classe.EnumUtil.NameSport
+     * @return
+     */
     private Sport getSportByLibelle(EnumUtil.NameSport libelle) {
         Cursor curseur;
         Sport sport = null;
@@ -116,6 +167,12 @@ public class ActiviteDAO extends DAO {
         return sport;
     }
 
+    /**
+     * Retourne l'organisateur d'un sportif donné
+     * @see Organisateur
+     * @param login     Login du sportif concerné
+     * @return
+     */
     public Organisateur getOrganisateurByLogin(String login) {
         Cursor curseur;
 
@@ -124,6 +181,12 @@ public class ActiviteDAO extends DAO {
         return curseurToOrganisateur(curseur);
     }
 
+    /**
+     * Retourne l'organisateur contenu dans un curseur
+     * @see Cursor
+     * @param curseur
+     * @return
+     */
     private Organisateur curseurToOrganisateur(Cursor curseur) {
         Sportif sportif = new Sportif();
         String login, motDePasse, confirmMotDePasse, nom, prenom, adresseMail, dateNaissance, ville, numeroTelephone, description;
@@ -152,6 +215,11 @@ public class ActiviteDAO extends DAO {
         return new Organisateur(sportif);
     }
 
+    /**
+     * Retourne une adresse
+     * @param id    Identifiant de l'adresse
+     * @return
+     */
     private Adresse getAdresseById(int id) {
         Cursor curseur;
         Adresse adresse = null;
@@ -171,6 +239,14 @@ public class ActiviteDAO extends DAO {
         return adresse;
     }
 
+    /**
+     * Retourne l'identifiant d'une adresse
+     * @param numero        Numero de l'adresse
+     * @param nom           Nom de rue de l'adresse
+     * @param codePostal    Code postal de l'adresse
+     * @param ville         Ville de l'adresse
+     * @return
+     */
     public int getIdByAdresse(int numero, String nom, int codePostal, String ville) {
         Cursor curseur;
 
@@ -185,6 +261,13 @@ public class ActiviteDAO extends DAO {
         }
     }
 
+    /**
+     * Ajout d'une nouvelle adresse à la table Adresse
+     * @param numero        Numero de l'adresse
+     * @param nom           Nom de rue de l'adresse
+     * @param codePostal    Code postal de l'adresse
+     * @param ville         Ville de l'adresse
+     */
     public void addAdresse(int numero, String nom, int codePostal, String ville) {
         ContentValues adresse = new ContentValues();
 

@@ -9,11 +9,29 @@ import com.example.sportsharing.Classe.Sportif;
 
 import java.util.ArrayList;
 
+/**
+ * SportifDAO est la classe qui fait la liaison entre la base de données et la classe Sportif
+ * @see Sportif
+ * @author groupe 13 (Mathieu BOCCIARELLI)
+ * @version 1.0
+ * @since 30/03/2020
+ */
 public class SportifDAO extends DAO {
+
+    /**
+     * <br>
+     * <b>Constructeur de la classe SportifDAO</b>
+     * @param context       Activity dans laquelle cette classe est appelé
+     */
     public SportifDAO(Context context) {
         super(context);
     }
 
+    /**
+     * Ajoute un sportif à la base de données
+     * @see Sportif
+     * @param sportif
+     */
     public void addSportif(Sportif sportif) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -36,6 +54,10 @@ public class SportifDAO extends DAO {
         db.insert("Sportif", null, valeurs);
     }
 
+    /**
+     * Retire l'option de rester connecté à un sportif
+     * @param login     Login du sportif concerné
+     */
     public void enleveResteConnectASportifAvecResteConnecte(String login) {
         ContentValues values = new ContentValues();
         values.put("resteConnecte", 0);
@@ -43,6 +65,10 @@ public class SportifDAO extends DAO {
         this.getWritableDatabase().update("Sportif", values, "login=?", new String[]{login});
     }
 
+    /**
+     * Définit l'option de rester connecté à un sportif
+     * @param login     Login du sportif concerné
+     */
     public void setResteConnectASportif(String login) {
         ContentValues values = new ContentValues();
         values.put("resteConnecte", 1);
@@ -50,6 +76,11 @@ public class SportifDAO extends DAO {
         this.getWritableDatabase().update("Sportif", values, "login=?", new String[]{login});
     }
 
+    /**
+     * Retourne un sportif
+     * @param login     Login du sportif concerné
+     * @return
+     */
     public Sportif getSportif(String login) {
         Sportif sportif = null;
         Cursor curseur;
@@ -61,6 +92,10 @@ public class SportifDAO extends DAO {
         return sportif;
     }
 
+    /**
+     * Retourne le sportif qui a l'option de rester connecté
+     * @return
+     */
     public Sportif getSportifResteConnecte() {
         Sportif sportif = null;
         Cursor curseur;
@@ -72,6 +107,12 @@ public class SportifDAO extends DAO {
         return sportif;
     }
 
+    /**
+     * Retourne un sportif contenu dans un curseur
+     * @see Cursor
+     * @param curseur
+     * @return
+     */
     private Sportif curseurToSportif(Cursor curseur) {
         Sportif sportif = null;
         String login, motDePasse, confirmMotDePasse, nom, prenom, adresseMail, dateNaissance, ville, numeroTelephone, description;
@@ -100,6 +141,10 @@ public class SportifDAO extends DAO {
         return sportif;
     }
 
+    /**
+     * Retourne la liste de tous les sportifs de la base
+     * @return
+     */
     public ArrayList<Sportif> getAllSportifs() {
         Cursor curseur;
 
@@ -108,6 +153,12 @@ public class SportifDAO extends DAO {
         return curseurToSportifArrayList(curseur);
     }
 
+    /**
+     * Retourne la liste de tous les sportif contenu dans un curseur
+     * @see Cursor
+     * @param curseur
+     * @return
+     */
     private ArrayList<Sportif> curseurToSportifArrayList(Cursor curseur) {
         ArrayList<Sportif> listSportif = new ArrayList<>();
         String login, motDePasse, confirmMotDePasse, nom, prenom, adresseMail, dateNaissance, ville, numeroTelephone, description;

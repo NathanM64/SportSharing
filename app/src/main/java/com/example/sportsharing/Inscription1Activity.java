@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class Inscription1Activity extends AppCompatActivity {
 
     //VARIABLES
     private Intent demarre;
-    private DossierVariableClasse global;
+    private Ressource global;
 
     private String MESSAGE_ERROR_EMPTY_FIELD;
     private String MESSAGE_ERROR_NO_SPACE;
@@ -54,7 +54,7 @@ public class Inscription1Activity extends AppCompatActivity {
         MESSAGE_ERROR_SIMILAR_PASSWORD = getString(R.string.error_similar_password);
 
         //Instance de DossierVariableClasse
-        global = DossierVariableClasse.getInstance();
+        global = Ressource.getInstance();
 
         //Initialisation des variables
         login = findViewById(R.id.login);

@@ -17,7 +17,7 @@ public class Adresse {
     private String ville;
 
     /**
-     *
+     *  Liste des toutes les activités que posséde ce lieu
      * @see Activite
      */
     public Vector<Activite> possede;

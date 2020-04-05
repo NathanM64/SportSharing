@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.sportsharing.Classe.DossierVariableClasse;
+import com.example.sportsharing.Classe.Ressource;
 import com.example.sportsharing.Classe.EnumUtil;
 import com.example.sportsharing.Classe.Sport;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,7 +42,7 @@ public class Inscription2Activity extends AppCompatActivity {
 
     //VARIABLES
     Intent demarre;
-    DossierVariableClasse global;
+    Ressource global;
     String sportASupprimer;
 
     @Override
@@ -51,7 +51,7 @@ public class Inscription2Activity extends AppCompatActivity {
         setContentView(R.layout.inscription_2);
 
         //Instance de DossierVariableClasse
-        global = DossierVariableClasse.getInstance();
+        global = Ressource.getInstance();
 
         //Initialisation des variables
         sport = findViewById(R.id.spinnerSport);
