@@ -90,6 +90,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
                     //Définition du profil chargé
                     ressource.setUtilisateur(utilisateur);
+                    ressource.setCreateur();
 
                     //Ouverture maquette Accueil
                     demarre = new Intent(getApplicationContext(), AccueilActivity.class);
